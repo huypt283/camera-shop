@@ -5,11 +5,10 @@ import com.nhom8.camera.model.response.ProductResponse;
 import com.nhom8.camera.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/product")
@@ -21,13 +20,23 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @GetMapping
+    public ModelAndView getListProduct(@RequestParam(value = "limit", defaultValue = "20", required = false) int limit,
+                                       @RequestParam(value = "offset", defaultValue = "0", required = false) int offset) {
+        List<Product> products = productService.getListProduct(limit, offset);
+        ModelAndView mav = new ModelAndView("/web/product");
+        mav.addObject("products", products);
+        return mav;
+    }
+
+
 //    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     @GetMapping("/{id}")
     public ModelAndView getSingleProduct(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("/web/test");
+        ModelAndView mav = new ModelAndView("/web/single");
 
 
-        ProductResponse product = productService.getSingleProductById(id);
+        Product product = productService.getSingleProductById(id);
         mav.addObject("product", product);
 
         return mav;

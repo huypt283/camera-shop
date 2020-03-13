@@ -23,10 +23,10 @@ public class AppController {
     public String register() {
     	return "web/register";
     }
-    @GetMapping("/product")
-    public String product() {
-    	return "web/product";
-    }
+//    @GetMapping("/product")
+//    public String product() {
+//    	return "web/product";
+//    }
     @GetMapping("/typo")
     public String typo() {
     	return "web/typo";

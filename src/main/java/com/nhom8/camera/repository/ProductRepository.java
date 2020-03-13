@@ -1,12 +1,15 @@
 package com.nhom8.camera.repository;
 
 import com.nhom8.camera.entity.Product;
-import com.nhom8.camera.model.response.ProductResponse;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
@@ -15,5 +18,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                                               @Param(value = "createDate") Date createDate);
 
     Product findByUnitPriceAndCreateDate(Long unitPrice, Date createDate);
+
+    @Query("select p from Product p where p.id = :id")
+    Product findOneById(@Param(value = "id") Long id);
+
+    @Query("select p from Product p")
+    List<Product> findAllAndSort(Pageable pageable);
 
 }

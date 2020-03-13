@@ -48,7 +48,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 		</script>
 <!---//End-rate---->
-<link href="<c:url value="template/web/css/form.css"/>" rel="stylesheet" type="text/css" media="all" />
+<link href="<c:url value="/template/web/css/form.css"/>" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
 <!--header-->
@@ -56,7 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="container">
 		<div class="head">
 			<div class=" logo">
-				<a href="<c:url value="/"/>"><img src="<c:url value="template/web/images/logo.png"/>" alt=""></a>
+				<a href="<c:url value="/"/>"><img src="<c:url value="/template/web/images/logo.png"/>" alt=""></a>
 			</div>
 		</div>
 	</div>
@@ -164,7 +164,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>							
 						</div>
 						<div class="col1 col5">
-						<img src="<c:url value="template/web/images/me.png"/>" class="img-responsive" alt="">
+						<img src="<c:url value="/template/web/images/me.png"/>" class="img-responsive" alt="">
 						</div>
 						<div class="clearfix"></div>
 					</div>                  
@@ -229,7 +229,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>							
 						</div>
 						<div class="col1 col5">
-						<img src="images/me1.png" class="img-responsive" alt="">
+						<img src="<c:url value="/template/web/images/me1.png"/>" class="img-responsive" alt="">
 						</div>
 						<div class="clearfix"></div>
 					</div>                  
@@ -256,7 +256,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<a href="<c:url value="/checkout"/>">
 						<h3> <div class="total">
 							<span class="simpleCart_total"></span></div>
-							<img src="<c:url value="template/web/images/cart.png"/>" alt=""/></h3>
+							<img src="<c:url value="/template/web/images/cart.png"/>" alt=""/></h3>
 						</a>
 						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
 
@@ -266,8 +266,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!----->
 
 						<!---pop-up-box---->					  
-			<link href="<c:url value="template/web/css/popuo-box.css"/>" rel="stylesheet" type="text/css" media="all"/>
-			<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+			<link href="<c:url value="/template/web/css/popuo-box.css"/>" rel="stylesheet" type="text/css" media="all"/>
+			<script src="<c:url value="/template/web/js/jquery.magnific-popup.js"/>" type="text/javascript"></script>
 			<!---//pop-up-box---->
 			<div id="small-dialog" class="mfp-hide">
 				<div class="search-top">
@@ -313,188 +313,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="container">
 			<div class="col-md-9">
 				<div class="mid-popular">
-					<div class="col-md-4 item-grid1 simpleCart_shelfItem">
-					<div class=" mid-pop">
-					<div class="pro-img">
-						<img src="<c:url value="template/web/images/pc.jpg"/>" class="img-responsive" alt="">
-						<div class="zoom-icon ">
-						<a class="picture" href="<c:url value="template/web/images/pc.jpg"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-						<a href="single.jsp"><i class="glyphicon glyphicon-menu-right icon"></i></a>
-						</div>
-						</div>
-						<div class="mid-1">
-						<div class="women">
-						<div class="women-top">
-							<span>Women</span>
-							<h6><a href="<c:url value="/single"/>">Sed ut perspiciati</a></h6>
-							</div>
-							<div class="img item_add">
-								<a href="#"><img src="<c:url value="template/web/images/ca.png"/>" alt=""></a>
-							</div>
-							<div class="clearfix"></div>
-							</div>
-							<div class="mid-2">
-								<p ><label>$100.00</label><em class="item_price">$70.00</em></p>
-								  <div class="block">
-									<div class="starbox small ghosting"> </div>
-								</div>
-								
-								<div class="clearfix"></div>
-							</div>
-							
-						</div>
-					</div>
-					</div>
-					<div class="col-md-4 item-grid1 simpleCart_shelfItem">
-					<div class=" mid-pop">
-					<div class="pro-img">
-						<img src="<c:url value="template/web/images/pc1.png"/>" class="img-responsive" alt="">
-						<div class="zoom-icon ">
-						<a class="picture" href="<c:url value="template/web/images/pc1.png"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-						<a href="<c:url value="/single"/>"><i class="glyphicon glyphicon-menu-right icon"></i></a>
-						</div>
-						</div>
-						<div class="mid-1">
-						<div class="women">
-						<div class="women-top">
-							<span>Women</span>
-							<h6><a href="<c:url value="/single"/>">At vero eos</a></h6>
-							</div>
-							<div class="img item_add">
-								<a href="#"><img src="<c:url value="template/web/images/ca.png"/>" alt=""></a>
-							</div>
-							<div class="clearfix"></div>
-							</div>
-							<div class="mid-2">
-								<p ><label>$100.00</label><em class="item_price">$70.00</em></p>
-								  <div class="block">
-									<div class="starbox small ghosting"> </div>
-								</div>
-								
-								<div class="clearfix"></div>
-							</div>
-							
-						</div>
-					</div>
-					</div>
-					<div class="col-md-4 item-grid1 simpleCart_shelfItem">
-					<div class=" mid-pop">
-					<div class="pro-img">
-						<img src="<c:url value="template/web/images/pc2.png"/>" class="img-responsive" alt="">
-						<div class="zoom-icon ">
-						<a class="picture" href="<c:url value="template/web/images/pc2.png"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-						<a href="<c:url value="/single"/>"><i class="glyphicon glyphicon-menu-right icon"></i></a>
-						</div>
-						</div>
-						<div class="mid-1">
-						<div class="women">
-						<div class="women-top">
-							<span>Men</span>
-							<h6><a href="<c:url value="/single"/>">Sed ut perspiciati</a></h6>
-							</div>
-							<div class="img item_add">
-								<a href="#"><img src="<c:url value="template/web/images/ca.png"/>" alt=""></a>
-							</div>
-							<div class="clearfix"></div>
-							</div>
-							<div class="mid-2">
-								<p ><label>$100.00</label><em class="item_price">$70.00</em></p>
-								  <div class="block">
-									<div class="starbox small ghosting"> </div>
-								</div>
-								
-								<div class="clearfix"></div>
-							</div>
-							
-						</div>
-					</div>
-					</div>
+					<c:forEach items="${products}" var="product">
 						<div class="col-md-4 item-grid1 simpleCart_shelfItem">
 					<div class=" mid-pop">
 					<div class="pro-img">
-						<img src="<c:url value="template/web/images/pc3.png"/>" class="img-responsive" alt="">
+						<img src="<c:url value="/template/web/images/pc.jpg"/>" class="img-responsive" alt="">
 						<div class="zoom-icon ">
-						<a class="picture" href="<c:url value="template/web/images/pc3.png"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-						<a href="<c:url value="/single"/>"><i class="glyphicon glyphicon-menu-right icon"></i></a>
-						</div>
-						</div>
-						<div class="mid-1">
-						<div class="women">
-						<div class="women-top">
-							<span>Women</span>
-							<h6><a href="<c:url value="/single"/>">On the other</a></h6>
-							</div>
-							<div class="img item_add">
-								<a href="#"><img src="<c:url value="template/web/images/ca.png"/>" alt=""></a>
-							</div>
-							<div class="clearfix"></div>
-							</div>
-							<div class="mid-2">
-								<p ><label>$100.00</label><em class="item_price">$70.00</em></p>
-								  <div class="block">
-									<div class="starbox small ghosting"> </div>
-								</div>
-								
-								<div class="clearfix"></div>
-							</div>
-							
-						</div>
-					</div>
-					</div>
-					<div class="col-md-4 item-grid1 simpleCart_shelfItem">
-					<div class=" mid-pop">
-					<div class="pro-img">
-						<img src="<c:url value="template/web/images/pc4.png"/>" class="img-responsive" alt="">
-						<div class="zoom-icon ">
-						<a class="picture" href="<c:url value="template/web/images/pc4.png"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-						<a href="<c:url value="/single"/>"><i class="glyphicon glyphicon-menu-right icon"></i></a>
-						</div>
-						</div>
-						<div class="mid-1">
-						<div class="women">
-						<div class="women-top">
-							<span>Men</span>
-							<h6><a href="<c:url value="/single"/>">On the other</a></h6>
-							</div>
-							<div class="img item_add">
-								<a href="#"><img src="<c:url value="template/web/images/ca.png"/>" alt=""></a>
-							</div>
-							<div class="clearfix"></div>
-							</div>
-							<div class="mid-2">
-								<p ><label>$100.00</label><em class="item_price">$70.00</em></p>
-								  <div class="block">
-									<div class="starbox small ghosting"> </div>
-								</div>
-								
-								<div class="clearfix"></div>
-							</div>
-							
-						</div>
-					</div>
-					</div>
-					<div class="col-md-4 item-grid1 simpleCart_shelfItem">
-					<div class=" mid-pop">
-					<div class="pro-img">
-						<img src="<c:url value="template/web/images/pc5.png"/>" class="img-responsive" alt="">
-						<div class="zoom-icon ">
-						<a class="picture" href="<c:url value="template/web/images/pc5.png"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
+						<a class="picture" href="<c:url value="/template/web/images/pc.jpg"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
 						<a href="single.jsp"><i class="glyphicon glyphicon-menu-right icon"></i></a>
 						</div>
 						</div>
 						<div class="mid-1">
 						<div class="women">
 						<div class="women-top">
-							<span>Men</span>
-							<h6><a href="<c:url value="/single"/>">Sed ut perspiciati</a></h6>
+							<span>${product.branch.name}</span>
+							<h6><a href="<c:url value="/product/${product.id}"/>">${product.name}</a></h6>
 							</div>
 							<div class="img item_add">
-								<a href="#"><img src="<c:url value="template/web/images/ca.png"/>" alt=""></a>
+								<a href="#"><img src="<c:url value="/template/web/images/ca.png"/>" alt=""></a>
 							</div>
 							<div class="clearfix"></div>
 							</div>
 							<div class="mid-2">
-								<p ><label>$100.00</label><em class="item_price">$70.00</em></p>
+								<p ><label>$100.00</label><em class="item_price">${product.unitPrice}</em></p>
 								  <div class="block">
 									<div class="starbox small ghosting"> </div>
 								</div>
@@ -505,103 +346,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 					</div>
-					
-					<div class="col-md-4 item-grid1 simpleCart_shelfItem">
-					<div class=" mid-pop">
-					<div class="pro-img">
-						<img src="<c:url value="template/web/images/pc6.png"/>" class="img-responsive" alt="">
-						<div class="zoom-icon ">
-						<a class="picture" href="<c:url value="template/web/images/pc6.png"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-						<a href="<c:url value="/single"/>"><i class="glyphicon glyphicon-menu-right icon"></i></a>
-						</div>
-						</div>
-						<div class="mid-1">
-						<div class="women">
-						<div class="women-top">
-							<span>Women</span>
-							<h6><a href="<c:url value="/single"/>">At vero eos</a></h6>
-							</div>
-							<div class="img item_add">
-								<a href="#"><img src="<c:url value="template/web/images/ca.png"/>" alt=""></a>
-							</div>
-							<div class="clearfix"></div>
-							</div>
-							<div class="mid-2">
-								<p ><label>$100.00</label><em class="item_price">$70.00</em></p>
-								  <div class="block">
-									<div class="starbox small ghosting"> </div>
-								</div>
-								
-								<div class="clearfix"></div>
-							</div>
-							
-						</div>
-					</div>
-					</div>
-					<div class="col-md-4 item-grid1 simpleCart_shelfItem">
-					<div class=" mid-pop">
-					<div class="pro-img">
-						<img src="<c:url value="template/web/images/pc7.png"/>" class="img-responsive" alt="">
-						<div class="zoom-icon ">
-						<a class="picture" href="<c:url value="template/web/images/pc7.png"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-						<a href="<c:url value="/single"/>"><i class="glyphicon glyphicon-menu-right icon"></i></a>
-						</div>
-						</div>
-						<div class="mid-1">
-						<div class="women">
-						<div class="women-top">
-							<span>Men</span>
-							<h6><a href="<c:url value="/single"/>">Sed ut perspiciati</a></h6>
-							</div>
-							<div class="img item_add">
-								<a href="#"><img src="<c:url value="template/web/images/ca.png"/>" alt=""></a>
-							</div>
-							<div class="clearfix"></div>
-							</div>
-							<div class="mid-2">
-								<p ><label>$100.00</label><em class="item_price">$70.00</em></p>
-								  <div class="block">
-									<div class="starbox small ghosting"> </div>
-								</div>
-								
-								<div class="clearfix"></div>
-							</div>
-							
-						</div>
-					</div>
-					</div>
-					<div class="col-md-4 item-grid1 simpleCart_shelfItem">
-					<div class=" mid-pop">
-					<div class="pro-img">
-						<img src="<c:url value="template/web/images/pc.jpg"/>" class="img-responsive" alt="">
-						<div class="zoom-icon ">
-						<a class="picture" href="<c:url value="template/web/images/pc.jpg"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-						<a href="single.jsp"><i class="glyphicon glyphicon-menu-right icon"></i></a>
-						</div>
-						</div>
-						<div class="mid-1">
-						<div class="women">
-						<div class="women-top">
-							<span>Women</span>
-							<h6><a href="<c:url value="/single"/>">At vero eos</a></h6>
-							</div>
-							<div class="img item_add">
-								<a href="#"><img src="<c:url value="template/web/images/ca.png"/>" alt=""></a>
-							</div>
-							<div class="clearfix"></div>
-							</div>
-							<div class="mid-2">
-								<p ><label>$100.00</label><em class="item_price">$70.00</em></p>
-								  <div class="block">
-									<div class="starbox small ghosting"> </div>
-								</div>
-								
-								<div class="clearfix"></div>
-							</div>
-							
-						</div>
-					</div>
-					</div>
+					</c:forEach>
 					<div class="clearfix"></div>
 				</div>
 			</div>
@@ -730,16 +475,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<div class="brand">
 				<div class="col-md-3 brand-grid">
-					<img src="<c:url value="template/web/images/ic.png"/>" class="img-responsive" alt="">
+					<img src="<c:url value="/template/web/images/ic.png"/>" class="img-responsive" alt="">
 				</div>
 				<div class="col-md-3 brand-grid">
-					<img src="<c:url value="template/web/images/ic1.png"/>" class="img-responsive" alt="">
+					<img src="<c:url value="/template/web/images/ic1.png"/>" class="img-responsive" alt="">
 				</div>
 				<div class="col-md-3 brand-grid">
-					<img src="<c:url value="template/web/images/ic2.png"/>" class="img-responsive" alt="">
+					<img src="<c:url value="/template/web/images/ic2.png"/>" class="img-responsive" alt="">
 				</div>
 				<div class="col-md-3 brand-grid">
-					<img src="<c:url value="template/web/images/ic3.png"/>" class="img-responsive" alt="">
+					<img src="<c:url value="/template/web/images/ic3.png"/>" class="img-responsive" alt="">
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -754,7 +499,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="footer-middle">
 				<div class="container">
 					<div class="col-md-3 footer-middle-in">
-						<a href="<c:url value="/index"/>"><img src="<c:url value="template/web/images/log.png"/>" alt=""></a>
+						<a href="<c:url value="/index"/>"><img src="<c:url value="/template/web/images/log.png"/>" alt=""></a>
 						<p>Suspendisse sed accumsan risus. Curabitur rhoncus, elit vel tincidunt elementum, nunc urna tristique nisi, in interdum libero magna tristique ante. adipiscing varius. Vestibulum dolor lorem.</p>
 					</div>
 					
@@ -799,9 +544,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="footer-bottom">
 				<div class="container">
 					<ul class="footer-bottom-top">
-						<li><a href="#"><img src="<c:url value="template/web/images/f1.png"/>" class="img-responsive" alt=""></a></li>
-						<li><a href="#"><img src="<c:url value="template/web/images/f1.png"/>" class="img-responsive" alt=""></a></li>
-						<li><a href="#"><img src="<c:url value="template/web/images/f1.png"/>" class="img-responsive" alt=""></a></li>
+						<li><a href="#"><img src="<c:url value="/template/web/images/f1.png"/>" class="img-responsive" alt=""></a></li>
+						<li><a href="#"><img src="<c:url value="/template/web/images/f1.png"/>" class="img-responsive" alt=""></a></li>
+						<li><a href="#"><img src="<c:url value="/template/web/images/f1.png"/>" class="img-responsive" alt=""></a></li>
 					</ul>
 					<p class="footer-class">&copy; 2016 Shopin. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
 					<div class="clearfix"> </div>
@@ -811,12 +556,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--//footer-->
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
-	<script src="<c:url value="template/web/js/simpleCart.min.js"/>"> </script>
+	<script src="<c:url value="/template/web/js/simpleCart.min.js"/>"> </script>
 <!-- slide -->
-<script src="<c:url value="template/web/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/template/web/js/bootstrap.min.js"/>"></script>
  <!--light-box-files -->
-		<script src="<c:url value="template/web/js/jquery.chocolat.js"/>"></script>
-		<link rel="stylesheet" href="<c:url value="template/web/css/chocolat.css"/>" type="text/css" media="screen" charset="utf-8">
+		<script src="<c:url value="/template/web/js/jquery.chocolat.js"/>"></script>
+		<link rel="stylesheet" href="<c:url value="/template/web/css/chocolat.css"/>" type="text/css" media="screen" charset="utf-8">
 		<!--light-box-files -->
 		<script type="text/javascript" charset="utf-8">
 		$(function() {

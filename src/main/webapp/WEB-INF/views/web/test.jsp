@@ -11,10 +11,10 @@
     <title>Title</title>
 </head>
 <body>
-
+<c:forEach items="${products}" var="product">
 <p>Product name: ${product.name}</p>
 <p>Product price: ${product.unitPrice}</p>
 <p>Product quantity: ${product.quantity}</p>
-
+</c:forEach>
 </body>
 </html>
