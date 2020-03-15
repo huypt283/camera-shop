@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class AppController {
-    @GetMapping(value = {"/","/home","index"})
+   /* @GetMapping(value = {"/","/home","index"})
     public String index() {
-        return "web/index";
-    }
 
+        return "web/index";
+    }*/
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -31,10 +31,10 @@ public class AppController {
     public String typo() {
     	return "web/typo";
     }
-    @GetMapping("/checkout")
+  /*  @GetMapping("/checkout")
     public String checkout() {
     	return "web/checkout";
-    }
+    }*/
     @GetMapping("/404")
     public String web404() {
     	return "web/404";

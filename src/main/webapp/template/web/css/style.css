@@ -499,6 +499,9 @@ a.buy-now:hover{
 /*----*/
 .women-top {
     float: left;
+	width: 190px;
+	height: 70px;
+	word-wrap: break-word;
 }
 .img {
     float: right;
@@ -2092,6 +2095,8 @@ label.line {
 }
 .women-top {
     float: none;
+	width: 240px;
+	height: 70px;
 }
 .mid-1 span {
     font-size: 0.8em;
@@ -2338,4 +2343,7 @@ td.add-check a {
     background-position-x: -225px;
     background-size: 542px;
 }
+}
+.col-md-3{
+	padding-bottom: 15px;
 }

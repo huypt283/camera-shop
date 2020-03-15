@@ -55,7 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="container">
 		<div class="head">
 			<div class=" logo">
-				<a href="<c:url value="/"/>"><img src="<c:url value="/template/web/images/logo.png"/>" alt=""></a>
+				<a href="<c:url value="/sell_cameras/home"/>"><img src="<c:url value="/template/web/images/logo.png"/>" alt=""></a>
 			</div>
 		</div>
 	</div>
@@ -103,7 +103,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
         <ul class="nav navbar-nav nav_1">
-            <li><a class="color" href="<c:url value="/"/>">Home</a></li>
+            <li><a class="color" href="<c:url value="/sell_cameras/home"/>">Home</a></li>
             <li class="dropdown mega-dropdown active">
 			    <a class="color1" href="#" class="dropdown-toggle" data-toggle="dropdown">Women<span class="caret"></span></a>				
 				<div class="dropdown-menu ">
@@ -303,7 +303,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<h1>Checkout</h1>
 		<em></em>
-		<h2><a href="<c:url value="/"/>">Home</a><label>/</label>Checkout</h2>
+		<h2><a href="<c:url value="/sell_cameras/home"/>">Home</a><label>/</label>Checkout</h2>
 	</div>
 </div>
 <!--login-->
@@ -341,25 +341,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<th class="table-grid">Item</th>
 					
 			<th>Prices</th>
-			<th >Delivery </th>
+			<th >Quanlity </th>
 			<th>Subtotal</th>
 		  </tr>
-		  <tr class="cart-header">
+				<c:forEach items="${sessionScope.myCartItems}" var="map">
+		  <tr <%--class="cart-header"--%>>
 
 			<td class="ring-in"><a href="<c:url value="/single"/>" class="at-in"><img src="<c:url value="/template/web/images/ch.jpg"/>" class="img-responsive" alt=""></a>
 			<div class="sed">
-				<h5><a href="<c:url value="/"/>">Sed ut perspiciatis unde</a></h5>
+				<h5>${map.value.product.name}</h5>
 				<p>(At vero eos et accusamus et iusto odio dignissimos ducimus ) </p>
 			
 			</div>
 			<div class="clearfix"> </div>
 			<div class="close1"> </div></td>
-			<td>$100.00</td>
-			<td>FREE SHIPPING</td>
-			<td class="item_price">$100.00</td>
-			<td class="add-check"><a class="item_add hvr-skew-backward" href="#">Add To Cart</a></td>
+			<td><c:out value="${map.value.product.unitPrice}"/></td>
+			<td><c:out value="${map.value.quantity}"/></td>
+			<td class="item_price"><c:out value="${map.value.product.unitPrice * map.value.quantity}"/></td>
+			<%--<td class="add-check"><a class="item_add hvr-skew-backward" href="#">Add To Cart</a></td>--%>
 		  </tr>
-		  <tr class="cart-header1">
+				</c:forEach>
+		 <%-- <tr class="cart-header1">
 		  <td class="ring-in"><a href="<c:url value="/single"/>" class="at-in"><img src="<c:url value="/template/web/images/ch2.jpg"/>" class="img-responsive" alt=""></a>
 			<div class="sed">
 				<h5><a href="<c:url value="/single"/>">Sed ut perspiciatis unde</a></h5>
@@ -384,13 +386,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<td>FREE SHIPPING</td>
 			<td class="item_price">$100.00</td>
 			<td class="add-check"><a class="item_add hvr-skew-backward" href="#">Add To Cart</a></td>
-		  </tr>
+		  </tr>--%>
 		  
 	</table>
 	</div>
 	</div>
 	<div class="produced">
 	<a href="<c:url value="/single"/>" class="hvr-skew-backward">Produced To Buy</a>
+		<a href="${pageContext.request.contextPath}/sell_cameras/home" class="hvr-skew-backward">Continue shopphing</a>
 	 </div>
 </div>
 </div>

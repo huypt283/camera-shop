@@ -36,4 +36,10 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products = productRepository.findAllAndSort(pageable);
         return products;
     }
+
+    @Override
+    public List<Product> getListProductByBranhId(Long id) {
+        List<Product> products=productRepository.findAllByBranchId(id);
+        return products;
+    }
 }

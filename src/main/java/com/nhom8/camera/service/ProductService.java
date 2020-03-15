@@ -8,4 +8,5 @@ import java.util.List;
 public interface ProductService {
     Product getSingleProductById(Long id);
     List<Product> getListProduct(int limit, int offset);
+    List<Product> getListProductByBranhId(Long id);
 }
