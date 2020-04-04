@@ -67,13 +67,26 @@
                 </div>
             </div>
         </div>
+        <div class="bootstrap-pagination" id="myList">
+        </div>
     </div>
-
     <!-- footer -->
     <%@ include file="/common/admin/footer.jsp" %>
     <!-- footer -->
 </div>
-
+<script type="text/javascript">
+    var total = ${totalPage};
+    var ul = document.createElement('ul');
+    ul.setAttribute("class", "pagination")
+    document.getElementById('myList').appendChild(ul);
+    for(var i=1;i<=total;i++) {
+        var li = document.createElement('li');
+        li.setAttribute("class", "page-item");
+        var h= '/admin/list-user?page=' + i;
+        li.innerHTML += '<a class="page-link" href="' + h + '">'+i+'</a>';
+        ul.appendChild(li);
+    }
+</script>
 <!-- Common JS -->
 <script src="<c:url value="/template/admin/assets/plugins/common/common.min.js" />"></script>
 <!-- Custom script -->

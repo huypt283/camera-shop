@@ -5,7 +5,9 @@ import com.nhom8.camera.entity.Order;
 import com.nhom8.camera.entity.Product;
 import com.nhom8.camera.entity.User;
 import com.nhom8.camera.model.request.LineItemRequest;
+import com.nhom8.camera.model.request.OffsetBasedPageRequest;
 import com.nhom8.camera.model.request.OrderRequest;
+import com.nhom8.camera.repository.LineItemRepository;
 import com.nhom8.camera.repository.OrderRepository;
 import com.nhom8.camera.repository.UserRepository;
 import com.nhom8.camera.service.LineItemService;
@@ -13,6 +15,7 @@ import com.nhom8.camera.service.OrderService;
 import com.nhom8.camera.service.ProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,13 +29,15 @@ public class OrderServiceImpl implements OrderService {
     private LineItemService lineItemService;
     private UserRepository userRepository;
     private ProductService productService;
+    private LineItemRepository lineItemRepository;
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository, LineItemService lineItemService, UserRepository userRepository, ProductService productService){
+    public OrderServiceImpl(OrderRepository orderRepository, LineItemService lineItemService, UserRepository userRepository, ProductService productService, LineItemRepository lineItemRepository){
         this.orderRepository = orderRepository;
         this.lineItemService = lineItemService;
         this.userRepository = userRepository;
         this.productService = productService;
+        this.lineItemRepository = lineItemRepository;
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -59,5 +64,18 @@ public class OrderServiceImpl implements OrderService {
             lineItems.add(lineItem);
         }
         lineItemService.saveAllLineItem(lineItems);
+    }
+
+    @Override
+    public List<Order> findOrderList(int limit, int offset) {
+        OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(offset, limit, Sort.by("id").descending());
+        return orderRepository.findOrderList(pageable);
+    }
+
+    @Override
+    public void deleteOrder(Long id) {
+        List<LineItem> lineItems = lineItemRepository.findByOrder_Id(id);
+        lineItemRepository.deleteAll(lineItems);
+        orderRepository.deleteById(id);
     }
 }

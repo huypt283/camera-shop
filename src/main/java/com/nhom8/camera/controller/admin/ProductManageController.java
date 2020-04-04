@@ -31,6 +31,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 public class ProductManageController {
+    private final int limit = 10;
+
     private ProductRepository productRepository;
     private BranchRepository branchRepository;
     private ProductService productService;
@@ -43,9 +45,12 @@ public class ProductManageController {
     }
 
     @GetMapping("/list-product")
-    public ModelAndView listProduct() {
+    public ModelAndView listProduct(@RequestParam(value = "page", defaultValue = "1") int page) {
         ModelAndView mav = new ModelAndView("/admin/product-table");
-        List<Product> products = productRepository.findAll();
+        int offset = (page-1)*limit;
+        List<Product> products = productService.getListProduct(limit, offset);
+        long totalPage = productRepository.count()/limit + 1;
+        mav.addObject("totalPage", totalPage);
         mav.addObject("products", products);
         return mav;
     }
@@ -85,7 +90,7 @@ public class ProductManageController {
     }
 
     @GetMapping("/product/{id}")
-    public ModelAndView productUpdateGet(@PathVariable(value = "id") final Long id, @ModelAttribute(value = "productRequest") UpdateProductRequest updateProductRequest) {
+    public ModelAndView productUpdateGet(@PathVariable(value = "id") final Long id, @ModelAttribute(value = "productRequest") UpdateProductRequest updateProductRequest, @RequestParam(value = "page", defaultValue = "1") int page) {
         ModelAndView mav = new ModelAndView("/admin/product-update");
         List<ProductBranch> branches = branchRepository.findAll();
         mav.addObject("branches", branches);
@@ -94,22 +99,21 @@ public class ProductManageController {
             mav.addObject("product", product);
             return mav;
         }
-        return listProduct();
+        return listProduct(page);
     }
 
     @PostMapping("/product/{id}")
-    public ModelAndView productUpdatePost(@PathVariable(value = "id") final Long id, @Valid @ModelAttribute(value = "productRequest") UpdateProductRequest updateProductRequest, BindingResult result, HttpServletRequest request, @AuthenticationPrincipal CustomUserDetails userDetails) {
+    public String productUpdatePost(@PathVariable(value = "id") final Long id, @Valid @ModelAttribute(value = "productRequest") UpdateProductRequest updateProductRequest, BindingResult result, HttpServletRequest request, @AuthenticationPrincipal CustomUserDetails userDetails, ModelMap modelMap) {
         Product product = productService.getSingleProductById(id);
         String name = updateProductRequest.getName();
         if(!name.equals(product.getName()) && !productService.productNameValid(name)) {
             result.addError(new FieldError("updateProductRequest", "name", "Product name already exist or not same old product name"));
         }
         if(result.hasErrors()) {
-            ModelAndView mav = new ModelAndView("/admin/product-update");
             List<ProductBranch> branches = branchRepository.findAll();
-            mav.addObject("branches", branches);
-            mav.addObject("product", product);
-            return mav;
+            modelMap.addAttribute("branches", branches);
+            modelMap.addAttribute("product", product);
+            return "/admin/product-update";
         }
         String oldProductImage = product.getProductImage();
         if(oldProductImage != null) {
@@ -136,7 +140,7 @@ public class ProductManageController {
             }
         }
         productService.updateProduct(product, updateProductRequest, productImage, userDetails.getUsername(), id);
-        return listProduct();
+        return "redirect:/admin/list-product";
     }
 
     @GetMapping("product-delete/{id}")

@@ -8,7 +8,6 @@
     <title>Products</title>
     <link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/template/admin/assets/images/favicon.png" />">
     <link href="<c:url value="/template/admin/css/style.css" />" rel="stylesheet">
-    <%--    <link rel="stylesheet" href="<c:url value="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" />">--%>
     <script src="<c:url value="/template/admin/js/modernizr-3.6.0.min.js" />"></script>
     <style type="text/css">
         .currency-custom:after {
@@ -85,37 +84,33 @@
                                 </tbody>
                             </table>
                         </div>
-                        <%--                        <ul class="pagination" id="pagination"></ul>--%>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="bootstrap-pagination" id="myList">
+        </div>
     </div>
-    <%--    <script type="text/javascript">--%>
-    <%--        $(function () {--%>
-    <%--            window.pagObj = $('#pagination').twbsPagination({--%>
-    <%--                totalPages: 35,--%>
-    <%--                visiblePages: 10,--%>
-    <%--                onPageClick: function (event, page) {--%>
-    <%--                    console.info(page + ' (from options)');--%>
-    <%--                }--%>
-    <%--            }).on('page', function (event, page) {--%>
-    <%--                console.info(page + ' (from event listening)');--%>
-    <%--            });--%>
-    <%--        });--%>
-    <%--    </script>--%>
     <!-- footer -->
     <%@ include file="/common/admin/footer.jsp" %>
     <!-- footer -->
 </div>
-
+<script type="text/javascript">
+    var total = ${totalPage};
+    var ul = document.createElement('ul');
+    ul.setAttribute("class", "pagination")
+    document.getElementById('myList').appendChild(ul);
+    for(var i=1;i<=total;i++) {
+        var li = document.createElement('li');
+        li.setAttribute("class", "page-item");
+        var h= '/admin/list-product?page=' + i;
+        li.innerHTML += '<a class="page-link" href="' + h + '">'+i+'</a>';
+        ul.appendChild(li);
+    }
+</script>
 <!-- Common JS -->
 <script src="<c:url value="/template/admin/assets/plugins/common/common.min.js" />"></script>
 <!-- Custom script -->
 <script src="<c:url value="/template/admin/js/custom.min.js" />"></script>
-<!-- Paging -->
-<%--<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>--%>
-<%--<script src="<c:url value="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js " />"></script>--%>
-<%--<script src="<c:url value="/template/paging/jquery.twbsPagination.js " /> " ></script>--%>
 </body>
 </html>

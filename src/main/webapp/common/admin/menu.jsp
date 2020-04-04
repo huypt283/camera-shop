@@ -11,6 +11,8 @@
             </li>
             <li><a href="<c:url value="/admin/list-product" />"><i class="mdi mdi-table-edit"></i> <span class="nav-text">Products</span></a>
             </li>
+            <li><a href="<c:url value="/admin/list-order" />"><i class="mdi mdi-table-edit"></i> <span class="nav-text">Orders</span></a>
+            </li>
         </ul>
     </div>
     <!-- #/ nk nav scroll -->

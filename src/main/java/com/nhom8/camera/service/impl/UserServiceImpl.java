@@ -3,6 +3,7 @@ package com.nhom8.camera.service.impl;
 import com.nhom8.camera.entity.Role;
 import com.nhom8.camera.entity.User;
 import com.nhom8.camera.model.request.CreateUserAdminRequest;
+import com.nhom8.camera.model.request.OffsetBasedPageRequest;
 import com.nhom8.camera.model.request.UpdateUserAdminRequest;
 import com.nhom8.camera.model.request.UserRegisterRequest;
 import com.nhom8.camera.model.response.UserResponse;
@@ -11,10 +12,13 @@ import com.nhom8.camera.repository.UserRepository;
 import com.nhom8.camera.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -107,5 +111,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean emailValid(String email) {
         return (userRepository.findByEmail(email) == null);
+    }
+
+    @Override
+    public List<User> getUserAndSort(int limit, int offset) {
+        OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(offset, limit, Sort.by("id").ascending());
+        return userRepository.findUserList(pageable);
     }
 }

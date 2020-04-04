@@ -73,11 +73,11 @@
     <!-- footer -->
 </div>
 <script type="text/javascript">
-    var total = 10;
+    var total = ${totalPage};
     var ul = document.createElement('ul');
     ul.setAttribute("class", "pagination")
     document.getElementById('myList').appendChild(ul);
-    for(var i=1;i<=10;i++) {
+    for(var i=1;i<=total;i++) {
         var li = document.createElement('li');
         li.setAttribute("class", "page-item");
         var h= '/admin/list-branch?page=' + i;
@@ -89,9 +89,5 @@
 <script src="<c:url value="/template/admin/assets/plugins/common/common.min.js" />"></script>
 <!-- Custom script -->
 <script src="<c:url value="/template/admin/js/custom.min.js" />"></script>
-<!-- Paging -->
-<script src="<c:url value="/template/paging/jquery.twbsPagination.js" />"></script>
-<script src="<c:url value="/template/web/js/bootstrap.min.js" />"></script>
-<script src="<c:url value="/template/web/js/jquery.min.js" />"></script>
 </body>
 </html>

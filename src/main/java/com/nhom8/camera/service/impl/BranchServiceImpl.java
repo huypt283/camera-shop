@@ -26,7 +26,7 @@ public class BranchServiceImpl implements BranchService {
 
     @Override
     public List<ProductBranch> getListBranch(int limit, int offset) {
-        OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(offset, limit, Sort.by("id").descending());
+        OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(offset, limit, Sort.by("id").ascending());
         return branchRepository.findListBranch(pageable);
     }
 

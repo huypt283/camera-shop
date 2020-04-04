@@ -5,6 +5,10 @@ import com.nhom8.camera.model.request.CreateUserAdminRequest;
 import com.nhom8.camera.model.request.UpdateUserAdminRequest;
 import com.nhom8.camera.model.request.UserRegisterRequest;
 import com.nhom8.camera.model.response.UserResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 public interface UserService {
     void saveUser(UserRegisterRequest userRegisterRequest);
@@ -14,4 +18,5 @@ public interface UserService {
     void deleteUserAdmin(Long id);
     boolean userNameValid(String username);
     boolean emailValid(String email);
+    List<User> getUserAndSort(int limit, int offset);
 }
