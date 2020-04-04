@@ -1,6 +1,6 @@
 <%@include file="/common/taglib.jsp" %>
 <%@page import="com.nhom8.camera.util.SecurityUtil" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -176,39 +176,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </div>
-<!--header-->
-
 <!--banner-->
-<%--<div class="banner-top">--%>
-<%--    <div class="container">--%>
-<%--        <h1>Checkout</h1>--%>
-<%--        <em></em>--%>
-<%--        <h2><a href="<c:url value="/home"/>">Home</a><label>/</label>Checkout</h2>--%>
-<%--    </div>--%>
-<%--</div>--%>
+<div class="banner-top">
+    <div class="container">
+        <h1>Checkout</h1>
+        <em></em>
+        <h2><a href="<c:url value="/home"/>">Home</a><label>/</label>Checkout</h2>
+    </div>
+</div>
 <!--login-->
-<script>$(document).ready(function (c) {
-    $('.close1').on('click', function (c) {
-        $('.cart-header').fadeOut('slow', function (c) {
-            $('.cart-header').remove();
-        });
-    });
-});
-</script>
-<script>$(document).ready(function (c) {
-    $('.close2').on('click', function (c) {
-        $('.cart-header1').fadeOut('slow', function (c) {
-            $('.cart-header1').remove();
-        });
-    });
-});
-</script>
-<script>$(document).ready(function (c) {
-    $('.close3').on('click', function (c) {
-        $('.cart-header2').fadeOut('slow', function (c) {
-            $('.cart-header2').remove();
-        });
-    });
+<script>$(document).ready(function () {
+    function removeCheckOutWithBtn() {
+        var btnRemove = document.querySelectorAll('div[class="item_add hvr-skew-backward"]');
+        for (var i = 0; i < btnRemove.length; i++) {
+            btnRemove[i].onclick = function () {
+                let bundle = document.querySelectorAll('td[class="ring-in"]')[0];
+                let namecheck = bundle.querySelector('div[class="sed"] h5 a').innerText;
+                shoppingCart.remove({name: namecheck});
+            }
+        }
+    }
+
+    removeCheckOutWithBtn();
 });
 </script>
 <div class="check-out">
@@ -283,11 +272,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 '\t\t\t\t<h5><a href=<c:url value="#"/>>' + data[i].name + '</a></h5>\n' +
                 '\t\t\t</div>\n' +
                 '\t\t\t<div class="clearfix"> </div>\n' +
-                '\t\t\t<div class="close3"> </div></td>\n' +
                 '\t\t\t<td>' + data[i].price + '</td>\n' +
                 '\t\t\t<td>' + data[i].quantity + '</td>\n' +
                 '\t\t\t<td class="item_price">' + data[i].price * data[i].quantity + '</td>\n' +
-                '\t\t\t<td class="add-check"><a class="item_add hvr-skew-backward" href="#">Add To Cart</a></td>\n' +
+                '\t\t\t<td class="add-check"><div class="item_add hvr-skew-backward" ><a href="<c:url value="/checkout"/>">Remove</a></div></td>\n' +
                 '\t\t  </tr>';
             mainContainer.tBodies[0].appendChild(r);
         }
@@ -308,8 +296,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
 
     }
-
     appendData(data);
 </script>
+
 </body>
 </html>
