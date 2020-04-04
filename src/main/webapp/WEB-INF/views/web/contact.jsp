@@ -1,7 +1,8 @@
 <%@include file="/common/taglib.jsp" %>
 <!--A Design by W3layouts 
 Author: W3layout
-Author URL: http://w3layouts.com
+Author
+RL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
@@ -65,7 +66,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<ul >
 						<li><a href="<c:url value="/login"/>">Login</a></li>
 						<li><a href="<c:url value="/register"/>">Register</a></li>
-						<li><a href="<c:url value="/checkout"/>">Checkout</a></li>
+
 					</ul>
 				</div>
 				

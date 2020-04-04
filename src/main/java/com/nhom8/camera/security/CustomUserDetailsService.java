@@ -22,6 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository iUserRepository;
 
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=true, noRollbackFor=Exception.class)
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         User user = iUserRepository.findByUserName(userName);

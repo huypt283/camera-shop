@@ -25,4 +25,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("select p from Product p")
     List<Product> findAllAndSort(Pageable pageable);
 
+    @Query("select p from Product p where p.branch.id= :id")
+    List<Product> findAllByBranchId(@Param(value = "id") Long id, Pageable pageable);
+
+    Product findByName(String name);
+
+    List<Product> findByBranch_Id(Long branchId);
 }

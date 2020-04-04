@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -33,6 +34,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
         if (isUser(grantedAuthorities)) {
             url = Constant.WEB;
+
         } else if(isAdmin(grantedAuthorities)) {
             url = Constant.ADMIN_HOME;
         }

@@ -12,6 +12,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "branchs")
 public class ProductBranch extends Base {
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 50)
     private String name;
 }

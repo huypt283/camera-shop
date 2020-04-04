@@ -7,9 +7,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
-@Setter
-//@NoArgsConstructor @AllArgsConstructor
+@Getter @Setter
 @Entity
 @Table(name = "users")
 public class User extends Base {

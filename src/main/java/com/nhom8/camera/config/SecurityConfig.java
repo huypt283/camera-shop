@@ -20,7 +20,7 @@ import org.springframework.security.web.session.HttpSessionEventPublisher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-//    public JwtAuthenticationFilter jwtAuthenticationFilter;
+    //    public JwtAuthenticationFilter jwtAuthenticationFilter;
     private final CustomUserDetailsService userDetailsService;
     private final CustomSuccessHandler customSuccessHandler;
 
@@ -36,10 +36,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    @Bean
-    public HttpSessionEventPublisher httpSessionEventPublisher() {
-        return new HttpSessionEventPublisher();
-    }
+//    @Bean
+//    public HttpSessionEventPublisher httpSessionEventPublisher() {
+//        return new HttpSessionEventPublisher();
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -51,26 +51,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             throws Exception {
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
-        auth.inMemoryAuthentication().withUser("admin").password("$2a$10$RR8uIIC2LqaWJqncgwtjo.mBvw2LFgv4zGKBPD5o9PYt5tv9zKb2e").roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("user").password("$2a$10$RR8uIIC2LqaWJqncgwtjo.mBvw2LFgv4zGKBPD5o9PYt5tv9zKb2e").roles("USER");
+        auth.inMemoryAuthentication().withUser("admin").password("$2a$10$.P8GPYIsA6m074SFd3YPHOkC0xYVV9tdrkjj47oHTq6J7Zve7xp6W").roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("user").password("$2a$10$.P8GPYIsA6m074SFd3YPHOkC0xYVV9tdrkjj47oHTq6J7Zve7xp6W").roles("USER");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(2);
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/index").authenticated()
-            .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
-            .anyRequest().permitAll();
-//        http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
-//        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
-        http.authorizeRequests().and().formLogin()
+        http.authorizeRequests()
+                .antMatchers("/login", "/logout", "/register", "/order").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/checkout").authenticated()
+                .antMatchers(HttpMethod.GET, "/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/**").permitAll()
+                .anyRequest().authenticated()
+                .and().formLogin()
                 .loginProcessingUrl("/j_spring_security_check")
                 .loginPage("/login")
                 .successHandler(customSuccessHandler)
                 .failureUrl("/login?error=true")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login").clearAuthentication(true);
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout=true").clearAuthentication(true).deleteCookies("JSESSIONID");
 
         // Thêm một lớp Filter kiểm tra jwt
 //        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

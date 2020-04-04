@@ -1,10 +1,5 @@
 <%@include file="/common/taglib.jsp" %>
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,9 +57,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="container">
             <div class="col-sm-5 col-md-offset-2  header-login">
                 <ul >
-                    <li><a href="">Login</a></li>
+                    <li><a href="<c:url value="/login" />">Login</a></li>
                     <li><a href="<c:url value = "/register"/>">Register</a></li>
-                    <li><a href="<c:url value="/checkout"/>">Checkout</a></li>
+
                 </ul>
             </div>
 
@@ -104,62 +99,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <ul class="nav navbar-nav nav_1">
                             <li><a class="color" href="<c:url value = "/home"/>">Home</a></li>
                             <li class="dropdown mega-dropdown active">
-                                <a class="color1" href="#" class="dropdown-toggle" data-toggle="dropdown">Women<span class="caret"></span></a>
+                                <a class="color1" href="#" class="dropdown-toggle" data-toggle="dropdown">Brand<span class="caret"></span></a>
                                 <div class="dropdown-menu ">
                                     <div class="menu-top">
-                                        <div class="col1">
-                                            <div class="h_nav">
-                                                <h4>Submenu1</h4>
-                                                <ul>
-                                                    <li><a href="<c:url value="/product"/>">Accessories</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Bags</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Caps & Hats</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Hoodies & Sweatshirts</a></li>
 
-                                                </ul>
-                                            </div>
-                                        </div>
                                         <div class="col1">
                                             <div class="h_nav">
-                                                <h4>Submenu2</h4>
-                                                <ul>
-                                                    <li><a href="<c:url value="/product"/>">Jackets & Coats</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Jeans</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Jewellery</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Jumpers & Cardigans</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Leather Jackets</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Long Sleeve T-Shirts</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col1">
-                                            <div class="h_nav">
-                                                <h4>Submenu3</h4>
-                                                <ul>
-                                                    <li><a href="<c:url value="/product"/>">Shirts</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Shoes, Boots & Trainers</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Sunglasses</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Sweatpants</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Swimwear</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Trousers & Chinos</a></li>
+                                                <c:forEach items="${lstProductBranch}" var="branchs">
+                                                    <ul>
+                                                        <li><a href="<c:url value="/product/branchId=${branchs.id}"/>">${branchs.name}</a></li>
 
-                                                </ul>
+                                                    </ul>
+                                                </c:forEach>
+                                            </div>
+                                        </div>
 
-                                            </div>
-                                        </div>
-                                        <div class="col1">
-                                            <div class="h_nav">
-                                                <h4>Submenu4</h4>
-                                                <ul>
-                                                    <li><a href="<c:url value="/product"/>">T-Shirts</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Underwear & Socks</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Vests</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Jackets & Coats</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Jeans</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Jewellery</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
                                         <div class="col1 col5">
                                             <img src="<c:url value="/template/web/images/me.png"/>" class="img-responsive" alt="">
                                         </div>
@@ -167,74 +121,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     </div>
                                 </div>
                             </li>
-                            <li class="dropdown mega-dropdown active">
-                                <a class="color2" href="#" class="dropdown-toggle" data-toggle="dropdown">Men<span class="caret"></span></a>
-                                <div class="dropdown-menu mega-dropdown-menu">
-                                    <div class="menu-top">
-                                        <div class="col1">
-                                            <div class="h_nav">
-                                                <h4>Submenu1</h4>
-                                                <ul>
-                                                    <li><a href="<c:url value="/product"/>">Accessories</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Bags</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Caps & Hats</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Hoodies & Sweatshirts</a></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col1">
-                                            <div class="h_nav">
-                                                <h4>Submenu2</h4>
-                                                <ul>
-                                                    <li><a href="<c:url value="/product"/>">Jackets & Coats</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Jeans</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Jewellery</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Jumpers & Cardigans</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Leather Jackets</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Long Sleeve T-Shirts</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col1">
-                                            <div class="h_nav">
-                                                <h4>Submenu3</h4>
-
-                                                <ul>
-                                                    <li><a href="<c:url value="/product"/>">Shirts</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Shoes, Boots & Trainers</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Sunglasses</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Sweatpants</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Swimwear</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Trousers & Chinos</a></li>
-
-                                                </ul>
-
-                                            </div>
-                                        </div>
-                                        <div class="col1">
-                                            <div class="h_nav">
-                                                <h4>Submenu4</h4>
-                                                <ul>
-                                                    <li><a href="<c:url value="/product"/>">T-Shirts</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Underwear & Socks</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Vests</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Jackets & Coats</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Jeans</a></li>
-                                                    <li><a href="<c:url value="/product"/>">Jewellery</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col1 col5">
-                                            <img src="<c:url value="/template/web/images/me1.png"/>" class="img-responsive" alt="">
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </li>
                             <li><a class="color3" href="<c:url value="/product"/>">Sale</a></li>
                             <li><a class="color4" href="<c:url value="/404"/>">About</a></li>
-                            <li><a class="color5" href="<c:url value="/typo"/>">Short Codes</a></li>
                             <li ><a class="color6" href="<c:url value="/contact"/>">Contact</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -252,7 +140,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="cart box_1">
                     <a href="<c:url value="/checkout"/>">
                         <h3><div class="total">
-                            <span class="simpleCart_total"></span></div>
+                            <span >${sessionScope.myCartItems.size()}</span></div>
                             <img src="<c:url value="/template/web/images/cart.png"/>" alt=""/></h3>
                     </a>
                     <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
@@ -308,7 +196,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--login-->
 <div class="container">
     <div class="login">
-
+        <p></p>
         <form:form action="/j_spring_security_check" id="loginFrom" method="POST" >
             <div class="col-md-6 login-do">
                 <div class="login-mail">
@@ -343,16 +231,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="container">
     <div class="brand">
         <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/ic.png"/>" class="img-responsive" alt="">
+            <img src="<c:url value="/template/web/images/nikon.jpg"/>" class="img-responsive" alt="">
         </div>
         <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/ic1.png"/>" class="img-responsive" alt="">
+            <img src="<c:url value="/template/web/images/canon.png"/>" class="img-responsive" alt="">
         </div>
         <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/ic2.png"/>" class="img-responsive" alt="">
+            <img src="<c:url value="/template/web/images/sony.png"/>" class="img-responsive" alt="">
         </div>
         <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/ic3.png"/>" class="img-responsive" alt="">
+            <img src="<c:url value="/template/web/images/fujin.jpg"/>" class="img-responsive" alt="">
         </div>
         <div class="clearfix"></div>
     </div>
