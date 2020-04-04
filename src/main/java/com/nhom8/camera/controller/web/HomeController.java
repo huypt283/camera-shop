@@ -43,4 +43,12 @@ public class HomeController {
         mav.addObject("lstProductBranch", lstProductBranch);
         return mav;
     }
+//
+//    @GetMapping("/header-branch")
+//    public ModelAndView getBranch() {
+//        List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
+//        ModelAndView mav = new ModelAndView("/common/web/header");
+//        mav.addObject("lstProductBranch", lstProductBranch);
+//        return mav;
+//    }
 }
