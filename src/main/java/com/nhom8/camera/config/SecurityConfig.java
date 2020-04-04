@@ -64,6 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/checkout").authenticated()
                 .antMatchers(HttpMethod.GET, "/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/**").authenticated()
+                .antMatchers(HttpMethod.POST, "/login", "/logout").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin()
                 .loginProcessingUrl("/j_spring_security_check")

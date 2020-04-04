@@ -111,6 +111,15 @@ public class ProductManageController {
             mav.addObject("product", product);
             return mav;
         }
+        String oldProductImage = product.getProductImage();
+        if(oldProductImage != null) {
+            try {
+                final String deleteRootPath = request.getServletContext().getRealPath(oldProductImage);
+                Files.deleteIfExists(Paths.get(deleteRootPath));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         final String uploadRootPath = request.getServletContext().getRealPath("template/upload");
         MultipartFile fileData = updateProductRequest.getProductImage();
         String productImage = null;
@@ -122,15 +131,6 @@ public class ProductManageController {
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
                 stream.write(fileData.getBytes());
                 stream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        String oldProductImage = product.getProductImage();
-        if(oldProductImage != null) {
-            try {
-                final String deleteRootPath = request.getServletContext().getRealPath(oldProductImage);
-                Files.deleteIfExists(Paths.get(deleteRootPath));
             } catch (IOException e) {
                 e.printStackTrace();
             }
