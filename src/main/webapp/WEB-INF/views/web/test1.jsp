@@ -3,8 +3,7 @@
 <%@page import="com.nhom8.camera.util.SecurityUtil" %>
 <html>
 <head>
-
-    <title>Shop Camera | Login :: w3layouts</title>
+    <title>Shop Cameras</title>
     <link href="<c:url value="/template/web/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all" />
     <!-- Custom Theme files -->
     <!--theme-style-->
@@ -24,8 +23,7 @@
 
 </head>
 <body>
-
-<%--hearder--%>
+<!--header-->
 <div class="header">
     <div class="container">
         <div class="head">
@@ -46,8 +44,11 @@
 
             <div class="col-sm-5 header-social">
                 <ul>
-                    <li><a href="<c:url value="/logout" />">
+                    <li><a href="<c:url value="/change-password" />">
                         Xin chào <%=SecurityUtil.getUserName()%>
+                    </a></li>&emsp;
+                    <li><a href="<c:url value="/logout" />">
+                        Logout
                     </a></li>
                 </ul>
             </div>
@@ -61,19 +62,6 @@
 
             <div class="col-sm-8 col-md-offset-2 h_menu4">
                 <nav class="navbar nav_bottom" role="navigation">
-
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <%--                    <div class="navbar-header nav_2">--%>
-                    <%--                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"--%>
-                    <%--                                data-target="#bs-megadropdown-tabs">--%>
-                    <%--                            <span class="sr-only">Toggle navigation</span>--%>
-                    <%--                            <span class="icon-bar"></span>--%>
-                    <%--                            <span class="icon-bar"></span>--%>
-                    <%--                            <span class="icon-bar"></span>--%>
-                    <%--                        </button>--%>
-
-                    <%--                    </div>--%>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                         <ul class="nav navbar-nav nav_1">
                             <li><a class="color" href="<c:url value="/home"/>">Home</a></li>
@@ -100,7 +88,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li><a class="color4" href="<c:url value="/404"/>">About</a></li>
+                            <li><a class="color4" href="<c:url value="/info"/>">About</a></li>
                             <li><a class="color6" href="<c:url value="/contact"/>">Contact</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -133,27 +121,23 @@
         </div>
     </div>
 </div>
-<%--banner-top--%>
-<div class="banner-top">
-    <div class="container">
-        <h1>Order</h1>
-        <em></em>
-        <h2><a href="<c:url value="/home"/>">Home</a><label>/</label>Order</h2>
+<!--header-->
+<!--banner-->
+<div class="container">
+    <div class="banner-top">
+        <div class="container">
+            <h1>Contact</h1>
+            <em></em>
+            <h2><a href="<c:url value="/"/>">Home</a><label>/</label>Order</h2>
+        </div>
     </div>
 </div>
-<%--banner--%>
+<!--banner-->
 <div class="container wrapper">
     <div class="row cart-head">
         <div class="container">
             <div class="row">
             </div>
-            <!--<div class="row">-->
-            <!--    <div style="display: table; margin: auto;">-->
-            <!--        <span class="step step_complete"> <a href="#" class="check-bc">Cart</a> <span class="step_line step_complete"> </span> <span class="step_line backline"> </span> </span>-->
-            <%--                 <span class="step step_complete"> <a href="#" class="check-bc">Order</a> <span class="step_line "> </span> <span class="step_line step_complete"> </span> </span>--%>
-            <!--        <span class="step_thankyou check-bc step_complete">Thank you</span>-->
-            <!--    </div>-->
-            <!--</div>-->
             <div class="row">
                 <p></p>
             </div>
@@ -189,56 +173,18 @@
                                 <input type="text" class="form-control" id="fullName" name="fullName" value="" />
                             </div>
                         </div>
-                        <%--                        <div class="form-group">--%>
-                        <%--                            <div class="col-md-6 col-xs-12">--%>
-                        <%--                                <strong>First Name:</strong>--%>
-                        <%--                                <input type="text" name="first_name" class="form-control" value="" />--%>
-                        <%--                            </div>--%>
-                        <%--                            <div class="span1"></div>--%>
-                        <%--                            <div class="col-md-6 col-xs-12">--%>
-                        <%--                                <strong>Last Name:</strong>--%>
-                        <%--                                <input type="text" name="last_name" class="form-control" value="" />--%>
-                        <%--                            </div>--%>
-                        <%--                        </div>--%>
                         <div class="form-group">
                             <div class="col-md-12"><strong>Address:</strong></div>
                             <div class="col-md-12">
                                 <input type="text" name="address" id="address" class="form-control" value="" />
-                                <%--                                <form:input path="orderRequest.shippingAddress" cssClass="form-control"></form:input>--%>
                             </div>
                         </div>
-                        <%--                        <div class="form-group">--%>
-                        <%--                            <div class="col-md-12"><strong>City:</strong></div>--%>
-                        <%--                            <div class="col-md-12">--%>
-                        <%--                                <input type="text" name="city" class="form-control" value="" />--%>
-                        <%--                            </div>--%>
-                        <%--                        </div>--%>
-                        <!--<div class="form-group">-->
-                        <!--    <div class="col-md-12"><strong>State:</strong></div>-->
-                        <!--    <div class="col-md-12">-->
-                        <!--        <input type="text" name="state" class="form-control" value="" />-->
-                        <!--    </div>-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                        <!--    <div class="col-md-12"><strong>Zip / Postal Code:</strong></div>-->
-                        <!--    <div class="col-md-12">-->
-                        <!--        <input type="text" name="zip_code" class="form-control" value="" />-->
-                        <!--    </div>-->
-                        <!--</div>-->
                         <div class="form-group">
                             <div class="col-md-12"><strong>Phone:</strong></div>
                             <div class="col-md-12">
                                 <input type="text" name="phone_number" id="phone_number" class="form-control" value="" />
-                                <%--                                <form:input path="orderRequest.note" cssClass="form-control"></form:input>--%>
                             </div>
                         </div>
-                        <%--                        <div class="form-group">--%>
-                        <%--                            <div class="col-md-12"><strong>Email Address:</strong></div>--%>
-                        <%--                            <div class="col-md-12">--%>
-                        <%--&lt;%&ndash;                                <input type="text" name="email_address" class="form-control" value="" />&ndash;%&gt;--%>
-                        <%--                                <div class="form-control"><p></p></div>--%>
-                        <%--                            </div>--%>
-                        <%--                        </div>--%>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <button type="submit" class="btn btn-primary btn-submit-fix">Place Order</button>
@@ -248,14 +194,35 @@
                 </div>
 
             </div>
-
         </form>
     </div>
     <div class="row cart-footer">
 
     </div>
 </div>
-
+<!--brand-->
+<div class="container">
+    <div class="brand">
+    </div>
+</div>
+<div class="container">
+    <div class="brand">
+        <div class="col-md-3 brand-grid">
+            <img src="<c:url value="/template/web/images/nikon.jpg"/>" class="img-responsive" alt="">
+        </div>
+        <div class="col-md-3 brand-grid">
+            <img src="<c:url value="/template/web/images/canon.png"/>" class="img-responsive" alt="">
+        </div>
+        <div class="col-md-3 brand-grid">
+            <img src="<c:url value="/template/web/images/sony.png"/>" class="img-responsive" alt="">
+        </div>
+        <div class="col-md-3 brand-grid">
+            <img src="<c:url value="/template/web/images/fujin.jpg"/>" class="img-responsive" alt="">
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!--//brand-->
 <%--footer--%>
 <%@ include file="/common/web/footer.jsp" %>
 <!--//footer-->
@@ -339,45 +306,47 @@
         var mainContainer = document.getElementById("myData");
         for (var i = 0; i < data.length; i++) {
             var r = document.createElement("div");
-            r.setAttribute("class","form-group");
+            r.setAttribute("class", "form-group");
             r.innerHTML = '  <div class="col-sm-3 col-xs-3">\n' +
-                '<img class="img-responsive" src="//c1.staticflickr.com/1/466/19681864394_c332ae87df_t.jpg" />\n' +
+                '<img class="img-responsive" src="' + location.origin + '/' + data[i].avatar + '" />\n' +
                 '</div>\n' +
                 '<div class="col-sm-6 col-xs-6">\n' +
-                '<div class="col-xs-12">' +data[i].name+
+                '<div class="col-xs-12">' + data[i].name +
                 '</div>\n' +
-                '<div class="col-xs-12"><small>Quantity:<span>'+data[i].quantity +'</span></small></div>\n' +
+                '<div class="col-xs-12"><small>Quantity:<span>' + data[i].quantity + '</span></small></div>\n' +
                 '</div>\n' +
                 '<div class="col-sm-3 col-xs-3 text-right">\n' +
-                '<h6><span>'+ data[i].price+'</span></h6><span>vnd</span>' +
+                '<h6><span>' + data[i].price + '</span></h6><span>vnd</span>' +
                 '</div>';
             mainContainer.appendChild(r);
         }
-        var br= document.createElement("div");
-        br.setAttribute("class","form-group");
-        br.innerHTML='<hr />';
+        var br = document.createElement("div");
+        br.setAttribute("class", "form-group");
+        br.innerHTML = '<hr />';
         mainContainer.appendChild(br);
         var r2 = document.createElement("div");
-        r2.setAttribute("class","form-group");
+        r2.setAttribute("class", "form-group");
         r2.innerHTML = '<div class="col-xs-12">\n' +
             ' <strong>Subtotal</strong>\n' +
-            '<div class="pull-right"><span>$</span><span>'+ total()+'</span></div>\n' +
+            '<div class="pull-right"><span>$</span><span>' + total() + '</span></div>\n' +
             '</div>\n' +
             '                            <div class="col-xs-12">\n' +
             '                                <small>Shipping</small>\n' +
             '                                <div class="pull-right"><span>-</span></div>\n' +
             '                            </div>';
         mainContainer.appendChild(r2);
+
         function total() {
             var data = shoppingCart.get();
             let sum = 0;
-            for (let i=0;i< data.length; i++){
-                sum+=data[i].quantity* + data[i].price;
+            for (let i = 0; i < data.length; i++) {
+                sum += data[i].quantity * +data[i].price;
             }
             return sum;
         }
 
     }
+
     appendData(data);
 </script>
 <script>

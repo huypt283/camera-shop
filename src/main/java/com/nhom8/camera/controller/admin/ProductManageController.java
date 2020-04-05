@@ -8,6 +8,7 @@ import com.nhom8.camera.repository.BranchRepository;
 import com.nhom8.camera.repository.ProductRepository;
 import com.nhom8.camera.security.CustomUserDetails;
 import com.nhom8.camera.service.ProductService;
+import com.nhom8.camera.util.GenerateSlug;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -74,7 +75,7 @@ public class ProductManageController {
         MultipartFile fileData = createProductRequest.getProductImage();
         String productImage = null;
         if(!fileData.isEmpty()) {
-            String fileName = createProductRequest.getName() + "." + fileData.getOriginalFilename().split("\\.")[1];
+            String fileName = GenerateSlug.makeSlug(createProductRequest.getName()) + ".jpg";
             productImage = "/template/upload/" + fileName;
             try {
                 File serverFile = new File(uploadRootPath + File.separator + fileName);
@@ -128,7 +129,7 @@ public class ProductManageController {
         MultipartFile fileData = updateProductRequest.getProductImage();
         String productImage = null;
         if(!fileData.isEmpty()) {
-            String fileName = updateProductRequest.getName() + "." + fileData.getOriginalFilename().split("\\.")[1];
+            String fileName = GenerateSlug.makeSlug(updateProductRequest.getName()) + ".jpg";
             productImage = "/template/upload/" + fileName;
             try {
                 File serverFile = new File(uploadRootPath + File.separator + fileName);

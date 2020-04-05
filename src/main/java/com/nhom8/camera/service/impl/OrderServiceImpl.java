@@ -49,7 +49,6 @@ public class OrderServiceImpl implements OrderService {
         order.setUser(user);
         BeanUtils.copyProperties(orderRequest, order);
         order.setOrderDate(new Date());
-        order.setDiscount(null);
         Order orderSave = orderRepository.save(order);
 
         List<LineItem> lineItems = new ArrayList<>();

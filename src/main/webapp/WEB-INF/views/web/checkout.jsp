@@ -52,8 +52,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <div class="col-sm-5 header-social">
                 <ul>
-                    <li><a href="<c:url value="/logout" />">
+                    <li><a href="<c:url value="/change-password" />">
                         Xin chào <%=SecurityUtil.getUserName()%>
+                    </a></li>&emsp;
+                    <li><a href="<c:url value="/logout" />">
+                        Logout
                     </a></li>
                 </ul>
             </div>
@@ -67,19 +70,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <div class="col-sm-8 col-md-offset-2 h_menu4">
                 <nav class="navbar nav_bottom" role="navigation">
-
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <%--                    <div class="navbar-header nav_2">--%>
-                    <%--                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"--%>
-                    <%--                                data-target="#bs-megadropdown-tabs">--%>
-                    <%--                            <span class="sr-only">Toggle navigation</span>--%>
-                    <%--                            <span class="icon-bar"></span>--%>
-                    <%--                            <span class="icon-bar"></span>--%>
-                    <%--                            <span class="icon-bar"></span>--%>
-                    <%--                        </button>--%>
-
-                    <%--                    </div>--%>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                         <ul class="nav navbar-nav nav_1">
                             <li><a class="color" href="<c:url value="/home"/>">Home</a></li>
@@ -106,7 +96,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
                                 </div>
                             </li>
-                            <li><a class="color4" href="<c:url value="/404"/>">About</a></li>
+                            <li><a class="color4" href="<c:url value="/info"/>">About</a></li>
                             <li><a class="color6" href="<c:url value="/contact"/>">Contact</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -139,29 +129,63 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </div>
+<!--header-->
 <!--banner-->
-<div class="banner-top">
-    <div class="container">
-        <h1>Checkout</h1>
-        <em></em>
-        <h2><a href="<c:url value="/home"/>">Home</a><label>/</label>Checkout</h2>
+<div class="container">
+    <div class="banner-top">
+        <div class="container">
+            <h1>Contact</h1>
+            <em></em>
+            <h2><a href="<c:url value="/"/>">Home</a><label>/</label>Checkout</h2>
+        </div>
     </div>
 </div>
-<!--login-->
-<script>$(document).ready(function () {
-    function removeCheckOutWithBtn() {
-        var btnRemove = document.querySelectorAll('div[class="item_add hvr-skew-backward"]');
-        for (var i = 0; i < btnRemove.length; i++) {
-            btnRemove[i].onclick = function () {
-                let bundle = document.querySelectorAll('td[class="ring-in"]')[i];
-                let namecheck = bundle.querySelector('div[class="sed"] h5 a').innerText;
-                shoppingCart.remove({name: namecheck});
-            }
-        }
-    }
+<!--banner-->
 
-    removeCheckOutWithBtn();
-});
+<script>
+    $(document).ready(function () {
+        function removeCheckOutWithBtn() {
+            var btnRemoves = document.querySelectorAll('div[class="item_add hvr-skew-backward"]');
+            btnRemoves.forEach(function (btn, i) {
+                btn.onclick = function () {
+                    let index = i;
+                    let namecheck = document.querySelectorAll('td[class="ring-in"]')[index].querySelector('div[class="sed"] a').innerText;
+                    shoppingCart.remove({name: namecheck});
+                    location.reload();
+                }
+            });
+        }
+
+        removeCheckOutWithBtn();
+
+        (function () {
+            var quantityBundles = document.querySelectorAll('div[class="quantity"]');
+            quantityBundles.forEach(function (quality, i) {
+                quality.querySelector('div[class="entry value-plus active"]').onclick = function () {
+                    let index = i;
+                    let price = parseInt(document.querySelectorAll('td[name="priceProduct"]')[index].innerText);
+                    let namecheck = document.querySelectorAll('td[class="ring-in"]')[index].querySelector('div[class="sed"] a').innerText;
+                    let oldQuality = parseInt(quality.querySelector('span[name="quantity-value"]').innerText);
+                    let newQuality = oldQuality + 1;
+                    let newSubTotal = newQuality * price;
+                    quality.querySelector('span[name="quantity-value"]').innerText = newQuality;
+                    document.querySelectorAll('td[name="subTotal"]')[index].innerText = newSubTotal;
+                    shoppingCart.update({name: namecheck}, {quantity: newQuality});
+                }
+                quality.querySelector('div[class="entry value-minus"]').onclick = function () {
+                    let index = i;
+                    let price = parseInt(document.querySelectorAll('td[name="priceProduct"]')[index].innerText);
+                    let namecheck = document.querySelectorAll('td[class="ring-in"]')[index].querySelector('div[class="sed"] a').innerText;
+                    let oldQuality = parseInt(quality.querySelector('span[name="quantity-value"]').innerText);
+                    let newQuality = oldQuality - 1;
+                    let newSubTotal = newQuality * price;
+                    quality.querySelector('span[name="quantity-value"]').innerText = newQuality;
+                    document.querySelectorAll('td[name="subTotal"]')[index].innerText = newSubTotal;
+                    shoppingCart.update({name: namecheck}, {quantity: newQuality });
+                }
+            });
+        })()
+    });
 </script>
 <div class="check-out">
     <div class="container">
@@ -171,13 +195,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <table class="table-heading simpleCart_shelfItem" id="myData">
                     <tr>
                         <th class="table-grid">Item</th>
-
                         <th>Prices</th>
-                        <th>Quanlity</th>
+                        <th>Quantity</th>
                         <th>Subtotal</th>
                     </tr>
-
-
                 </table>
             </div>
         </div>
@@ -192,17 +213,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--brand-->
 <div class="container">
     <div class="brand">
+    </div>
+</div>
+<div class="container">
+    <div class="brand">
         <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/ic.png"/>" class="img-responsive" alt="">
+            <img src="<c:url value="/template/web/images/nikon.jpg"/>" class="img-responsive" alt="">
         </div>
         <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/ic1.png"/>" class="img-responsive" alt="">
+            <img src="<c:url value="/template/web/images/canon.png"/>" class="img-responsive" alt="">
         </div>
         <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/ic2.png"/>" class="img-responsive" alt="">
+            <img src="<c:url value="/template/web/images/sony.png"/>" class="img-responsive" alt="">
         </div>
         <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/ic3.png"/>" class="img-responsive" alt="">
+            <img src="<c:url value="/template/web/images/fujin.jpg"/>" class="img-responsive" alt="">
         </div>
         <div class="clearfix"></div>
     </div>
@@ -230,15 +255,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         for (var i = 0; i < data.length; i++) {
             var r = document.createElement("TR");
             r.innerHTML = '<tr class="cart-header2">\n' +
-                '\t\t  <td class="ring-in"><a href="<c:url value="#"/>" class="at-in"><img src="<c:url value="/template/web/images/ch1.jpg"/>" class="img-responsive" alt=""></a>\n' +
+                `\t\t  <td class="ring-in"><a href="<c:url value="#"/>" class="at-in"><img src="` + location.origin + '/' + data[i].avatar + `" class="img-responsive" alt=""></a>\n` +
                 '\t\t\t<div class="sed">\n' +
                 '\t\t\t\t<h5><a href=<c:url value="#"/>>' + data[i].name + '</a></h5>\n' +
                 '\t\t\t</div>\n' +
                 '\t\t\t<div class="clearfix"> </div>\n' +
-                '\t\t\t<td>' + data[i].price + '</td>\n' +
-                '\t\t\t<td>' + data[i].quantity + '</td>\n' +
-                '\t\t\t<td class="item_price">' + data[i].price * data[i].quantity + '</td>\n' +
-                '\t\t\t<td class="add-check"><div class="item_add hvr-skew-backward" ><a href="<c:url value="/checkout"/>">Remove</a></div></td>\n' +
+                '\t\t\t<td name="priceProduct">' + data[i].price + '</td>\n' +
+                '\t\t\t<td>' + ' <div class="quantity"> \n' +
+                '\t\t\t\t\t\t\t\t<div class="quantity-select">                           \n' +
+                '\t\t\t\t\t\t\t\t\t<div class="entry value-minus">&nbsp;</div>\n' +
+                '\t\t\t\t\t\t\t\t\t<div class="entry value"><span name="quantity-value">'+data[i].quantity+'</span></div>\n' +
+                '\t\t\t\t\t\t\t\t\t<div class="entry value-plus active">&nbsp;</div>\n' +
+                '\t\t\t\t\t\t\t\t</div>\n' +
+                '\t\t\t\t\t\t\t</div>' + '</td>\n' +
+                '\t\t\t<td class="item_price" name="subTotal">' + data[i].price * data[i].quantity + '</td>\n' +
+                '\t\t\t<td class="add-check"><div class="item_add hvr-skew-backward" ><a href="javascript:void(0)">Remove</a></div></td>\n' +
                 '\t\t  </tr>';
             mainContainer.tBodies[0].appendChild(r);
         }
@@ -262,14 +293,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     appendData(data);
 </script>
 <script>
-    var baka= shoppingCart.get();
+    var baka = shoppingCart.get();
     var maintain = document.getElementById("total");
-    var r=document.createElement("span");
-    if(baka.length >0){
-        r.innerHTML=baka.length;
-        maintain.appendChild(r);}
-    else {
-        r.innerHTML= 0;
+    var r = document.createElement("span");
+    if (baka.length > 0) {
+        r.innerHTML = baka.length;
+        maintain.appendChild(r);
+    } else {
+        r.innerHTML = 0;
         maintain.appendChild(r);
     }
 </script>

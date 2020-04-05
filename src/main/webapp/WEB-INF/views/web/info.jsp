@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Contact</title>
+    <title>Info</title>
     <link href="<c:url value="/template/web/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!-- Custom Theme files -->
     <!--theme-style-->
@@ -25,6 +25,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="<c:url value="/template/web/css/style4.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!--//theme-style-->
     <script src="<c:url value="/template/web/js/jquery.min.js"/>"></script>
+    <!--- start-rate---->
+    <script src="<c:url value="/template/web/js/jstarbox.js"/>"></script>
+    <link rel="stylesheet" href="<c:url value="/template/web/css/jstarbox.css"/>" type="text/css" media="screen"
+          charset="utf-8"/>
 </head>
 <body>
 <!--header-->
@@ -132,88 +136,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <h1>Contact</h1>
             <em></em>
-            <h2><a href="<c:url value="/"/>">Home</a><label>/</label>Contact</h2>
+            <h2><a href="<c:url value="/"/>">Home</a><label>/</label>About</h2>
         </div>
     </div>
 </div>
 <!--banner-->
-
-
-<div class="contact">
-
-    <div class="contact-form">
-        <div class="container">
-            <div class="col-md-6 contact-left">
-                <h3>Contact me</h3>
-                <p>Hanoi University of Industry</p>
-
-                <div class="address">
-                    <div class=" address-grid">
-                        <i class="glyphicon glyphicon-map-marker"></i>
-                        <div class="address1">
-                            <h3>Address</h3>
-                            <p>Hà Nội</p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class=" address-grid ">
-                        <i class="glyphicon glyphicon-phone"></i>
-                        <div class="address1">
-                            <h3>Our Phone:</h3>
-                            <p>+84979859283</p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class=" address-grid ">
-                        <i class="glyphicon glyphicon-envelope"></i>
-                        <div class="address1">
-                            <h3>Email:</h3>
-                            <p><a href="mailto:info@example.com">example@example.com</a></p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class=" address-grid ">
-                        <i class="glyphicon glyphicon-bell"></i>
-                        <div class="address1">
-                            <h3>Open Hours:</h3>
-                            <p>Monday-Friday, 7AM-5PM</p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
+<div class="container">
+    <div class="four">
+        <h3>Thank You For The Trust!</h3>
+        <a href="<c:url value="/"/>" class="hvr-skew-backward">Back To Home</a>
     </div>
 </div>
+<!--//login-->
 
-<!--//contact-->
 <!--brand-->
 <div class="container">
-    <div class="brand">
-        <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/nikon.jpg"/>" class="img-responsive" alt="">
-        </div>
-        <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/canon.png"/>" class="img-responsive" alt="">
-        </div>
-        <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/sony.png"/>" class="img-responsive" alt="">
-        </div>
-        <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/fujin.jpg"/>" class="img-responsive" alt="">
-        </div>
-        <div class="clearfix"></div>
-    </div>
+	<div class="brand">
+		<div class="col-md-3 brand-grid">
+			<img src="<c:url value="/template/web/images/nikon.jpg"/>" class="img-responsive" alt="">
+		</div>
+		<div class="col-md-3 brand-grid">
+			<img src="<c:url value="/template/web/images/canon.png"/>" class="img-responsive" alt="">
+		</div>
+		<div class="col-md-3 brand-grid">
+			<img src="<c:url value="/template/web/images/sony.png"/>" class="img-responsive" alt="">
+		</div>
+		<div class="col-md-3 brand-grid">
+			<img src="<c:url value="/template/web/images/fujin.jpg"/>" class="img-responsive" alt="">
+		</div>
+		<div class="clearfix"></div>
+	</div>
 </div>
 <!--//brand-->
-</div>
 
-</div>
 <!--//content-->
 <!--//footer-->
 <%@ include file="/common/web/footer.jsp" %>
-<!--//footer-->
+<
+!--//footer-->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
 <script src="<c:url value="/template/web/js/simpleCart.min.js"/>"></script>

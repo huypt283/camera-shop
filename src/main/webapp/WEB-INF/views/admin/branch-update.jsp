@@ -55,7 +55,7 @@
                                         <div class="col-lg-6">
                                             <input type="text" class="form-control" name="name"
                                                    placeholder="Enter branch name.." value="${branch.name}">
-                                            <form:errors path="name"></form:errors>
+                                            <form:errors path="name" cssStyle="color: red"></form:errors>
                                         </div>
                                     </div>
                                     <div class="form-group row">

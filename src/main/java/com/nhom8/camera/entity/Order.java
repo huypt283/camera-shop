@@ -12,8 +12,6 @@ import java.util.Date;
 @Entity
 @Table(name = "orders")
 public class Order extends Base{
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Discount discount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;

@@ -55,7 +55,7 @@
                                         <div class="col-lg-6">
                                             <input type="text" class="form-control" id="val-userName" name="userName"
                                                    placeholder="Enter username.." value="">
-                                            <form:errors path="userName"></form:errors>
+                                            <form:errors path="userName" cssStyle="color: red"></form:errors>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -65,7 +65,7 @@
                                         <div class="col-lg-6">
                                             <input type="text" class="form-control" id="val-fullName" name="fullName"
                                                    placeholder="Enter full name..">
-                                            <form:errors path="fullName"></form:errors>
+                                            <form:errors path="fullName" cssStyle="color: red"></form:errors>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -75,7 +75,7 @@
                                         <div class="col-lg-6">
                                             <input type="text" class="form-control" id="val-email" name="email"
                                                    placeholder="Enter email.." value="">
-                                            <form:errors path="email"></form:errors>
+                                            <form:errors path="email" cssStyle="color: red"></form:errors>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -85,23 +85,16 @@
                                         <div class="col-lg-6">
                                             <input type="password" class="form-control" id="val-password"
                                                    name="password" placeholder="Enter password..">
-                                            <form:errors path="password"></form:errors>
+                                            <form:errors path="password" cssStyle="color: red"></form:errors>
                                         </div>
                                     </div>
-                                    <%--                                    <div class="form-group row">--%>
-                                    <%--                                        <label class="col-lg-4 col-form-label" for="val-confirm-password">Confirm Password <span class="text-danger">*</span>--%>
-                                    <%--                                        </label>--%>
-                                    <%--                                        <div class="col-lg-6">--%>
-                                    <%--                                            <input type="password" class="form-control" id="val-confirm-password" placeholder="Confirm password..">--%>
-                                    <%--                                        </div>--%>
-                                    <%--                                    </div>--%>
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label">Phone <span class="text-danger"></span>
                                         </label>
                                         <div class="col-lg-6">
                                             <input type="text" class="form-control" id="val-phone" name="phone"
                                                    placeholder="Enter phone.." value="">
-                                            <form:errors path="phone"></form:errors>
+                                            <form:errors path="phone" cssStyle="color: red"></form:errors>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -110,7 +103,7 @@
                                         <div class="col-lg-6">
                                             <input type="text" class="form-control" id="val-address" name="address"
                                                    placeholder="Enter address.." value="">
-                                            <form:errors path="address"></form:errors>
+                                            <form:errors path="address" cssStyle="color: red"></form:errors>
                                         </div>
                                     </div>
                                     <c:forEach items="${roles}" var="role">

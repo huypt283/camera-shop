@@ -55,7 +55,7 @@
                                         <div class="col-lg-6">
                                             <input type="text" class="form-control" name="name"
                                                    placeholder="Enter product name.." value="${product.name}">
-                                            <form:errors path="name"></form:errors>
+                                            <form:errors path="name" cssStyle="color: red"></form:errors>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -65,7 +65,7 @@
                                         <div class="col-lg-6">
                                             <input type="text" class="form-control" name="unitPrice"
                                                    placeholder="Enter unit price.." value="${product.unitPrice}">
-                                            <form:errors path="unitPrice"></form:errors>
+                                            <form:errors path="unitPrice" cssStyle="color: red"></form:errors>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -75,7 +75,7 @@
                                         <div class="col-lg-6">
                                             <input type="text" class="form-control" name="quantity"
                                                    placeholder="Enter quantity.." value="${product.quantity}">
-                                            <form:errors path="quantity"></form:errors>
+                                            <form:errors path="quantity" cssStyle="color: red"></form:errors>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -86,13 +86,6 @@
                                             <form:input path="productImage" type="file" accept="image/*" placeholder="Enter image.." class="form-control"/>
                                         </div>
                                     </div>
-                                    <%--                                    <div class="form-group row">--%>
-                                    <%--                                        <label class="col-lg-4 col-form-label" for="val-confirm-password">Confirm Password <span class="text-danger">*</span>--%>
-                                    <%--                                        </label>--%>
-                                    <%--                                        <div class="col-lg-6">--%>
-                                    <%--                                            <input type="password" class="form-control" id="val-confirm-password" placeholder="Confirm password..">--%>
-                                    <%--                                        </div>--%>
-                                    <%--                                    </div>--%>
                                     <label>Branch</label>
                                     <c:forEach items="${branches}" var="branch">
                                         <c:if test="${product.branch == branch}">
@@ -103,7 +96,7 @@
                                         </c:if>
                                         <c:if test="${product.branch != branch}">
                                             <p>
-                                                <input type="radio" class="check-box" name="branchId" checked="checked"
+                                                <input type="radio" class="check-box" name="branchId"
                                                        value="${branch.id}"> ${branch.name}
                                             </p>
                                         </c:if>

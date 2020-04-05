@@ -16,9 +16,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
+    private final int limit = 10;
+
     private ProductService productService;
     private ProductBranchService productBranchService;
-    private final int limit = 2;
 
     @Autowired
     public ProductController(ProductService productService, ProductBranchService productBranchService1) {
@@ -26,41 +27,19 @@ public class ProductController {
         this.productBranchService = productBranchService1;
     }
 
-//    @GetMapping
-//    public ModelAndView getListProduct(@RequestParam(value = "page_product", defaultValue = "1", required = false) int page_product) {
-//        PageResponse pageResponse1 = new PageResponse();
-//        final int offset = (page_product - 1) * limit;
-//        List<Product> products = productService.getListProduct(limit, offset);
-//        pageResponse1.setPage(page_product);
-//        pageResponse1.setLimit(limit);
-//        pageResponse1.setProductList(products);
-//        pageResponse1.setTotalItem(productService.getCount());
-//        pageResponse1.setTotalPage((int) Math.ceil((double) pageResponse1.getTotalItem() / pageResponse1.getLimit()));
-//        pageResponse1.setUrl("/product");
-//        List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
-//        ModelAndView mav = new ModelAndView("/web/product");
-//        mav.addObject("models1", pageResponse1);
-//        mav.addObject("lstProductBranch", lstProductBranch);
-//        return mav;
+//    public List<ProductBranch> getListBranch(@RequestParam(value = "limit", defaultValue = "20", required = false) int limit,
+//                                             @RequestParam(value = "offset", defaultValue = "0", required = false) int offset) {
+//        List<ProductBranch> lstBranch = productBranchService.getListProductBranch();
+//        return lstBranch;
 //    }
 
-    //    @GetMapping
-    public List<ProductBranch> getListBranch(@RequestParam(value = "limit", defaultValue = "20", required = false) int limit,
-                                             @RequestParam(value = "offset", defaultValue = "0", required = false) int offset) {
-        List<ProductBranch> lstBranch = productBranchService.getListProductBranch();
-        return lstBranch;
-    }
-
-    //    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     @GetMapping("/{id}")
     public ModelAndView getSingleProduct(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("/web/single");
-        List<ProductBranch> lstBranch = productBranchService.getListProductBranch();
-
+        List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
         Product product = productService.getSingleProductById(id);
         mav.addObject("product", product);
-        mav.addObject("lstBranch", lstBranch);
-
+        mav.addObject("lstProductBranch", lstProductBranch);
         return mav;
     }
 

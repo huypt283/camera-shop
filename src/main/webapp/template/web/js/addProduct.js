@@ -6,12 +6,15 @@ function addEventAddProductToBtn(){
             let bundleElement = document.querySelectorAll('div[class="col-md-3 item-grid simpleCart_shelfItem"]')[i];
             let productId = bundleElement.querySelector('div[class="women-top"] h6 a').href.split('/')[4];
             if(!shoppingCart.isExist({ productId : productId })){
+                let fullPathImg = bundleElement.querySelector('div[class="pro-img"] img').src;
+                let arrPath = fullPathImg.split('localhost')[1].split('/');
                 shoppingCart.insert({
                     brand : bundleElement.querySelector('div[class="women-top"] span').innerText,
                     name : bundleElement.querySelector('div[class="women-top"] h6 a').innerText,
                     price : bundleElement.querySelector('em[class="item_price"]').innerText,
                     productId : productId,
-                    quantity: "1"
+                    quantity: "1",
+                    avatar : arrPath.slice(1,arrPath.length).join('/')
                 });
             }
             else {

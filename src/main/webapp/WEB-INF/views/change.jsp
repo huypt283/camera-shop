@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Contact</title>
+    <title>Shopin A Ecommerce Category Flat Bootstrap Responsive Website Template | 404 :: w3layouts</title>
     <link href="<c:url value="/template/web/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!-- Custom Theme files -->
     <!--theme-style-->
@@ -25,6 +25,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="<c:url value="/template/web/css/style4.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!--//theme-style-->
     <script src="<c:url value="/template/web/js/jquery.min.js"/>"></script>
+    <!--- start-rate---->
+    <script src="<c:url value="/template/web/js/jstarbox.js"/>"></script>
+    <link rel="stylesheet" href="<c:url value="/template/web/css/jstarbox.css"/>" type="text/css" media="screen"
+          charset="utf-8"/>
 </head>
 <body>
 <!--header-->
@@ -125,70 +129,70 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </div>
-<!--header-->
 <!--banner-->
 <div class="container">
     <div class="banner-top">
         <div class="container">
             <h1>Contact</h1>
             <em></em>
-            <h2><a href="<c:url value="/"/>">Home</a><label>/</label>Contact</h2>
+            <h2><a href="<c:url value="/"/>">Home</a><label>/</label>Change password</h2>
         </div>
     </div>
 </div>
 <!--banner-->
-
-
-<div class="contact">
-
-    <div class="contact-form">
-        <div class="container">
-            <div class="col-md-6 contact-left">
-                <h3>Contact me</h3>
-                <p>Hanoi University of Industry</p>
-
-                <div class="address">
-                    <div class=" address-grid">
-                        <i class="glyphicon glyphicon-map-marker"></i>
-                        <div class="address1">
-                            <h3>Address</h3>
-                            <p>Hà Nội</p>
-                        </div>
-                        <div class="clearfix"></div>
+<!--login-->
+<div class="container">
+    <div class="brand">
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <form:form class="form-valide" action="/change-password" method="POST"
+                       modelAttribute="changepassword">
+                <p><label>Email</label></p>
+                <input type="email" class="input-lg form-control" name="email" id="email" placeholder="Enter email.." value="${user.email}" disabled="disabled">
+                <p><label>Old password</label></p>
+                <input type="password" class="input-lg form-control" name="oldPassword" id="passwordOld"
+                       placeholder="Enter old password..">
+                <form:errors path="oldPassword" cssStyle="color: red"></form:errors>
+                <p><label>New password</label></p>
+                <input type="password" class="input-lg form-control" name="password" id="password1"
+                       placeholder="Enter new password.." autocomplete="off">
+                <form:errors path="password" cssStyle="color: red"></form:errors>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> 8 Characters
+                        Long<br>
+                        <span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Uppercase
+                        Letter
                     </div>
-                    <div class=" address-grid ">
-                        <i class="glyphicon glyphicon-phone"></i>
-                        <div class="address1">
-                            <h3>Our Phone:</h3>
-                            <p>+84979859283</p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class=" address-grid ">
-                        <i class="glyphicon glyphicon-envelope"></i>
-                        <div class="address1">
-                            <h3>Email:</h3>
-                            <p><a href="mailto:info@example.com">example@example.com</a></p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class=" address-grid ">
-                        <i class="glyphicon glyphicon-bell"></i>
-                        <div class="address1">
-                            <h3>Open Hours:</h3>
-                            <p>Monday-Friday, 7AM-5PM</p>
-                        </div>
-                        <div class="clearfix"></div>
+                    <div class="col-sm-6">
+                        <span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Lowercase
+                        Letter<br>
+                        <span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Number
                     </div>
                 </div>
-            </div>
-            <div class="clearfix"></div>
+                <p><label>Repeat new password</label></p>
+                <input type="password" class="input-lg form-control" name="password2" id="password2"
+                       placeholder="Enter new password again.." autocomplete="off">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Passwords
+                        Match
+                    </div>
+                </div>
+                <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg"
+                       data-loading-text="Changing Password..." value="Change Password">
+            </form:form>
         </div>
     </div>
 </div>
+<!--//login-->
 
-<!--//contact-->
 <!--brand-->
+<div class="container">
+    <div class="brand">
+    </div>
+</div>
 <div class="container">
     <div class="brand">
         <div class="col-md-3 brand-grid">
@@ -207,9 +211,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <!--//brand-->
-</div>
 
-</div>
 <!--//content-->
 <!--//footer-->
 <%@ include file="/common/web/footer.jsp" %>
@@ -230,6 +232,63 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         r.innerHTML = 0;
         maintain.appendChild(r);
     }
+</script>
+<script>
+    $("input[type=password]").keyup(function () {
+        var ucase = new RegExp("[A-Z]+");
+        var lcase = new RegExp("[a-z]+");
+        var num = new RegExp("[0-9]+");
+
+        if ($("#password1").val().length >= 8) {
+            $("#8char").removeClass("glyphicon-remove");
+            $("#8char").addClass("glyphicon-ok");
+            $("#8char").css("color", "#00A41E");
+        } else {
+            $("#8char").removeClass("glyphicon-ok");
+            $("#8char").addClass("glyphicon-remove");
+            $("#8char").css("color", "#FF0004");
+        }
+
+        if (ucase.test($("#password1").val())) {
+            $("#ucase").removeClass("glyphicon-remove");
+            $("#ucase").addClass("glyphicon-ok");
+            $("#ucase").css("color", "#00A41E");
+        } else {
+            $("#ucase").removeClass("glyphicon-ok");
+            $("#ucase").addClass("glyphicon-remove");
+            $("#ucase").css("color", "#FF0004");
+        }
+
+        if (lcase.test($("#password1").val())) {
+            $("#lcase").removeClass("glyphicon-remove");
+            $("#lcase").addClass("glyphicon-ok");
+            $("#lcase").css("color", "#00A41E");
+        } else {
+            $("#lcase").removeClass("glyphicon-ok");
+            $("#lcase").addClass("glyphicon-remove");
+            $("#lcase").css("color", "#FF0004");
+        }
+
+        if (num.test($("#password1").val())) {
+            $("#num").removeClass("glyphicon-remove");
+            $("#num").addClass("glyphicon-ok");
+            $("#num").css("color", "#00A41E");
+        } else {
+            $("#num").removeClass("glyphicon-ok");
+            $("#num").addClass("glyphicon-remove");
+            $("#num").css("color", "#FF0004");
+        }
+
+        if ($("#password1").val() == $("#password2").val()) {
+            $("#pwmatch").removeClass("glyphicon-remove");
+            $("#pwmatch").addClass("glyphicon-ok");
+            $("#pwmatch").css("color", "#00A41E");
+        } else {
+            $("#pwmatch").removeClass("glyphicon-ok");
+            $("#pwmatch").addClass("glyphicon-remove");
+            $("#pwmatch").css("color", "#FF0004");
+        }
+    });
 </script>
 </body>
 </html>

@@ -66,19 +66,6 @@
 
             <div class="col-sm-8 col-md-offset-2 h_menu4">
                 <nav class="navbar nav_bottom" role="navigation">
-
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <%--                    <div class="navbar-header nav_2">--%>
-                    <%--                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"--%>
-                    <%--                                data-target="#bs-megadropdown-tabs">--%>
-                    <%--                            <span class="sr-only">Toggle navigation</span>--%>
-                    <%--                            <span class="icon-bar"></span>--%>
-                    <%--                            <span class="icon-bar"></span>--%>
-                    <%--                            <span class="icon-bar"></span>--%>
-                    <%--                        </button>--%>
-
-                    <%--                    </div>--%>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                         <ul class="nav navbar-nav nav_1">
                             <li><a class="color" href="<c:url value="/home"/>">Home</a></li>
@@ -105,7 +92,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li><a class="color4" href="<c:url value="/404"/>">About</a></li>
+                            <li><a class="color4" href="<c:url value="/info"/>">About</a></li>
                             <li><a class="color6" href="<c:url value="/contact"/>">Contact</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -139,7 +126,17 @@
     </div>
 </div>
 <!-- header -->
-
+<!--banner-->
+<div class="container">
+    <div class="banner-top">
+        <div class="container">
+            <h1>Contact</h1>
+            <em></em>
+            <h2><a href="<c:url value="/"/>">Home</a><label>/</label>Register</h2>
+        </div>
+    </div>
+</div>
+<!--banner-->
 <!--login-->
 <div class="container">
     <div class="login">
@@ -170,13 +167,9 @@
                     <input type="password" name="password" required="true" placeholder="Password">
                     <i class="glyphicon "></i>
                 </div>
-                    <%--				   <a class="news-letter " href="#">--%>
-                    <%--						 <label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>Forget Password</label>--%>
-                    <%--					   </a>--%>
                 <label class="hvr-skew-backward">
                     <input type="submit" value="Submit">
                 </label>
-
             </div>
             <div class="col-md-6 login-right">
                 <h3>Completely Free Account</h3>
@@ -198,16 +191,16 @@
 <div class="container">
     <div class="brand">
         <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/ic.png"/>" class="img-responsive" alt="">
+            <img src="<c:url value="/template/web/images/nikon.jpg"/>" class="img-responsive" alt="">
         </div>
         <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/ic1.png"/>" class="img-responsive" alt="">
+            <img src="<c:url value="/template/web/images/canon.png"/>" class="img-responsive" alt="">
         </div>
         <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/ic2.png"/>" class="img-responsive" alt="">
+            <img src="<c:url value="/template/web/images/sony.png"/>" class="img-responsive" alt="">
         </div>
         <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/ic3.png"/>" class="img-responsive" alt="">
+            <img src="<c:url value="/template/web/images/fujin.jpg"/>" class="img-responsive" alt="">
         </div>
         <div class="clearfix"></div>
     </div>
@@ -224,14 +217,14 @@
 <!-- slide -->
 <script src="<c:url value="/template/web/js/bootstrap.min.js"/>"></script>
 <script>
-    var baka= shoppingCart.get();
+    var baka = shoppingCart.get();
     var maintain = document.getElementById("total");
-    var r=document.createElement("span");
-    if(baka.length >0){
-        r.innerHTML=baka.length;
-        maintain.appendChild(r);}
-    else {
-        r.innerHTML= 0;
+    var r = document.createElement("span");
+    if (baka.length > 0) {
+        r.innerHTML = baka.length;
+        maintain.appendChild(r);
+    } else {
+        r.innerHTML = 0;
         maintain.appendChild(r);
     }
 </script>

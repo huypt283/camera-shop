@@ -39,10 +39,8 @@ public class RegisterController {
 
     @PostMapping
     public String register(@ModelAttribute("userRegister") UserRegisterRequest userRegisterRequest, ModelMap modelMap) {
-
         userService.saveUser(userRegisterRequest);
-//        System.out.println("iUserService.saveUser(userRequest)");
-        modelMap.addAttribute("messenger", "Dang ky thanh cong");
+        modelMap.addAttribute("messenger", "Register success!");
         return "redirect:/login";
     }
 }

@@ -25,7 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Transactional(propagation= Propagation.REQUIRED, readOnly=true, noRollbackFor=Exception.class)
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = iUserRepository.findByUserName(userName);
+        User user = iUserRepository.findByUserNameOrEmail(userName);
 
         if (user == null) {
             throw new UsernameNotFoundException("User not found");

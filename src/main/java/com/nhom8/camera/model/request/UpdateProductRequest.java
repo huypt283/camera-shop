@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateProductRequest {
-    @Size(min = 2, max = 10, message = "Must be between 2 and 100 characters")
+    @Size(min = 2, max = 100, message = "Must be between 2 and 100 characters")
     private String name;
 
     @ValidUnitPrice
@@ -27,7 +27,6 @@ public class UpdateProductRequest {
     @ValidQuantity
     private String quantity;
 
-    @NotNull(message = "Can not be null")
     private MultipartFile productImage;
 
     private Long branchId;

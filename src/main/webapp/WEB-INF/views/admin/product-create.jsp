@@ -55,7 +55,7 @@
                                         <div class="col-lg-6">
                                             <input type="text" class="form-control" name="name"
                                                    placeholder="Enter product name.." value="">
-                                            <form:errors path="name"></form:errors>
+                                            <form:errors path="name" cssStyle="color: red"></form:errors>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -65,7 +65,7 @@
                                         <div class="col-lg-6">
                                             <input type="text" class="form-control" name="unitPrice"
                                                    placeholder="Enter unit price..">
-                                            <form:errors path="unitPrice"></form:errors>
+                                            <form:errors path="unitPrice" cssStyle="color: red"></form:errors>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -75,7 +75,7 @@
                                         <div class="col-lg-6">
                                             <input type="text" class="form-control" name="quantity"
                                                    placeholder="Enter quantity.." value="">
-                                            <form:errors path="quantity"></form:errors>
+                                            <form:errors path="quantity" cssStyle="color: red"></form:errors>
                                         </div>
                                     </div>
                                     <div class="form-group row">

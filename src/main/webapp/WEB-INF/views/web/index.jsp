@@ -5,7 +5,7 @@
 <html>
 <head>
 
-    <title>Shop Camera | Login :: w3layouts</title>
+    <title>Shop Cameras</title>
     <link href="<c:url value="/template/web/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!-- Custom Theme files -->
     <!--theme-style-->
@@ -54,8 +54,11 @@
 
             <div class="col-sm-5 header-social">
                 <ul>
-                    <li><a href="<c:url value="/logout" />">
+                    <li><a href="<c:url value="/change-password" />">
                         Xin chào <%=SecurityUtil.getUserName()%>
+                    </a></li>&emsp;
+                    <li><a href="<c:url value="/logout" />">
+                        Logout
                     </a></li>
                 </ul>
             </div>
@@ -69,19 +72,6 @@
 
             <div class="col-sm-8 col-md-offset-2 h_menu4">
                 <nav class="navbar nav_bottom" role="navigation">
-
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <%--                    <div class="navbar-header nav_2">--%>
-                    <%--                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"--%>
-                    <%--                                data-target="#bs-megadropdown-tabs">--%>
-                    <%--                            <span class="sr-only">Toggle navigation</span>--%>
-                    <%--                            <span class="icon-bar"></span>--%>
-                    <%--                            <span class="icon-bar"></span>--%>
-                    <%--                            <span class="icon-bar"></span>--%>
-                    <%--                        </button>--%>
-
-                    <%--                    </div>--%>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                         <ul class="nav navbar-nav nav_1">
                             <li><a class="color" href="<c:url value="/home"/>">Home</a></li>
@@ -108,7 +98,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li><a class="color4" href="<c:url value="/404"/>">About</a></li>
+                            <li><a class="color4" href="<c:url value="/info"/>">About</a></li>
                             <li><a class="color6" href="<c:url value="/contact"/>">Contact</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -121,7 +111,7 @@
                     <a href="<c:url value="/checkout"/>">
                         <h3>
                             <div class="total" id="total">
-                                </div>
+                            </div>
                             <img src="<c:url value="/template/web/images/cart.png"/>" alt=""/></h3>
                     </a>
                     <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
@@ -210,7 +200,7 @@
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="mid-2">
-                                        <p><label>$100.00</label><em class="item_price">${products.unitPrice}</em></p>
+                                        <p><em class="item_price">${products.unitPrice}</em><label>VNĐ</label></p>
                                         <div class="block">
                                             <div class="starbox small ghosting"></div>
                                         </div>
@@ -279,14 +269,14 @@
 <script src="<c:url value="/template/web/js/addProduct.js"/>"></script>
 
 <script>
-    var baka= shoppingCart.get();
+    var baka = shoppingCart.get();
     var maintain = document.getElementById("total");
-    var r=document.createElement("span");
-    if(baka.length >0){
-        r.innerHTML=baka.length;
-        maintain.appendChild(r);}
-    else {
-        r.innerHTML= 0;
+    var r = document.createElement("span");
+    if (baka.length > 0) {
+        r.innerHTML = baka.length;
+        maintain.appendChild(r);
+    } else {
+        r.innerHTML = 0;
         maintain.appendChild(r);
     }
 </script>

@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 public class CreateProductRequest {
-    @Size(min = 2, max = 10, message = "Must be between 2 and 100 characters")
+    @Size(min = 2, max = 100, message = "Must be between 2 and 100 characters")
     @ValidProductName
     private String name;
 
