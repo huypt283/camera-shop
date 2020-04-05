@@ -1,6 +1,7 @@
 function addEventAddProductToBtn(){
     let addToShoppingCartBtns = document.querySelectorAll('div[class="img item_add"]');
     for(let i=0;i<addToShoppingCartBtns.length;i++){
+
         addToShoppingCartBtns[i].onclick = function(){
             let bundleElement = document.querySelectorAll('div[class="col-md-3 item-grid simpleCart_shelfItem"]')[i];
             let productId = bundleElement.querySelector('div[class="women-top"] h6 a').href.split('/')[4];

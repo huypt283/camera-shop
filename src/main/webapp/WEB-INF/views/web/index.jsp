@@ -95,7 +95,8 @@
                                                 <c:forEach items="${lstProductBranch}" var="branchs">
                                                     <ul>
                                                         <li>
-                                                            <a href="<c:url value="/product/branchId=${branchs.id}"/>">${branchs.name}</a>
+                                                            <a href="<c:url value="/product?branchId=${branchs.id}"/>">${branchs.name}</a>
+
                                                         </li>
 
                                                     </ul>
@@ -103,10 +104,6 @@
                                             </div>
                                         </div>
 
-                                        <%--                                        <div class="col1 col5">--%>
-                                        <%--                                            <img src="<c:url value="/template/web/images/me.png"/>"--%>
-                                        <%--                                                 class="img-responsive" alt="">--%>
-                                        <%--                                        </div>--%>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
@@ -119,19 +116,12 @@
                 </nav>
             </div>
             <div class="col-sm-2 search-right">
-                <%--                <ul class="heart">--%>
-                <%--                    <li>--%>
-                <%--                        <a href="<c:url value="/wishlist"/>">--%>
-                <%--                            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>--%>
-                <%--                        </a></li>--%>
-                <%--                    <li><a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i--%>
-                <%--                            class="glyphicon glyphicon-search"> </i></a></li>--%>
-                <%--                </ul>--%>
+
                 <div class="cart box_1">
                     <a href="<c:url value="/checkout"/>">
                         <h3>
-                            <div class="total">
-                                <span>${sessionScope.myCartItems.size()}</span></div>
+                            <div class="total" id="total">
+                                </div>
                             <img src="<c:url value="/template/web/images/cart.png"/>" alt=""/></h3>
                     </a>
                     <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
@@ -145,34 +135,7 @@
                       media="all"/>
                 <script src="<c:url value="/template/web/js/jquery.magnific-popup.js"/>"
                         type="text/javascript"></script>
-                <!---//pop-up-box---->
-                <%--                <div id="small-dialog" class="mfp-hide">--%>
-                <%--                    <div class="search-top">--%>
-                <%--                        <div class="login-search">--%>
-                <%--                            <input type="submit" value="">--%>
-                <%--                            <input type="text" value="Search.." onfocus="this.value = '';"--%>
-                <%--                                   onblur="if (this.value == '') {this.value = 'Search..';}">--%>
-                <%--                        </div>--%>
-                <%--                        <p>Shopin</p>--%>
-                <%--                    </div>--%>
-                <%--                </div>--%>
-                <%--                <script>--%>
-                <%--                    $(document).ready(function () {--%>
-                <%--                        $('.popup-with-zoom-anim').magnificPopup({--%>
-                <%--                            type: 'inline',--%>
-                <%--                            fixedContentPos: false,--%>
-                <%--                            fixedBgPos: true,--%>
-                <%--                            overflowY: 'auto',--%>
-                <%--                            closeBtnInside: true,--%>
-                <%--                            preloader: false,--%>
-                <%--                            midClick: true,--%>
-                <%--                            removalDelay: 300,--%>
-                <%--                            mainClass: 'my-mfp-zoom-in'--%>
-                <%--                        });--%>
 
-                <%--                    });--%>
-                <%--                </script>--%>
-                <!----->
             </div>
             <div class="clearfix"></div>
         </div>
@@ -212,50 +175,7 @@
 <!--content-->
 <div class="content">
     <div class="container">
-        <%--				<div class="content-top">--%>
-        <%--					<div class="col-md-6 col-md">--%>
-        <%--						<div class="col-1">--%>
-        <%--						 <a href="<c:url value="/product"/>" class="b-link-stroke b-animate-go  thickbox">--%>
-        <%--		   <img src="<c:url value="/template/web/images/pi.jpg"/>" class="img-responsive" alt=""/><div class="b-wrapper1 long-img"><p class="b-animate b-from-right    b-delay03 ">Lorem ipsum</p><label class="b-animate b-from-right    b-delay03 "></label><h3 class="b-animate b-from-left    b-delay03 ">Trendy</h3></div></a>--%>
 
-        <%--							<!---<a href="single.jsp"><img src="images/pi.jpg" class="img-responsive" alt=""></a>-->--%>
-        <%--						</div>--%>
-        <%--						<div class="col-2">--%>
-        <%--							<span>Hot Deal</span>--%>
-        <%--							<h2><a href="<c:url value="/product"/>">Luxurious &amp; Trendy</a></h2>--%>
-        <%--							<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years</p>--%>
-        <%--							<a href="<c:url value="/product"/>" class="buy-now">Buy Now</a>--%>
-        <%--						</div>--%>
-        <%--					</div>--%>
-        <%--					<div class="col-md-6 col-md1">--%>
-        <%--						<div class="col-3">--%>
-        <%--							<a href="<c:url value="/product"/>"><img src="<c:url value="/template/web/images/pi1.jpg"/>" class="img-responsive" alt="">--%>
-        <%--							<div class="col-pic">--%>
-        <%--								<p>Lorem Ipsum</p>--%>
-        <%--								<label></label>--%>
-        <%--								<h5>For Men</h5>--%>
-        <%--							</div></a>--%>
-        <%--						</div>--%>
-        <%--						<div class="col-3">--%>
-        <%--							<a href="<c:url value="/product"/>"><img src="<c:url value="/template/web/images/pi2.jpg"/>" class="img-responsive" alt="">--%>
-        <%--							<div class="col-pic">--%>
-        <%--								<p>Lorem Ipsum</p>--%>
-        <%--								<label></label>--%>
-        <%--								<h5>For Kids</h5>--%>
-        <%--							</div></a>--%>
-        <%--						</div>--%>
-        <%--						<div class="col-3">--%>
-        <%--							<a href="<c:url value="/product"/>"><img src="<c:url value="/template/web/images/pi3.jpg"/>" class="img-responsive" alt="">--%>
-        <%--							<div class="col-pic">--%>
-        <%--								<p>Lorem Ipsum</p>--%>
-        <%--								<label></label>--%>
-        <%--								<h5>For Women</h5>--%>
-        <%--							</div></a>--%>
-        <%--						</div>--%>
-        <%--					</div>--%>
-        <%--					<div class="clearfix"></div>--%>
-        <%--				</div>--%>
-        <!--products-->
         <form action="<c:url value='/home'/>" id="formSubmit" method="get">
             <div class="content-mid">
                 <h3>Trending Items</h3>
@@ -266,7 +186,7 @@
 
                             <div class=" mid-pop">
                                 <div class="pro-img">
-                                    <img src="<c:url value="/template/web/images/pc.jpg"/>" class="img-responsive"
+                                    <img src="<c:url value="${products.productImage}"/>" class="img-responsive"
                                          alt="">
                                     <div class="zoom-icon ">
                                         <a class="picture" href="<c:url value="/template/web/images/pc.jpg"/>"
@@ -305,239 +225,13 @@
                     </c:forEach>
 
 
-                    <%--<div class="col-md-3 item-grid simpleCart_shelfItem">
-                    <div class=" mid-pop">
-                    <div class="pro-img">
-                        <img src="<c:url value="/template/web/images/pc1.jpg"/>" class="img-responsive" alt="">
-                        <div class="zoom-icon ">
-                        <a class="picture" href="<c:url value="/template/web/images/pc1.jpg"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-                        <a href="<c:url value="/product"/>"><i class="glyphicon glyphicon-menu-right icon"></i></a>
-                        </div>
-                        </div>
-                        <div class="mid-1">
-                        <div class="women">
-                        <div class="women-top">
-                            <span>Women</span>
-                            <h6><a href="<c:url value="/product"/>">At vero eos</a></h6>
-                            </div>
-                            <div class="img item_add">
-                                <a href="#"><img src="<c:url value="/template/web/images/ca.png"/>" alt=""></a>
-                            </div>
-                            <div class="clearfix"></div>
-                            </div>
-                            <div class="mid-2">
-                                <p ><label>$100.00</label><em class="item_price">$70.00</em></p>
-                                  <div class="block">
-                                    <div class="starbox small ghosting"> </div>
-                                </div>
-
-                                <div class="clearfix"></div>
-                            </div>
-
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col-md-3 item-grid simpleCart_shelfItem">
-                    <div class=" mid-pop">
-                    <div class="pro-img">
-                        <img src="<c:url value="/template/web/images/pc2.jpg"/>" class="img-responsive" alt="">
-                        <div class="zoom-icon ">
-                        <a class="picture" href="<c:url value="/template/web/images/pc2.jpg"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-                        <a href="<c:url value="/product"/>"><i class="glyphicon glyphicon-menu-right icon"></i></a>
-                        </div>
-                        </div>
-                        <div class="mid-1">
-                        <div class="women">
-                        <div class="women-top">
-                            <span>Men</span>
-                            <h6><a href="<c:url value="/product"/>">Sed ut perspiciati</a></h6>
-                            </div>
-                            <div class="img item_add">
-                                <a href="#"><img src="<c:url value="/template/web/images/ca.png"/>" alt=""></a>
-                            </div>
-                            <div class="clearfix"></div>
-                            </div>
-                            <div class="mid-2">
-                                <p ><label>$100.00</label><em class="item_price">$70.00</em></p>
-                                  <div class="block">
-                                    <div class="starbox small ghosting"> </div>
-                                </div>
-
-                                <div class="clearfix"></div>
-                            </div>
-
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col-md-3 item-grid simpleCart_shelfItem">--%>
-                    <%--<div class=" mid-pop">
-                    <div class="pro-img">
-                        <img src="<c:url value="/template/web/images/pc3.jpg"/>" class="img-responsive" alt="">
-                        <div class="zoom-icon ">
-                        <a class="picture" href="<c:url value="/template/web/images/pc3.jpg"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-                        <a href="<c:url value="/product"/>"><i class="glyphicon glyphicon-menu-right icon"></i></a>
-                        </div>
-                        </div>
-                        <div class="mid-1">
-                        <div class="women">
-                        <div class="women-top">
-                            <span>Women</span>
-                            <h6><a href="<c:url value="/product"/>">On the other</a></h6>
-                            </div>
-                            <div class="img item_add">
-                                <a href="#"><img src="<c:url value="/template/web/images/ca.png"/>" alt=""></a>
-                            </div>
-                            <div class="clearfix"></div>
-                            </div>
-                            <div class="mid-2">
-                                <p ><label>$100.00</label><em class="item_price">$70.00</em></p>
-                                  <div class="block">
-                                    <div class="starbox small ghosting"> </div>
-                                </div>
-
-                                <div class="clearfix"></div>
-                            </div>
-
-                        </div>
-                    </div>--%>
                 </div>
                 <div class="clearfix"></div>
                 <ul class="pagination" id="pagination"></ul>
                 <input type="hidden" value="" id="page" name="page"/>
             </div>
         </form>
-        <%--						<div class="mid-popular">
-                    <div class="col-md-3 item-grid simpleCart_shelfItem">
-                    <div class=" mid-pop">
-                    <div class="pro-img">
-                        <img src="<c:url value="/template/web/images/pc4.jpg"/>" class="img-responsive" alt="">
-                        <div class="zoom-icon ">
-                        <a class="picture" href="<c:url value="/template/web/images/pc4.jpg"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-                        <a href="single.jsp"><i class="glyphicon glyphicon-menu-right icon"></i></a>
-                        </div>
-                        </div>
-                        <div class="mid-1">
-                        <div class="women">
-                        <div class="women-top">
-                            <span>Men</span>
-                            <h6><a href="<c:url value="/product"/>">On the other</a></h6>
-                            </div>
-                            <div class="img item_add">
-                                <a href="#"><img src="<c:url value="/template/web/images/ca.png"/>" alt=""></a>
-                            </div>
-                            <div class="clearfix"></div>
-                            </div>
-                            <div class="mid-2">
-                                <p ><label>$100.00</label><em class="item_price">$70.00</em></p>
-                                  <div class="block">
-                                    <div class="starbox small ghosting"> </div>
-                                </div>
 
-                                <div class="clearfix"></div>
-                            </div>
-
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col-md-3 item-grid simpleCart_shelfItem">
-                    <div class=" mid-pop">
-                    <div class="pro-img">
-                        <img src="<c:url value="/template/web/images/pc5.jpg"/>" class="img-responsive" alt="">
-                        <div class="zoom-icon ">
-                        <a class="picture" href="<c:url value="/template/web/images/pc5.jpg"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-                        <a href="<c:url value="/product"/>"><i class="glyphicon glyphicon-menu-right icon"></i></a>
-                        </div>
-                        </div>
-                        <div class="mid-1">
-                        <div class="women">
-                        <div class="women-top">
-                            <span>Men</span>
-                            <h6><a href="<c:url value="/product"/>">Sed ut perspiciati</a></h6>
-                            </div>
-                            <div class="img item_add">
-                                <a href="#"><img src="<c:url value="/template/web/images/ca.png"/>" alt=""></a>
-                            </div>
-                            <div class="clearfix"></div>
-                            </div>
-                            <div class="mid-2">
-                                <p ><label>$100.00</label><em class="item_price">$70.00</em></p>
-                                  <div class="block">
-                                    <div class="starbox small ghosting"> </div>
-                                </div>
-
-                                <div class="clearfix"></div>
-                            </div>
-
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col-md-3 item-grid simpleCart_shelfItem">
-                    <div class=" mid-pop">
-                    <div class="pro-img">
-                        <img src="<c:url value="/template/web/images/pc6.jpg"/>" class="img-responsive" alt="">
-                        <div class="zoom-icon ">
-                        <a class="picture" href="<c:url value="/template/web/images/pc6.jpg"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-                        <a href="<c:url value="/product"/>"><i class="glyphicon glyphicon-menu-right icon"></i></a>
-                        </div>
-                        </div>
-                        <div class="mid-1">
-                        <div class="women">
-                        <div class="women-top">
-                            <span>Women</span>
-                            <h6><a href="single.jsp">At vero eos</a></h6>
-                            </div>
-                            <div class="img item_add">
-                                <a href="#"><img src="<c:url value="/template/web/images/ca.png"/>" alt=""></a>
-                            </div>
-                            <div class="clearfix"></div>
-                            </div>
-                            <div class="mid-2">
-                                <p ><label>$100.00</label><em class="item_price">$70.00</em></p>
-                                  <div class="block">
-                                    <div class="starbox small ghosting"> </div>
-                                </div>
-
-                                <div class="clearfix"></div>
-                            </div>
-
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col-md-3 item-grid simpleCart_shelfItem">
-                    <div class=" mid-pop">
-                    <div class="pro-img">
-                        <img src="<c:url value="/template/web/images/pc7.jpg"/>" class="img-responsive" alt="">
-                        <div class="zoom-icon ">
-                        <a class="picture" href="<c:url value="/template/web/images/pc7.jpg"/>" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-                        <a href="<c:url value="/product"/>"><i class="glyphicon glyphicon-menu-right icon"></i></a>
-                        </div>
-                        </div>
-                        <div class="mid-1">
-                        <div class="women">
-                        <div class="women-top">
-                            <span>Men</span>
-                            <h6><a href="<c:url value="/product"/>">Sed ut perspiciati</a></h6>
-                            </div>
-                            <div class="img item_add">
-                                <a href="#"><img src="<c:url value="/template/web/images/ca.png"/>" alt=""></a>
-                            </div>
-                            <div class="clearfix"></div>
-                            </div>
-                            <div class="mid-2">
-                                <p ><label>$100.00</label><em class="item_price">$70.00</em></p>
-                                  <div class="block">
-                                    <div class="starbox small ghosting"> </div>
-                                </div>
-
-                                <div class="clearfix"></div>
-                            </div>
-
-                        </div>
-                    </div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>--%>
         <!--//products-->
         <!--brand-->
         <div class="brand">
@@ -583,6 +277,20 @@
 <script src="https://unpkg.com/lowdb@0.17/dist/LocalStorage.min.js"></script>
 <script src="<c:url value="/template/web/js/custom.js"/>"></script>
 <script src="<c:url value="/template/web/js/addProduct.js"/>"></script>
+
+<script>
+    var baka= shoppingCart.get();
+    var maintain = document.getElementById("total");
+    var r=document.createElement("span");
+    if(baka.length >0){
+        r.innerHTML=baka.length;
+        maintain.appendChild(r);}
+    else {
+        r.innerHTML= 0;
+        maintain.appendChild(r);
+    }
+</script>
+
 <script>
     var totalPages = ${models.totalPage};
     var currentPage = ${models.page};

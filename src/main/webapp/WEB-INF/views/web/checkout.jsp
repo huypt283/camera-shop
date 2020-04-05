@@ -93,7 +93,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <c:forEach items="${lstProductBranch}" var="branchs">
                                                     <ul>
                                                         <li>
-                                                            <a href="<c:url value="/product/branchId=${branchs.id}"/>">${branchs.name}</a>
+                                                            <a href="<c:url value="/product?branchId=${branchs.id}"/>">${branchs.name}</a>
+
                                                         </li>
 
                                                     </ul>
@@ -101,10 +102,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             </div>
                                         </div>
 
-                                        <%--                                        <div class="col1 col5">--%>
-                                        <%--                                            <img src="<c:url value="/template/web/images/me.png"/>"--%>
-                                        <%--                                                 class="img-responsive" alt="">--%>
-                                        <%--                                        </div>--%>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
@@ -117,19 +114,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </nav>
             </div>
             <div class="col-sm-2 search-right">
-                <%--                <ul class="heart">--%>
-                <%--                    <li>--%>
-                <%--                        <a href="<c:url value="/wishlist"/>">--%>
-                <%--                            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>--%>
-                <%--                        </a></li>--%>
-                <%--                    <li><a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i--%>
-                <%--                            class="glyphicon glyphicon-search"> </i></a></li>--%>
-                <%--                </ul>--%>
+
                 <div class="cart box_1">
                     <a href="<c:url value="/checkout"/>">
                         <h3>
-                            <div class="total">
-                                <span>${sessionScope.myCartItems.size()}</span></div>
+                            <div class="total" id="total">
+                            </div>
                             <img src="<c:url value="/template/web/images/cart.png"/>" alt=""/></h3>
                     </a>
                     <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
@@ -143,34 +133,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       media="all"/>
                 <script src="<c:url value="/template/web/js/jquery.magnific-popup.js"/>"
                         type="text/javascript"></script>
-                <!---//pop-up-box---->
-                <%--                <div id="small-dialog" class="mfp-hide">--%>
-                <%--                    <div class="search-top">--%>
-                <%--                        <div class="login-search">--%>
-                <%--                            <input type="submit" value="">--%>
-                <%--                            <input type="text" value="Search.." onfocus="this.value = '';"--%>
-                <%--                                   onblur="if (this.value == '') {this.value = 'Search..';}">--%>
-                <%--                        </div>--%>
-                <%--                        <p>Shopin</p>--%>
-                <%--                    </div>--%>
-                <%--                </div>--%>
-                <%--                <script>--%>
-                <%--                    $(document).ready(function () {--%>
-                <%--                        $('.popup-with-zoom-anim').magnificPopup({--%>
-                <%--                            type: 'inline',--%>
-                <%--                            fixedContentPos: false,--%>
-                <%--                            fixedBgPos: true,--%>
-                <%--                            overflowY: 'auto',--%>
-                <%--                            closeBtnInside: true,--%>
-                <%--                            preloader: false,--%>
-                <%--                            midClick: true,--%>
-                <%--                            removalDelay: 300,--%>
-                <%--                            mainClass: 'my-mfp-zoom-in'--%>
-                <%--                        });--%>
 
-                <%--                    });--%>
-                <%--                </script>--%>
-                <!----->
             </div>
             <div class="clearfix"></div>
         </div>
@@ -190,7 +153,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         var btnRemove = document.querySelectorAll('div[class="item_add hvr-skew-backward"]');
         for (var i = 0; i < btnRemove.length; i++) {
             btnRemove[i].onclick = function () {
-                let bundle = document.querySelectorAll('td[class="ring-in"]')[0];
+                let bundle = document.querySelectorAll('td[class="ring-in"]')[i];
                 let namecheck = bundle.querySelector('div[class="sed"] h5 a').innerText;
                 shoppingCart.remove({name: namecheck});
             }
@@ -298,6 +261,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     }
     appendData(data);
 </script>
-
+<script>
+    var baka= shoppingCart.get();
+    var maintain = document.getElementById("total");
+    var r=document.createElement("span");
+    if(baka.length >0){
+        r.innerHTML=baka.length;
+        maintain.appendChild(r);}
+    else {
+        r.innerHTML= 0;
+        maintain.appendChild(r);
+    }
+</script>
 </body>
 </html>

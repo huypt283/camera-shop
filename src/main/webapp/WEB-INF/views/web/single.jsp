@@ -1,4 +1,6 @@
 <%@include file="/common/taglib.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page import="com.nhom8.camera.util.SecurityUtil" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -63,24 +65,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="header-top">
 		<div class="container">
 			<div class="col-sm-5 col-md-offset-2  header-login">
-				<ul >
+				<ul>
 					<li><a href="<c:url value="/login" />">Login</a></li>
-					<li><a href="<c:url value = "/register"/>">Register</a></li>
+					<li><a href="<c:url value="/register"/>">Register</a></li>
 
 				</ul>
 			</div>
 
 			<div class="col-sm-5 header-social">
-				<ul >
-					<li><a href="#"><i></i></a></li>
-					<li><a href="#"><i class="ic1"></i></a></li>
-					<li><a href="#"><i class="ic2"></i></a></li>
-					<li><a href="#"><i class="ic3"></i></a></li>
-					<li><a href="#"><i class="ic4"></i></a></li>
+				<ul>
+					<li><a href="<c:url value="/logout" />">
+						Xin chào <%=SecurityUtil.getUserName()%>
+					</a></li>
 				</ul>
-
 			</div>
-			<div class="clearfix"> </div>
+			<div class="clearfix"></div>
 		</div>
 	</div>
 
@@ -92,101 +91,71 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<nav class="navbar nav_bottom" role="navigation">
 
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header nav_2">
-						<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
+					<%--                    <div class="navbar-header nav_2">--%>
+					<%--                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"--%>
+					<%--                                data-target="#bs-megadropdown-tabs">--%>
+					<%--                            <span class="sr-only">Toggle navigation</span>--%>
+					<%--                            <span class="icon-bar"></span>--%>
+					<%--                            <span class="icon-bar"></span>--%>
+					<%--                            <span class="icon-bar"></span>--%>
+					<%--                        </button>--%>
 
-					</div>
+					<%--                    </div>--%>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 						<ul class="nav navbar-nav nav_1">
-							<li><a class="color" href="<c:url value = "/home"/>">Home</a></li>
+							<li><a class="color" href="<c:url value="/home"/>">Home</a></li>
 							<li class="dropdown mega-dropdown active">
-								<a class="color1" href="#" class="dropdown-toggle" data-toggle="dropdown">Brand<span class="caret"></span></a>
+								<a class="color1" href="#" class="dropdown-toggle" data-toggle="dropdown">Brand<span
+										class="caret"></span></a>
 								<div class="dropdown-menu ">
 									<div class="menu-top">
-
 										<div class="col1">
 											<div class="h_nav">
-												<c:forEach items="${lstBranch}" var="branchs">
+												<c:forEach items="${lstProductBranch}" var="branchs">
 													<ul>
-														<li><a href="<c:url value="/product/branchId=${branchs.id}"/>">${branchs.name}</a></li>
+														<li>
+															<a href="<c:url value="/product?branchId=${branchs.id}"/>">${branchs.name}</a>
+
+														</li>
 
 													</ul>
 												</c:forEach>
 											</div>
 										</div>
 
-										<div class="col1 col5">
-											<img src="<c:url value="/template/web/images/me.png"/>" class="img-responsive" alt="">
-										</div>
 										<div class="clearfix"></div>
 									</div>
 								</div>
 							</li>
-							<li><a class="color3" href="<c:url value="/product"/>">Sale</a></li>
 							<li><a class="color4" href="<c:url value="/404"/>">About</a></li>
-							<li ><a class="color6" href="<c:url value="/contact"/>">Contact</a></li>
+							<li><a class="color6" href="<c:url value="/contact"/>">Contact</a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 
 				</nav>
 			</div>
 			<div class="col-sm-2 search-right">
-				<ul class="heart">
-					<li>
-						<a href="<c:url value="/wishlist"/>" >
-							<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-						</a></li>
-					<li><a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i></a></li>
-				</ul>
+
 				<div class="cart box_1">
 					<a href="<c:url value="/checkout"/>">
-						<h3><div class="total">
-							<span >${sessionScope.myCartItems.size()}</span></div>
+						<h3>
+							<div class="total" id="total">
+							</div>
 							<img src="<c:url value="/template/web/images/cart.png"/>" alt=""/></h3>
 					</a>
 					<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-
 				</div>
-				<div class="clearfix"> </div>
+				<div class="clearfix"></div>
 
 				<!----->
 
 				<!---pop-up-box---->
-				<link href="<c:url value="/template/web/css/popuo-box.css"/>" rel="stylesheet" type="text/css" media="all"/>
-				<script src="<c:url value="/template/web/js/jquery.magnific-popup.js"/>" type="text/javascript"></script>
-				<!---//pop-up-box---->
-				<div id="small-dialog" class="mfp-hide">
-					<div class="search-top">
-						<div class="login-search">
-							<input type="submit" value="">
-							<input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}">
-						</div>
-						<p>Shopin</p>
-					</div>
-				</div>
-				<script>
-					$(document).ready(function() {
-						$('.popup-with-zoom-anim').magnificPopup({
-							type: 'inline',
-							fixedContentPos: false,
-							fixedBgPos: true,
-							overflowY: 'auto',
-							closeBtnInside: true,
-							preloader: false,
-							midClick: true,
-							removalDelay: 300,
-							mainClass: 'my-mfp-zoom-in'
-						});
+				<link href="<c:url value="/template/web/css/popuo-box.css"/>" rel="stylesheet" type="text/css"
+					  media="all"/>
+				<script src="<c:url value="/template/web/js/jquery.magnific-popup.js"/>"
+						type="text/javascript"></script>
 
-					});
-				</script>
-				<!----->
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -222,20 +191,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="col-md-7 single-top-in">
 						<div class="span_2_of_a1 simpleCart_shelfItem">
 				<h3>${product.name}</h3>
-				<p class="in-para"> There are many variations of passages of Lorem Ipsum.</p>
+							<input type="hidden" value="${product.id}" id="productid" name="productid">
+				<p class="in-para"> ${product.branch.name}</p>
 			    <div class="price_single">
 				  <span class="reducedfrom item_price">${product.unitPrice}</span>
-				 <a href="#">click for offer</a>
+
 				 <div class="clearfix"></div>
 				</div>
 				<h4 class="quick">Quick Overview:</h4>
 				<p class="quick_desc"> Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; es</p>
-			    <div class="wish-list">
-				 	<ul>
-				 		<li class="wish"><a href="#"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>Add to Wishlist</a></li>
-				 	    <li class="compare"><a href="#"><span class="glyphicon glyphicon-resize-horizontal" aria-hidden="true"></span>Add to Compare</a></li>
-				 	</ul>
-				 </div>
+
 				 <div class="quantity"> 
 								<div class="quantity-select">                           
 									<div class="entry value-minus">&nbsp;</div>
@@ -464,64 +429,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 	<!--//content-->
 		<!--//footer-->
-	<div class="footer">
-	<div class="footer-middle">
-				<div class="container">
-					<div class="col-md-3 footer-middle-in">
-						<a href="<c:url value="/home"/>"><img src="<c:url value="/template/web/images/log.png"/>" alt=""></a>
-						<p>Suspendisse sed accumsan risus. Curabitur rhoncus, elit vel tincidunt elementum, nunc urna tristique nisi, in interdum libero magna tristique ante. adipiscing varius. Vestibulum dolor lorem.</p>
-					</div>
-					
-					<div class="col-md-3 footer-middle-in">
-						<h6>Information</h6>
-						<ul class=" in">
-							<li><a href="<c:url value="/404"/>">About</a></li>
-							<li><a href="<c:url value="/contact"/>">Contact Us</a></li>
-							<li><a href="#">Returns</a></li>
-							<li><a href="<c:url value="/contact"/>">Site Map</a></li>
-						</ul>
-						<ul class="in in1">
-							<li><a href="#">Order History</a></li>
-							<li><a href="<c:url value="/wishlist"/>">Wish List</a></li>
-							<li><a href="<c:url value="/login"/>">Login</a></li>
-						</ul>
-						<div class="clearfix"></div>
-					</div>
-					<div class="col-md-3 footer-middle-in">
-						<h6>Tags</h6>
-						<ul class="tag-in">
-							<li><a href="#">Lorem</a></li>
-							<li><a href="#">Sed</a></li>
-							<li><a href="#">Ipsum</a></li>
-							<li><a href="#">Contrary</a></li>
-							<li><a href="#">Chunk</a></li>
-							<li><a href="#">Amet</a></li>
-							<li><a href="#">Omnis</a></li>
-						</ul>
-					</div>
-					<div class="col-md-3 footer-middle-in">
-						<h6>Newsletter</h6>
-						<span>Sign up for News Letter</span>
-							<form>
-								<input type="text" value="Enter your E-mail" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Enter your E-mail';}">
-								<input type="submit" value="Subscribe">	
-							</form>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-			<div class="footer-bottom">
-				<div class="container">
-					<ul class="footer-bottom-top">
-						<li><a href="#"><img src="<c:url value="/template/web/images/f1.png"/>" class="img-responsive" alt=""></a></li>
-						<li><a href="#"><img src="<c:url value="/template/web/images/f2.png"/>" class="img-responsive" alt=""></a></li>
-						<li><a href="#"><img src="<c:url value="/template/web/images/f3.png"/>" class="img-responsive" alt=""></a></li>
-					</ul>
-					<p class="footer-class">&copy; 2016 Shopin. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-		</div>
+<%@ include file="/common/web/footer.jsp" %>
 		<!--//footer-->
 <script src="<c:url value="/template/web/js/imagezoom.js"/>"></script>
 
@@ -539,10 +447,61 @@ $(window).load(function() {
 });
 </script>
 
-	<script src="<c:url value="/template/web/js/simpleCart.min.jss"/>"> </script>
+	<script src="<c:url value="/template/web/js/simpleCart.min.js"/>"> </script>
 <!-- slide -->
 <script src="<c:url value="/template/web/js/bootstrap.min.js"/>"></script>
 
 
+<script src="https://unpkg.com/lodash@4/lodash.min.js"></script>
+<script src="https://unpkg.com/lowdb@0.17/dist/low.min.js"></script>
+<script src="https://unpkg.com/lowdb@0.17/dist/LocalStorage.min.js"></script>
+<script src="<c:url value="/template/web/js/custom.js"/>"></script>
+<script src="<c:url value="/template/web/js/addProduct.js"/>"></script>
+<script>
+	var baka= shoppingCart.get();
+	var maintain = document.getElementById("total");
+	var r=document.createElement("span");
+	if(baka.length >0){
+		r.innerHTML=baka.length;
+		maintain.appendChild(r);}
+	else {
+		r.innerHTML= 0;
+		maintain.appendChild(r);
+	}
+</script>
+<%--
+
+anh code o day ne--%>
+<script>
+	function addSingleProductToCheckOut() {
+
+		var btnAdd=document.querySelector('a[class="add-to item_add hvr-skew-backward"]');
+		btnAdd.onclick = function(){
+			var brand=document.querySelector('div[class="span_2_of_a1 simpleCart_shelfItem"] p').innerText;
+			var name =document.querySelector('div[class="span_2_of_a1 simpleCart_shelfItem"] h3').innerText;
+			var money=document.querySelector('div[class="span_2_of_a1 simpleCart_shelfItem"] span').innerText;
+			var quantity=document.querySelector('div[class="span_2_of_a1 simpleCart_shelfItem"] div[class="quantity"] span').innerText;
+			var productId=document.querySelector('div[class="span_2_of_a1 simpleCart_shelfItem"] input').value;
+
+			if(!shoppingCart.isExist({ productId : productId })){
+				shoppingCart.insert({
+					brand : brand ,
+					name : name,
+					price : money,
+					productId : productId,
+					quantity: quantity
+				});
+			}
+			else {
+				let sl = shoppingCart.where({productId: productId}).quantity;
+				sl = Number(sl)+1;
+				shoppingCart.update({productId : productId},{quantity: sl.toString()});
+			}
+		}
+
+
+	}
+	addSingleProductToCheckOut();
+</script>
 </body>
 </html>

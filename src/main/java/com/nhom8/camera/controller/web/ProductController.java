@@ -26,23 +26,23 @@ public class ProductController {
         this.productBranchService = productBranchService1;
     }
 
-    @GetMapping
-    public ModelAndView getListProduct(@RequestParam(value = "page_product", defaultValue = "1", required = false) int page_product) {
-        PageResponse pageResponse1 = new PageResponse();
-        final int offset = (page_product - 1) * limit;
-        List<Product> products = productService.getListProduct(limit, offset);
-        pageResponse1.setPage(page_product);
-        pageResponse1.setLimit(limit);
-        pageResponse1.setProductList(products);
-        pageResponse1.setTotalItem(productService.getCount());
-        pageResponse1.setTotalPage((int) Math.ceil((double) pageResponse1.getTotalItem() / pageResponse1.getLimit()));
-        pageResponse1.setUrl("/product");
-        List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
-        ModelAndView mav = new ModelAndView("/web/product");
-        mav.addObject("models1", pageResponse1);
-        mav.addObject("lstProductBranch", lstProductBranch);
-        return mav;
-    }
+//    @GetMapping
+//    public ModelAndView getListProduct(@RequestParam(value = "page_product", defaultValue = "1", required = false) int page_product) {
+//        PageResponse pageResponse1 = new PageResponse();
+//        final int offset = (page_product - 1) * limit;
+//        List<Product> products = productService.getListProduct(limit, offset);
+//        pageResponse1.setPage(page_product);
+//        pageResponse1.setLimit(limit);
+//        pageResponse1.setProductList(products);
+//        pageResponse1.setTotalItem(productService.getCount());
+//        pageResponse1.setTotalPage((int) Math.ceil((double) pageResponse1.getTotalItem() / pageResponse1.getLimit()));
+//        pageResponse1.setUrl("/product");
+//        List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
+//        ModelAndView mav = new ModelAndView("/web/product");
+//        mav.addObject("models1", pageResponse1);
+//        mav.addObject("lstProductBranch", lstProductBranch);
+//        return mav;
+//    }
 
     //    @GetMapping
     public List<ProductBranch> getListBranch(@RequestParam(value = "limit", defaultValue = "20", required = false) int limit,
@@ -64,12 +64,12 @@ public class ProductController {
         return mav;
     }
 
-    @GetMapping("/branchId={id}")
-    public ModelAndView getListProductByBranchId(@PathVariable(name = "id") Long id,
+    @GetMapping
+    public ModelAndView getListProductByBranchId(@RequestParam(value = "branchId" ,defaultValue = "1",required = false) int branchId,
                                                  @RequestParam(value = "page_product", defaultValue = "1", required = false) int page_product) {
         PageResponse pageResponse1 = new PageResponse();
         final int offset = (page_product - 1) * limit;
-        List<Product> products = productService.getListProductByBranhId(id, limit, offset);
+        List<Product> products = productService.getListProductByBranhId((long) branchId, limit, offset);
         pageResponse1.setPage(page_product);
         pageResponse1.setLimit(limit);
         pageResponse1.setProductList(products);
@@ -80,6 +80,7 @@ public class ProductController {
         ModelAndView mav = new ModelAndView("/web/product");
         mav.addObject("models1", pageResponse1);
         mav.addObject("lstProductBranch", lstProductBranch);
+        mav.addObject("branchId",branchId);
         return mav;
     }
 }
