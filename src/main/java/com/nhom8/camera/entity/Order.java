@@ -12,7 +12,6 @@ import java.util.Date;
 @Entity
 @Table(name = "orders")
 public class Order extends Base{
-
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
@@ -25,6 +24,9 @@ public class Order extends Base{
 
     @Column(length = 100)
     private String shippingAddress;
+
+    @Column
+    private String status;
 
     @Column
     private Long totalPrice;

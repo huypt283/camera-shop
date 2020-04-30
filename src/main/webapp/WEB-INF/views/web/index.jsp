@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <title>Shop Cameras</title>
     <link href="<c:url value="/template/web/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!-- Custom Theme files -->
@@ -47,11 +46,12 @@
             <c:set var="userNameCheck" value="<%=SecurityUtil.getUserName()%>"/>
             <div class="col-sm-5 col-md-offset-2  header-login">
                 <ul>
+                    <li><a class="glyphicon glyphicon-search icon" href="<c:url value="/search"/>"></a></li>
                     <c:if test="${userNameCheck == 'anonymousUser'}">
                         <li><a href="<c:url value="/register"/>">Register</a></li>
                     </c:if>
                     <c:if test="${userNameCheck != 'anonymousUser'}">
-                        <li><a href="<c:url value="/change-password"/>">Edit profile</a></li>
+                        <li><a href="<c:url value="/edit-profile"/>">Edit profile</a></li>
                         <li><a href="<c:url value="/change-password"/>">Change password</a></li>
                     </c:if>
                 </ul>
@@ -60,11 +60,11 @@
             <c:if test="${userNameCheck != 'anonymousUser'}">
                 <div class="col-sm-5 header-social">
                     <ul>
-                        <li>
+                        <li style="color: white">
                             Xin chào <%=SecurityUtil.getUserName()%>
                         </li>
                         <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                        <li><a href="<c:url value="/logout" />">Logout</a></li>
+                        <li><a href="<c:url value="/logout"/>" style="color: white; font-size: 15px">Logout</a></li>
                     </ul>
                 </div>
             </c:if>
@@ -184,26 +184,26 @@
                 <h3>Trending Items</h3>
                 <label class="line"></label>
                 <div class="mid-popular">
-                    <c:forEach items="${models.productList}" var="products">
+                    <c:forEach items="${models.productList}" var="product">
                         <div class="col-md-3 item-grid simpleCart_shelfItem">
 
                             <div class=" mid-pop">
                                 <div class="pro-img">
-                                    <img src="<c:url value="${products.productImage}"/>" class="img-responsive"
+                                    <img src="<c:url value="${product.productImage}"/>" class="img-responsive"
                                          alt="">
                                     <div class="zoom-icon ">
-                                        <a class="picture" href="<c:url value="/template/web/images/pc.jpg"/>"
-                                           rel="title" class="b-link-stripe b-animate-go  thickbox"><i
-                                                class="glyphicon glyphicon-search icon "></i></a>
-                                        <a href="<c:url value="/product"/>"><i
+<%--                                        <a class="picture" href="<c:url value="/template/web/images/pc.jpg"/>"--%>
+<%--                                           rel="title" class="b-link-stripe b-animate-go  thickbox"><i--%>
+<%--                                                class="glyphicon glyphicon-search icon "></i></a>--%>
+                                        <a href="<c:url value="/product/${product.id}"/>"><i
                                                 class="glyphicon glyphicon-menu-right icon"></i></a>
                                     </div>
                                 </div>
                                 <div class="mid-1">
                                     <div class="women">
                                         <div class="women-top">
-                                            <span>${products.branch.name}</span>
-                                            <h6><a href="<c:url value="/product/${products.id}"/>">${products.name}</a>
+                                            <span>${product.branch.name}</span>
+                                            <h6><a href="<c:url value="/product/${product.id}"/>">${product.name}</a>
                                             </h6>
                                         </div>
                                         <div class="img item_add">
@@ -213,7 +213,7 @@
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="mid-2">
-                                        <p><em class="item_price">${products.unitPrice}</em><label>VNĐ</label></p>
+                                        <p><em class="item_price">${product.unitPrice}</em><label>VNĐ</label></p>
                                         <div class="block">
                                             <div class="starbox small ghosting"></div>
                                         </div>
@@ -264,16 +264,6 @@
 <script src="<c:url value="/template/web/js/simpleCart.min.js"/>"></script>
 <!-- slide -->
 <script src="<c:url value="/template/web/js/bootstrap.min.js"/>"></script>
-<!--light-box-files -->
-<script src="<c:url value="/template/web/js/jquery.chocolat.js"/>"></script>
-<link rel="stylesheet" href="<c:url value="/template/web/css/chocolat.css"/>" type="text/css" media="screen"
-      charset="utf-8">
-<!--light-box-files -->
-<script type="text/javascript" charset="utf-8">
-    $(function () {
-        $('a.picture').Chocolat();
-    });
-</script>
 
 <script src="https://unpkg.com/lodash@4/lodash.min.js"></script>
 <script src="https://unpkg.com/lowdb@0.17/dist/low.min.js"></script>
@@ -310,7 +300,6 @@
                 }
             }
         });
-        /*console.info(obj.data());*/
     });
 </script>
 </body>
