@@ -18,5 +18,5 @@ public interface UserService {
     void deleteUserAdmin(Long id);
     boolean userNameValid(String username);
     boolean emailValid(String email);
-    List<User> getUserAndSort(int limit, int offset);
+    List<User> getUserAndSort(String userName ,int limit, int offset);
 }

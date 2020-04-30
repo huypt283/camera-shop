@@ -40,35 +40,8 @@
                         <div class="card-body">
                             <div class="form-validation">
                                 <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label">Admin ID
-                                    </label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="name" value="${user.id}"
-                                               disabled="disabled">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label">Admin Email
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="name" value="${user.email}"
-                                               disabled="disabled">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label">Admin Name
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="name" value="${user.fullName}"
-                                               disabled="disabled">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label">Admin Phone
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <input type="text" class="form-control" name="name" value="${user.phone}"
-                                               disabled="disabled">
+                                        <p>Tài khoản này đang đăng nhập, không thể xóa. Nếu muốn thay đổi thông tin cá nhân hãy nhấn vào Edit profile</p>
                                     </div>
                                 </div>
                             </div>
@@ -88,9 +61,5 @@
 <script src="<c:url value="/template/admin/assets/plugins/common/common.min.js" />"></script>
 <!-- Custom script -->
 <script src="<c:url value="/template/admin/js/custom.min.js" />"></script>
-<!-- Chartjs chart -->
-<%--<script src="<c:url value="/template/admin/assets/plugins/chartjs/Chart.bundle.js" />"></script>--%>
-<!-- Custom dashboard script -->
-<script src="<c:url value="/template/admin/js/dashboard-1.js" /> "></script>
 </body>
 </html>

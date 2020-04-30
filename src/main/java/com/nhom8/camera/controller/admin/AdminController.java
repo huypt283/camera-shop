@@ -24,4 +24,11 @@ public class AdminController {
         modelMap.addAttribute("user", user);
         return "/admin/home";
     }
+
+    @GetMapping("/error")
+    public String error(@AuthenticationPrincipal CustomUserDetails customUserDetails, ModelMap modelMap) {
+        UserResponse user = userService.findUserById(customUserDetails.getId());
+        modelMap.addAttribute("user", user);
+        return "/admin/error";
+    }
 }

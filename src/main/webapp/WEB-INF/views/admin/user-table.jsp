@@ -55,8 +55,8 @@
                                         <td>${user.userName}</td>
                                         <td>${user.fullName}</td>
                                         <td>
-                                            <a class="fa fa-pencil" href="<c:url value="/admin/user/${user.id}" />"></a><span>   </span>
-                                            <a class="fa fa-trash" href="<c:url value="/admin/user-delete/${user.id}" />" onclick="return confirm('Are you sure you want to delete?')"></a>
+                                            <a class="fa fa-pencil" href="<c:url value="/admin/user/${user.id}" />">Update</a><br>
+                                            <a class="fa fa-trash" href="<c:url value="/admin/user-delete/${user.id}" />" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

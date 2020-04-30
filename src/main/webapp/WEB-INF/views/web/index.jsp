@@ -44,24 +44,37 @@
     </div>
     <div class="header-top">
         <div class="container">
+            <c:set var="userNameCheck" value="<%=SecurityUtil.getUserName()%>"/>
             <div class="col-sm-5 col-md-offset-2  header-login">
                 <ul>
-                    <li><a href="<c:url value="/login" />">Login</a></li>
-                    <li><a href="<c:url value="/register"/>">Register</a></li>
-
+                    <c:if test="${userNameCheck == 'anonymousUser'}">
+                        <li><a href="<c:url value="/register"/>">Register</a></li>
+                    </c:if>
+                    <c:if test="${userNameCheck != 'anonymousUser'}">
+                        <li><a href="<c:url value="/change-password"/>">Edit profile</a></li>
+                        <li><a href="<c:url value="/change-password"/>">Change password</a></li>
+                    </c:if>
                 </ul>
             </div>
 
-            <div class="col-sm-5 header-social">
-                <ul>
-                    <li><a href="<c:url value="/change-password" />">
-                        Xin chào <%=SecurityUtil.getUserName()%>
-                    </a></li>&emsp;
-                    <li><a href="<c:url value="/logout" />">
-                        Logout
-                    </a></li>
-                </ul>
-            </div>
+            <c:if test="${userNameCheck != 'anonymousUser'}">
+                <div class="col-sm-5 header-social">
+                    <ul>
+                        <li>
+                            Xin chào <%=SecurityUtil.getUserName()%>
+                        </li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        <li><a href="<c:url value="/logout" />">Logout</a></li>
+                    </ul>
+                </div>
+            </c:if>
+            <c:if test="${userNameCheck == 'anonymousUser'}">
+                <div class="col-sm-5 header-social">
+                    <ul>
+                        <li><a href="<c:url value="/login" />">Login</a></li>
+                    </ul>
+                </div>
+            </c:if>
             <div class="clearfix"></div>
         </div>
     </div>

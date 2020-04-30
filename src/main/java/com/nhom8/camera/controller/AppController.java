@@ -68,7 +68,7 @@ public class AppController {
 
     @GetMapping("/change-password")
     public ModelAndView changePasswordGet(@ModelAttribute(value = "changepassword") ChangePasswordRequest changePasswordRequest, @AuthenticationPrincipal CustomUserDetails userDetails) {
-        ModelAndView mav = new ModelAndView("/change");
+        ModelAndView mav = new ModelAndView("changepw");
         UserResponse user = userService.findUserById(userDetails.getId());
         mav.addObject("user", user);
         return mav;
@@ -81,16 +81,16 @@ public class AppController {
         BeanUtils.copyProperties(user, userResponse);
         if(result.hasErrors()) {
             modelMap.addAttribute("user", userResponse);
-            return "/change";
+            return "changepw";
         }
-        if(user.getPassword().matches(changePasswordRequest.getOldPassword())) {
+        if(passwordEncoder.matches(changePasswordRequest.getOldPassword(), user.getPassword())) {
             user.setPassword(passwordEncoder.encode(changePasswordRequest.getPassword()));
             userRepository.save(user);
         }
         else {
             result.addError(new FieldError("changePasswordRequest", "oldPassword", "Old password wrong"));
             modelMap.addAttribute("user", userResponse);
-            return "/change";
+            return "changepw";
         }
         return "redirect:/login";
     }

@@ -23,15 +23,16 @@ public class OrderController {
             return "redirect:/login";
         }
         else {
-            return "web/test1";
+            return "/web/order";
         }
     }
 
     @PostMapping("/order")
-    public ModelAndView submitOrder(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody CheckoutRequest checkoutRequest)
+    public String submitOrder(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody CheckoutRequest checkoutRequest)
     {
-        ModelAndView mav = new ModelAndView("web/index");
-        orderService.saveOrder(userDetails.getId(), checkoutRequest.getOrderRequest(), checkoutRequest.getLineItemRequests());
-        return mav;
+        if(checkoutRequest.getLineItemRequests() != null)
+            if(checkoutRequest.getLineItemRequests().size() > 0)
+                orderService.saveOrder(userDetails.getId(), checkoutRequest.getOrderRequest(), checkoutRequest.getLineItemRequests());
+        return "redirect:/web/index";
     }
 }

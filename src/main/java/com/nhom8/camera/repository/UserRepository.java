@@ -14,6 +14,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("select u from User u where u.id = :id")
     User findUserById(@Param("id") Long id);
 
+    @Query("select u from User u where u.id = :id and u.userName <> :username")
+    User findUserByIdAndNotAuth(@Param("id") Long id, @Param("username") String username);
+
     User findUserByEmail(String email);
 
     @Query("select u from User u where u.email = :email")
@@ -22,6 +25,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("select u from User u where u.userName = :param or u.email = :param")
     User findByUserNameOrEmail(@Param(value = "param") String param);
 
-    @Query("select u from User u")
-    List<User> findUserList(Pageable pageable);
+    @Query("select u from User u where u.userName <> :username")
+    List<User> findUserList(@Param(value = "username") String username, Pageable pageable);
 }

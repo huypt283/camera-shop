@@ -99,8 +99,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUserAdmin(Long id) {
-        User user = userRepository.findUserById(id);
-        userRepository.delete(user);
+            User user = userRepository.findUserById(id);
+            userRepository.delete(user);
     }
 
     @Override
@@ -114,8 +114,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUserAndSort(int limit, int offset) {
+    public List<User> getUserAndSort(String userName, int limit, int offset) {
         OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(offset, limit, Sort.by("id").ascending());
-        return userRepository.findUserList(pageable);
+        return userRepository.findUserList(userName, pageable);
     }
 }
