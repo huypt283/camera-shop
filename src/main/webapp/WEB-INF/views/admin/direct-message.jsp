@@ -8,7 +8,7 @@
     <title>Admin home</title>
     <link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/template/admin/assets/images/favicon.png" />">
     <link href="<c:url value="/template/admin/css/style.css" />" rel="stylesheet">
-    <script src="<c:url value="/template/admin/js/modernizr-3.6.0.min.js" />"></script>
+<%--    <script src="<c:url value="/template/admin/js/modernizr-3.6.0.min.js" />"></script>--%>
 </head>
 <body class="v-light vertical-nav fix-header fix-sidebar">
 <div id="preloader">
@@ -41,7 +41,7 @@
                             <div class="form-validation">
                                 <div class="form-group row">
                                     <div class="col-lg-6">
-                                        <p>Tài khoản này đang đăng nhập, không thể xóa. Nếu muốn thay đổi thông tin cá nhân hãy nhấn vào Edit profile</p>
+                                        <p>${message}</p>
                                     </div>
                                 </div>
                             </div>

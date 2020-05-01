@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -27,10 +28,8 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
     private String determineTargetUrl(Authentication authentication) {
         String url = "";
-        Set<GrantedAuthority> grantedAuthorities = authentication
-                .getAuthorities()
-                .stream()
-                .collect(Collectors.toSet());
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>(authentication
+                .getAuthorities());
 
         if (isUser(grantedAuthorities)) {
             url = Constant.WEB;
@@ -48,7 +47,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
     private boolean isAdmin(Set<GrantedAuthority> grantedAuthorities) {
         Predicate<GrantedAuthority> compare = s -> s.getAuthority().equals("ROLE_ADMIN");
-        return grantedAuthorities.stream().anyMatch(compare::test);
+        return grantedAuthorities.stream().anyMatch(compare);
     }
 
     @Override

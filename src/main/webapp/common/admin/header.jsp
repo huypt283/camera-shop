@@ -40,7 +40,7 @@
                     <div class="drop-down dropdown-profile animated bounceInDown">
                         <div class="dropdown-content-body">
                             <ul>
-                                <li><a href="<c:url value="/logout" />"><i class="icon-control-forward"></i> <span>Edit profile</span></a>
+                                <li><a href="<c:url value="/edit-profile" />"><i class="icon-control-forward"></i> <span>Edit profile</span></a>
                                 </li>
                                 <li><a href="<c:url value="/logout" />"><i class="icon-power"></i> <span>Logout</span></a>
                                 </li>

@@ -233,7 +233,7 @@ a.item_add {
 /*--banner--*/
 .banner{
 	width: 100%;
-    height: 700px;
+    height: 550px;
     display: block;
     background: url(../images/banner.jpeg)no-repeat right top;
 	background-size: 100% 100%;
@@ -610,7 +610,7 @@ a.buy-now:hover{
 	margin-top:1em;
 }
 .banner-top h2 a{
-	color:#f67777;
+	color:#f6948a;
 }
 .banner-top h2 label{
 	margin:0 0.4em;
@@ -1239,7 +1239,7 @@ nav.nav-sidebar {
 .four h3{
 	font-size: 7em;
     color: #F67777;
-    font-family: 'Ubuntu-Regular';
+    font-family: '';
 }
 .four p{
 	font-size: 0.9em;

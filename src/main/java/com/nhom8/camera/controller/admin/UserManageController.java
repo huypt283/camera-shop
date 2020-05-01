@@ -73,8 +73,10 @@ public class UserManageController {
             modelMap.addAttribute("roles", roles);
             modelMap.addAttribute("user", user);
             return "/admin/user-update";
+        } else {
+            modelMap.addAttribute("message", "Tài khoản Admin này đang đăng nhập, nhấn vào Edit profile nếu muốn thay đổi thông tin");
+            return "admin/direct-message";
         }
-        return "redirect:/admin/error";
     }
 
     @PostMapping("/user/{id}")
@@ -94,16 +96,20 @@ public class UserManageController {
             }
             userService.updateUserAdmin(user, updateUserAdminRequest, id);
             return "redirect:/admin/list-user";
+        } else {
+            modelMap.addAttribute("message", "Tài khoản Admin này đang đăng nhập, nhấn vào Edit profile nếu muốn thay đổi thông tin");
+            return "admin/direct-message";
         }
-        return "redirect:/admin/error";
     }
 
     @GetMapping("/user-delete/{id}")
-    public String deleteUser(@PathVariable Long id, @AuthenticationPrincipal CustomUserDetails userDetails) {
+    public String deleteUser(@PathVariable Long id, @AuthenticationPrincipal CustomUserDetails userDetails, ModelMap modelMap) {
         if (!id.equals(userDetails.getId())) {
             userService.deleteUserAdmin(id);
             return "redirect:/admin/list-user";
+        } else {
+            modelMap.addAttribute("message", "Tài khoản Admin này đang đăng nhập, không thể xóa");
+            return "admin/direct-message";
         }
-        return "redirect:/admin/error";
     }
 }

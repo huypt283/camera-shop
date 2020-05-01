@@ -9,10 +9,12 @@
     <!-- Custom Theme files -->
     <!--theme-style-->
     <link href="<c:url value="/template/web/css/style.css"/>" rel="stylesheet" type="text/css" media="all"/>
+    <link href="<c:url value="/template/web/css/style4.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="Shopping Responsive web template"/>
+    <meta name="keywords" content="Camera"/>
+
     <script type="application/x-javascript"> addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
@@ -20,18 +22,11 @@
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-    <!--theme-style-->
-    <link href="<c:url value="/template/web/css/style4.css"/>" rel="stylesheet" type="text/css" media="all"/>
-    <!--//theme-style-->
     <script src="<c:url value="/template/web/js/jquery.min.js"/>"></script>
-    <!--- start-rate---->
-    <script src="<c:url value="/template/web/js/jstarbox.js"/>"></script>
-    <link rel="stylesheet" href="<c:url value="/template/web/css/jstarbox.css"/>" type="text/css" media="screen"
-          charset="utf-8"/>
     <script src="<c:url value="/template/web/js/jquery.twbsPagination.js"/>" type="text/javascript"></script>
 </head>
 <body>
-</div>
+<c:set var="userNameCheck" value="<%=SecurityUtil.getUserName()%>"/>
 <!--header-->
 <div class="header">
     <div class="container">
@@ -43,10 +38,9 @@
     </div>
     <div class="header-top">
         <div class="container">
-            <c:set var="userNameCheck" value="<%=SecurityUtil.getUserName()%>"/>
+
             <div class="col-sm-5 col-md-offset-2  header-login">
                 <ul>
-                    <li><a class="glyphicon glyphicon-search icon" href="<c:url value="/search"/>"></a></li>
                     <c:if test="${userNameCheck == 'anonymousUser'}">
                         <li><a href="<c:url value="/register"/>">Register</a></li>
                     </c:if>
@@ -71,7 +65,7 @@
             <c:if test="${userNameCheck == 'anonymousUser'}">
                 <div class="col-sm-5 header-social">
                     <ul>
-                        <li><a href="<c:url value="/login" />">Login</a></li>
+                        <li><a href="<c:url value="/login" />" style="color: white; font-size: 15px">Login</a></li>
                     </ul>
                 </div>
             </c:if>
@@ -80,9 +74,7 @@
     </div>
 
     <div class="container">
-
         <div class="head-top">
-
             <div class="col-sm-8 col-md-offset-2 h_menu4">
                 <nav class="navbar nav_bottom" role="navigation">
                     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
@@ -114,23 +106,29 @@
                             <li><a class="color4" href="<c:url value="/info"/>">About</a></li>
                             <li><a class="color6" href="<c:url value="/contact"/>">Contact</a></li>
                         </ul>
-                    </div><!-- /.navbar-collapse -->
-
+                    </div>
                 </nav>
             </div>
+
             <div class="col-sm-2 search-right">
-
-                <div class="cart box_1">
-                    <a href="<c:url value="/checkout"/>">
-                        <h3>
-                            <div class="total" id="total">
-                            </div>
-                            <img src="<c:url value="/template/web/images/cart.png"/>" alt=""/></h3>
-                    </a>
-                    <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-                </div>
+                <ul class="heart">
+                    <li><span class="glyphicon " aria-hidden="true"></span></li>
+                    <li><a class="play-icon popup-with-zoom-anim" href="<c:url value="/search"/>"><i
+                            class="glyphicon glyphicon-search"> </i></a></li>
+                </ul>
+                <c:if test="${userNameCheck != 'anonymousUser'}">
+                    <div class="cart box_1">
+                        <a href="<c:url value="/checkout"/>">
+                            <h3>
+                                <div class="total" id="total">
+                                </div>
+                                <img src="<c:url value="/template/web/images/cart.png"/>" alt=""/>
+                            </h3>
+                        </a>
+                        <p><a href="<c:url value="/order-history"/>" class="simpleCart_empty">Order history</a></p>
+                    </div>
+                </c:if>
                 <div class="clearfix"></div>
-
                 <!----->
 
                 <!---pop-up-box---->
@@ -146,28 +144,19 @@
 </div>
 <!--header-->
 
-
 <!--banner-->
 <div class="banner">
     <div class="container">
         <section class="rw-wrapper">
             <h1 class="rw-sentence">
                 <span style="color: whitesmoke">Camera for you!</span>
-                <div class="rw-words rw-words-1">
-                    <span>Beautiful Designs</span>
-                    <span>Sed ut perspiciatis</span>
-                    <span>Totam rem aperiam</span>
-                    <span>Nemo enim ipsam</span>
-                    <span>Temporibus autem</span>
-                    <span>intelligent systems</span>
-                </div>
                 <div class="rw-words rw-words-2">
-                    <span>We denounce with right</span>
-                    <span>But in certain circum</span>
-                    <span>Sed ut perspiciatis unde</span>
-                    <span>There are many variation</span>
-                    <span>The generated Lorem Ipsum</span>
-                    <span>Excepteur sint occaecat</span>
+                    <span>Intelligent systems</span>
+                    <span>Beautiful designs</span>
+                    <span>Branded products</span>
+                    <span>Reasonable price</span>
+                    <span>We have a lot of items</span>
+                    <span>Certainly make you satisfied</span>
                 </div>
             </h1>
         </section>
@@ -192,11 +181,11 @@
                                     <img src="<c:url value="${product.productImage}"/>" class="img-responsive"
                                          alt="">
                                     <div class="zoom-icon ">
-<%--                                        <a class="picture" href="<c:url value="/template/web/images/pc.jpg"/>"--%>
-<%--                                           rel="title" class="b-link-stripe b-animate-go  thickbox"><i--%>
-<%--                                                class="glyphicon glyphicon-search icon "></i></a>--%>
-                                        <a href="<c:url value="/product/${product.id}"/>"><i
-                                                class="glyphicon glyphicon-menu-right icon"></i></a>
+                                            <%--                                        <a class="picture" href="<c:url value="/template/web/images/pc.jpg"/>"--%>
+                                            <%--                                           rel="title" class="b-link-stripe b-animate-go  thickbox"><i--%>
+                                            <%--                                                class="glyphicon glyphicon-search icon "></i></a>--%>
+                                        <a href="<c:url value="/product/${product.id}"/>">
+                                            <i class="glyphicon glyphicon-menu-right icon"></i></a>
                                     </div>
                                 </div>
                                 <div class="mid-1">
@@ -248,7 +237,7 @@
                 <img src="<c:url value="/template/web/images/sony.png"/>" class="img-responsive" alt="">
             </div>
             <div class="col-md-3 brand-grid">
-                <img src="<c:url value="/template/web/images/fujin.jpg"/>" class="img-responsive" alt="">
+                <img src="<c:url value="/template/web/images/panasonic.jpg"/>" class="img-responsive" alt="">
             </div>
             <div class="clearfix"></div>
         </div>
@@ -260,9 +249,7 @@
 <!--//footer-->
 <%@ include file="/common/web/footer.jsp" %>
 <!--//footer-->
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="<c:url value="/template/web/js/simpleCart.min.js"/>"></script>
-<!-- slide -->
+
 <script src="<c:url value="/template/web/js/bootstrap.min.js"/>"></script>
 
 <script src="https://unpkg.com/lodash@4/lodash.min.js"></script>

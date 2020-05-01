@@ -9,10 +9,12 @@
     <!-- Custom Theme files -->
     <!--theme-style-->
     <link href="<c:url value="/template/web/css/style.css"/>" rel="stylesheet" type="text/css" media="all"/>
+    <link href="<c:url value="/template/web/css/style4.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="Shopping Responsive web template"/>
+    <meta name="keywords" content="Camera"/>
+
     <script type="application/x-javascript"> addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
@@ -20,17 +22,15 @@
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-    <!--theme-style-->
-    <link href="<c:url value="/template/web/css/style4.css"/>" rel="stylesheet" type="text/css" media="all"/>
-    <!--//theme-style-->
     <script src="<c:url value="/template/web/js/jquery.min.js"/>"></script>
     <!--- start-rate---->
-    <script src="<c:url value="/template/web/js/jstarbox.js"/>"></script>
-    <link rel="stylesheet" href="<c:url value="/template/web/css/jstarbox.css"/>" type="text/css" media="screen"
-          charset="utf-8"/>
+<%--    <script src="<c:url value="/template/web/js/jstarbox.js"/>"></script>--%>
+<%--    <link rel="stylesheet" href="<c:url value="/template/web/css/jstarbox.css"/>" type="text/css" media="screen"--%>
+<%--          charset="utf-8"/>--%>
     <script src="<c:url value="/template/web/js/jquery.twbsPagination.js"/>" type="text/javascript"></script>
 </head>
 <body>
+<c:set var="userNameCheck" value="<%=SecurityUtil.getUserName()%>"/>
 <!--header-->
 <div class="header">
     <div class="container">
@@ -42,32 +42,43 @@
     </div>
     <div class="header-top">
         <div class="container">
+
             <div class="col-sm-5 col-md-offset-2  header-login">
                 <ul>
-                    <li><a href="<c:url value="/login" />">Login</a></li>
-                    <li><a href="<c:url value="/register"/>">Register</a></li>
-
+                    <c:if test="${userNameCheck == 'anonymousUser'}">
+                        <li><a href="<c:url value="/register"/>">Register</a></li>
+                    </c:if>
+                    <c:if test="${userNameCheck != 'anonymousUser'}">
+                        <li><a href="<c:url value="/edit-profile"/>">Edit profile</a></li>
+                        <li><a href="<c:url value="/change-password"/>">Change password</a></li>
+                    </c:if>
                 </ul>
             </div>
 
-            <div class="col-sm-5 header-social">
-                <ul>
-                    <li><a href="<c:url value="/change-password" />">
-                        Xin chào <%=SecurityUtil.getUserName()%>
-                    </a></li>&emsp;
-                    <li><a href="<c:url value="/logout" />">
-                        Logout
-                    </a></li>
-                </ul>
-            </div>
+            <c:if test="${userNameCheck != 'anonymousUser'}">
+                <div class="col-sm-5 header-social">
+                    <ul>
+                        <li style="color: white">
+                            Xin chào <%=SecurityUtil.getUserName()%>
+                        </li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        <li><a href="<c:url value="/logout"/>" style="color: white; font-size: 15px">Logout</a></li>
+                    </ul>
+                </div>
+            </c:if>
+            <c:if test="${userNameCheck == 'anonymousUser'}">
+                <div class="col-sm-5 header-social">
+                    <ul>
+                        <li><a href="<c:url value="/login" />" style="color: white; font-size: 15px">Login</a></li>
+                    </ul>
+                </div>
+            </c:if>
             <div class="clearfix"></div>
         </div>
     </div>
 
     <div class="container">
-
         <div class="head-top">
-
             <div class="col-sm-8 col-md-offset-2 h_menu4">
                 <nav class="navbar nav_bottom" role="navigation">
                     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
@@ -99,23 +110,29 @@
                             <li><a class="color4" href="<c:url value="/info"/>">About</a></li>
                             <li><a class="color6" href="<c:url value="/contact"/>">Contact</a></li>
                         </ul>
-                    </div><!-- /.navbar-collapse -->
-
+                    </div>
                 </nav>
             </div>
+
             <div class="col-sm-2 search-right">
-
-                <div class="cart box_1">
-                    <a href="<c:url value="/checkout"/>">
-                        <h3>
-                            <div class="total" id="total">
-                            </div>
-                            <img src="<c:url value="/template/web/images/cart.png"/>" alt=""/></h3>
-                    </a>
-                    <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-                </div>
+                <ul class="heart">
+                    <li><span class="glyphicon " aria-hidden="true"></span></li>
+                    <li><a class="play-icon popup-with-zoom-anim" href="<c:url value="/search"/>"><i
+                            class="glyphicon glyphicon-search"> </i></a></li>
+                </ul>
+                <c:if test="${userNameCheck != 'anonymousUser'}">
+                    <div class="cart box_1">
+                        <a href="<c:url value="/checkout"/>">
+                            <h3>
+                                <div class="total" id="total">
+                                </div>
+                                <img src="<c:url value="/template/web/images/cart.png"/>" alt=""/>
+                            </h3>
+                        </a>
+                        <p><a href="<c:url value="/order-history"/>" class="simpleCart_empty">Order history</a></p>
+                    </div>
+                </c:if>
                 <div class="clearfix"></div>
-
                 <!----->
 
                 <!---pop-up-box---->
@@ -130,11 +147,12 @@
     </div>
 </div>
 <!--header-->
+
 <!--banner-->
 <div class="container">
     <div class="banner-top">
         <div class="container">
-            <h1>Contact</h1>
+            <h1>Shop Camera</h1>
             <em></em>
             <h2><a href="<c:url value="/"/>">Home</a><label>/</label>Product</h2>
         </div>
@@ -253,7 +271,7 @@
                 <img src="<c:url value="/template/web/images/sony.png"/>" class="img-responsive" alt="">
             </div>
             <div class="col-md-3 brand-grid">
-                <img src="<c:url value="/template/web/images/fujin.jpg"/>" class="img-responsive" alt="">
+                <img src="<c:url value="/template/web/images/panasonic.jpg"/>" class="img-responsive" alt="">
             </div>
             <div class="clearfix"></div>
         </div>

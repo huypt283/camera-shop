@@ -24,13 +24,11 @@ public class BranchManageController {
 
     private BranchService branchService;
     private BranchRepository branchRepository;
-    private ProductRepository productRepository;
 
     @Autowired
-    public BranchManageController(BranchService branchService, BranchRepository branchRepository, ProductRepository productRepository) {
+    public BranchManageController(BranchService branchService, BranchRepository branchRepository) {
         this.branchService = branchService;
         this.branchRepository = branchRepository;
-        this.productRepository = productRepository;
     }
 
     @GetMapping("/list-branch")
@@ -88,9 +86,7 @@ public class BranchManageController {
 
     @GetMapping("/branch-delete/{id}")
     public String deleteBranch(@PathVariable Long id) {
-        List<Product> products = productRepository.findByBranch_Id(id);
-        if(products.isEmpty())
-            branchService.deleteBranch(id);
+        branchService.deleteBranch(id);
         return "redirect:/admin/list-branch";
     }
 }

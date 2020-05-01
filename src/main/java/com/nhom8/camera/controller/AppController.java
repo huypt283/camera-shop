@@ -10,6 +10,7 @@ import com.nhom8.camera.service.ProductBranchService;
 import com.nhom8.camera.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
 
 @Controller
 public class AppController {
@@ -45,10 +49,17 @@ public class AppController {
     }
 
     @GetMapping("/login")
-    public ModelAndView login() {
+    public ModelAndView login(@AuthenticationPrincipal CustomUserDetails userDetails) {
         List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
-        ModelAndView mav = new ModelAndView("/login");
-        mav.addObject("lstProductBranch", lstProductBranch);
+        ModelAndView mav;
+        if (userDetails == null) {
+            mav = new ModelAndView("/login");
+            mav.addObject("lstProductBranch", lstProductBranch);
+        } else {
+            mav = new ModelAndView("web/direct-message");
+            mav.addObject("lstProductBranch", lstProductBranch);
+            mav.addObject("message", "Bạn đang đăng nhập");
+        }
         return mav;
     }
 
@@ -68,7 +79,7 @@ public class AppController {
 
     @GetMapping("/change-password")
     public ModelAndView changePasswordGet(@ModelAttribute(value = "changepassword") ChangePasswordRequest changePasswordRequest, @AuthenticationPrincipal CustomUserDetails userDetails) {
-        ModelAndView mav = new ModelAndView("changepw");
+        ModelAndView mav = new ModelAndView("password-change");
         UserResponse user = userService.findUserById(userDetails.getId());
         mav.addObject("user", user);
         return mav;
@@ -81,7 +92,7 @@ public class AppController {
         BeanUtils.copyProperties(user, userResponse);
         if(result.hasErrors()) {
             modelMap.addAttribute("user", userResponse);
-            return "changepw";
+            return "password-change";
         }
         if(passwordEncoder.matches(changePasswordRequest.getOldPassword(), user.getPassword())) {
             user.setPassword(passwordEncoder.encode(changePasswordRequest.getPassword()));
@@ -90,8 +101,23 @@ public class AppController {
         else {
             result.addError(new FieldError("changePasswordRequest", "oldPassword", "Old password wrong"));
             modelMap.addAttribute("user", userResponse);
-            return "changepw";
+            return "password-change";
         }
-        return "redirect:/login";
+        modelMap.addAttribute("message", "Đổi mật khẩu thành công");
+
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>(userDetails
+                .getAuthorities());
+
+        if(isAdmin(grantedAuthorities)) {
+            return "/admin/direct-message";
+        } else {
+            return "/web/direct-message";
+        }
+
+    }
+
+    private boolean isAdmin(Set<GrantedAuthority> grantedAuthorities) {
+        Predicate<GrantedAuthority> compare = s -> s.getAuthority().equals("ROLE_ADMIN");
+        return grantedAuthorities.stream().anyMatch(compare);
     }
 }

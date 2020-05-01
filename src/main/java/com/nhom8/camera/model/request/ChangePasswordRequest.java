@@ -12,9 +12,9 @@ import javax.validation.constraints.Size;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 public class ChangePasswordRequest {
-    @Size(min = 6, max = 30, message = "Must be between 6 and 30 characters")
+    @Size(min = 6, max = 30, message = "Must be between 8 and 30 characters")
     private String oldPassword;
 
-    @Size(min = 6, max = 30, message = "Must be between 6 and 30 characters")
+    @Size(min = 6, max = 30, message = "Must be between 8 and 30 characters")
     private String password;
 }

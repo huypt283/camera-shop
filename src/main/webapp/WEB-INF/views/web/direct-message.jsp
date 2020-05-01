@@ -1,10 +1,10 @@
-<%@ page import="com.nhom8.camera.util.SecurityUtil" %>
 <%@include file="/common/taglib.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page import="com.nhom8.camera.util.SecurityUtil" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Info</title>
     <link href="<c:url value="/template/web/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!-- Custom Theme files -->
     <!--theme-style-->
@@ -14,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Camera"/>
-
     <script type="application/x-javascript"> addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
@@ -149,51 +148,15 @@
 
 <!--banner-->
 <div class="container">
-    <div class="banner-top">
-        <div class="container">
-            <h1>Contact</h1>
-            <em></em>
-            <h2><a href="<c:url value="/"/>">Home</a><label>/</label>Login</h2>
-        </div>
+    <div class="four">
+        <h3>${message}</h3>
+        <br>
+        <a href="<c:url value="/"/>" class="hvr-skew-backward">Back To Home</a>
     </div>
 </div>
 <!--banner-->
 
-<!--login-->
-<div class="container">
-    <div class="login">
-        <p></p>
-        <form:form action="/j_spring_security_check" id="loginFrom" method="POST">
-            <div class="col-md-6 login-do">
-                <div class="login-mail">
-                    <input type="text" placeholder="Email" name="email" required="">
-                    <i class="glyphicon glyphicon-envelope"></i>
-                </div>
-                <div class="login-mail">
-                    <input type="password" placeholder="Password" name="password" required="">
-                    <i class="glyphicon glyphicon-lock"></i>
-                </div>
-                <label class="hvr-skew-backward">
-                    <input type="submit" value="login" onclick="shoppingCart.remove()">
-                </label>
-            </div>
-            <div class="col-md-6 login-right">
-                <h3>Register new account.</h3>
-                <a href="<c:url value="/register"/>" class=" hvr-skew-backward">Register</a>
-            </div>
-
-            <div class="clearfix"></div>
-        </form:form>
-    </div>
-
-</div>
-<!--//login-->
-
 <!--brand-->
-<div class="container">
-    <div class="brand">
-    </div>
-</div>
 <div class="container">
     <div class="brand">
         <div class="col-md-3 brand-grid">
@@ -212,8 +175,8 @@
     </div>
 </div>
 <!--//brand-->
-<!--//content-->
 
+<!--//content-->
 <!--//footer-->
 <%@ include file="/common/web/footer.jsp" %>
 <!--//footer-->

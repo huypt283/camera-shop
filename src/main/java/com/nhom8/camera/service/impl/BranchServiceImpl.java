@@ -1,8 +1,10 @@
 package com.nhom8.camera.service.impl;
 
+import com.nhom8.camera.entity.Product;
 import com.nhom8.camera.entity.ProductBranch;
 import com.nhom8.camera.model.request.OffsetBasedPageRequest;
 import com.nhom8.camera.repository.BranchRepository;
+import com.nhom8.camera.repository.ProductRepository;
 import com.nhom8.camera.service.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -13,10 +15,12 @@ import java.util.List;
 @Service
 public class BranchServiceImpl implements BranchService {
     private BranchRepository branchRepository;
+    private ProductRepository productRepository;
 
     @Autowired
-    public BranchServiceImpl(BranchRepository branchRepository) {
+    public BranchServiceImpl(BranchRepository branchRepository, ProductRepository productRepository) {
         this.branchRepository = branchRepository;
+        this.productRepository = productRepository;
     }
 
     @Override
@@ -50,7 +54,8 @@ public class BranchServiceImpl implements BranchService {
 
     @Override
     public void deleteBranch(Long id) {
-        branchRepository.deleteById(id);
+        List<Product> products = productRepository.findByBranch_Id(id);
+        if(products.isEmpty())
+            branchRepository.deleteById(id);
     }
-
 }

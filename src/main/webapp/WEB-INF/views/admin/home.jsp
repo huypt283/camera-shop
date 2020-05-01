@@ -72,6 +72,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <h3><a href="<c:url value="/change-password"/>">Change Password</a></h3>
                         </div>
                     </div>
                 </div>

@@ -59,12 +59,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(2);
         http.authorizeRequests()
-                .antMatchers("/login", "/logout", "/register", "/order").permitAll()
+                .antMatchers( "/login", "/register", "/logout").permitAll()
+//                .antMatchers(HttpMethod.POST, "/login", "/register", "/logout").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/checkout", "/change-password").authenticated()
+                .antMatchers("/checkout", "/change-password", "/order").authenticated()
                 .antMatchers(HttpMethod.GET, "/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/**").authenticated()
-                .antMatchers(HttpMethod.POST, "/login", "/logout").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin()
                 .loginProcessingUrl("/j_spring_security_check")
