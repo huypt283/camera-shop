@@ -40,6 +40,11 @@ public class OrderServiceImpl implements OrderService {
         this.lineItemRepository = lineItemRepository;
     }
 
+    @Override
+    public Order findById(Long id) {
+        return orderRepository.findOrderById(id);
+    }
+
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void saveOrder(Long userId, OrderRequest orderRequest, List<LineItemRequest> lineItemRequests) {
@@ -49,6 +54,7 @@ public class OrderServiceImpl implements OrderService {
         order.setUser(user);
         BeanUtils.copyProperties(orderRequest, order);
         order.setOrderDate(new Date());
+        order.setStatus("Waiting");
         Order orderSave = orderRepository.save(order);
 
         List<LineItem> lineItems = new ArrayList<>();
@@ -72,9 +78,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void deleteOrder(Long id) {
-        List<LineItem> lineItems = lineItemRepository.findByOrder_Id(id);
-        lineItemRepository.deleteAll(lineItems);
-        orderRepository.deleteById(id);
+    public void updateOrderStatus(Long id, String status) {
+        Order order = orderRepository.findOrderById(id);
+        order.setStatus(status);
+        orderRepository.save(order);
     }
 }

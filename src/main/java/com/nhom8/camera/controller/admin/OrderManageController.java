@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,14 +57,41 @@ public class OrderManageController {
     }
 
     @GetMapping("/order/{id}")
-    public ModelAndView updateOrderGet(@PathVariable final Long id, @ModelAttribute UpdateOrderAdminRequest updateOrder) {
-        ModelAndView mav = new ModelAndView();
+    public ModelAndView updateOrderGet(@PathVariable final Long id, @ModelAttribute(value = "updateOrder") UpdateOrderAdminRequest updateOrder) {
+        Order order = orderService.findById(id);
+        ModelAndView mav;
+
+        if (order != null) {
+            mav = new ModelAndView("/admin/order-update");
+            OrderResponse orderResponse = new OrderResponse();
+            BeanUtils.copyProperties(order, orderResponse);
+            orderResponse.setUserName(order.getUser().getUserName());
+            List<LineItem> lineItems = lineItemRepository.findByOrder_Id(order.getId());
+            orderResponse.setItemList(lineItems);
+            mav.addObject("order", orderResponse);
+            List<String> listStatus = new ArrayList<>();
+            listStatus.add("Received");
+            listStatus.add("Cancelled");
+            listStatus.add("Waiting");
+            mav.addObject("listStatus", listStatus);
+        } else {
+            mav = new ModelAndView("/admin/direct-message");
+            mav.addObject("message", "Không tìm thấy hóa đơn này");
+        }
         return mav;
     }
 
-    @PostMapping("/odder/{id}")
-    public String updateOrderPost(@PathVariable final Long id, @ModelAttribute UpdateOrderAdminRequest updateOrder, BindingResult bindingResult, ModelMap modelMap) {
-
+    @PostMapping("/order/{id}")
+    public String updateOrderPost(@PathVariable final Long id, @Valid @ModelAttribute(value = "updateOrder") UpdateOrderAdminRequest updateOrder, BindingResult result, ModelMap modelMap) {
+        if(result.hasErrors()) {
+            List<String> listStatus = new ArrayList<>();
+            listStatus.add("Received");
+            listStatus.add("Cancelled");
+            listStatus.add("Waiting");
+            modelMap.addAttribute("listStatus", listStatus);
+            return "/admin/order-update";
+        }
+        orderService.updateOrderStatus(id, updateOrder.getStatus());
         return "redirect:/admin/list-order";
     }
 }

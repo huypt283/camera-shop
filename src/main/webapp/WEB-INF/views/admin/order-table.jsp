@@ -31,39 +31,32 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Danh sách đơn hàng</h4>
-<%--                        <a href="<c:url value="/admin/branch"/>">--%>
-<%--                            <button type="button" class="btn btn-rounded btn-info">--%>
-<%--                                <span class="btn-icon-left"><i class="fa fa-plus color-info"></i></span>Add--%>
-<%--                            </button>--%>
-<%--                        </a>--%>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead-muted">
                                 <tr>
                                     <th scope="col">STT</th>
-                                    <th scope="col">ID</th>
                                     <th scope="col">User name</th>
-                                    <th scope="col">Note</th>
-                                    <th scope="col">Items</th>
                                     <th scope="col">Order date</th>
+                                    <th scope="col">Items</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <c:forEach items="${orders}" var="order" varStatus="itr">
                                     <tr>
-                                        <td>${itr.index +1 }</td>
-                                        <td>${order.id}</td>
+                                        <td>${itr.index +1}</td>
                                         <td>${order.userName}</td>
-                                        <td>${order.note}</td>
-                                        <td>
-                                            <c:forEach items="${order.itemList}" var="item">
-                                                <p>${item.product.name} = ${item.quantity}</p>
-                                            </c:forEach>
-                                        </td>
                                         <td>${order.orderDate}</td>
                                         <td>
-                                            <a class="fa fa-trash" href="<c:url value="/admin/order-delete/${order.id}" />" onclick="return confirm('Are you sure you want to delete?')"></a>
+                                            <c:forEach items="${order.itemList}" var="item">
+                                                <p>Product: ${item.product.name}. Quantity: ${item.quantity}</p>
+                                            </c:forEach>
+                                        </td>
+                                        <td>${order.status}</td>
+                                        <td>
+                                            <a class="fa fa-pencil" href="<c:url value="/admin/order/${order.id}" />">Update</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -89,7 +82,7 @@
     for(var i=1;i<=total;i++) {
         var li = document.createElement('li');
         li.setAttribute("class", "page-item");
-        var h= '/admin/list-branch?page=' + i;
+        var h= '/admin/list-order?page=' + i;
         li.innerHTML += '<a class="page-link" href="' + h + '">'+i+'</a>';
         ul.appendChild(li);
     }

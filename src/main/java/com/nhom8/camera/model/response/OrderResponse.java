@@ -24,5 +24,9 @@ public class OrderResponse {
 
     private Long totalPrice;
 
+    private String status;
+
     private List<LineItem> itemList;
+
+    private List<String> listStatus;
 }

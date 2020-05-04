@@ -87,13 +87,6 @@
                                             <form:errors path="password" cssStyle="color: red"></form:errors>
                                         </div>
                                     </div>
-                                    <%--                                    <div class="form-group row">--%>
-                                    <%--                                        <label class="col-lg-4 col-form-label" for="val-confirm-password">Confirm Password <span class="text-danger">*</span>--%>
-                                    <%--                                        </label>--%>
-                                    <%--                                        <div class="col-lg-6">--%>
-                                    <%--                                            <input type="password" class="form-control" id="val-confirm-password" placeholder="Confirm password..">--%>
-                                    <%--                                        </div>--%>
-                                    <%--                                    </div>--%>
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label">Phone <span class="text-danger"></span>
                                         </label>

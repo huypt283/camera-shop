@@ -271,7 +271,7 @@
                 event.preventDefault();
                 var infor={
                     shippingAddress: $("#address").val(),
-                    note: $("#fullName").val() + ', ' + $("#phone_number").val(),
+                    note: 'Người nhận: ' + $("#fullName").val() + ', số điện thoại: ' + $("#phone_number").val(),
                     totalPrice: total()
                 };
                 var listInfor=[];

@@ -7,7 +7,8 @@ import com.nhom8.camera.model.request.OrderRequest;
 import java.util.List;
 
 public interface OrderService {
+    Order findById(Long id);
     void saveOrder(Long userId, OrderRequest orderRequest, List<LineItemRequest> lineItemRequests);
     List<Order> findOrderList(int limit, int offset);
-    void deleteOrder(Long id);
+    void updateOrderStatus(Long id, String status);
 }
