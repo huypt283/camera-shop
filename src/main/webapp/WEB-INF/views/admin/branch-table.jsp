@@ -53,8 +53,8 @@
                                         <td>${branch.id}</td>
                                         <td>${branch.name}</td>
                                         <td>
-                                            <a class="fa fa-pencil" href="<c:url value="/admin/branch/${branch.id}" />"></a><span>   </span>
-                                            <a class="fa fa-trash" href="<c:url value="/admin/branch-delete/${branch.id}" />" onclick="return confirm('Are you sure you want to delete?')"></a>
+                                            <a class="fa fa-pencil" href="<c:url value="/admin/branch/${branch.id}" />">(update)</a>&nbsp;&nbsp;|&nbsp;
+                                            <a class="fa fa-trash" href="<c:url value="/admin/branch-delete/${branch.id}" />" onclick="return confirm('Are you sure you want to delete?')">(delete)</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

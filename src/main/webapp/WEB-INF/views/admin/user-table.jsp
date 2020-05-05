@@ -41,9 +41,9 @@
                                 <thead class="thead-muted">
                                 <tr>
                                     <th scope="col">STT</th>
-                                    <th scope="col">ID</th>
                                     <th scope="col">User Name</th>
                                     <th scope="col">Full Name</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
@@ -51,12 +51,12 @@
                                 <c:forEach items="${users}" var="user" varStatus="itr">
                                     <tr>
                                         <td>${itr.index +1 }</td>
-                                        <td>${user.id}</td>
                                         <td>${user.userName}</td>
                                         <td>${user.fullName}</td>
+                                        <td>${user.email}</td>
                                         <td>
-                                            <a class="fa fa-pencil" href="<c:url value="/admin/user/${user.id}" />">Update</a><br>
-                                            <a class="fa fa-trash" href="<c:url value="/admin/user-delete/${user.id}" />" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                                            <a class="fa fa-pencil" href="<c:url value="/admin/user/${user.id}" />">(update)</a>&nbsp;&nbsp;|&nbsp;
+                                            <a class="fa fa-trash" href="<c:url value="/admin/user-delete/${user.id}" />" onclick="return confirm('Are you sure you want to delete?')">(delete)</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

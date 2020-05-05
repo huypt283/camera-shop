@@ -12,11 +12,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-
-    @Query("select p from Product p where p.unitPrice = :unitPrice and p.createDate = :createDate")
-    Product findByUnitPriceAndCreateDateCustom(@Param(value = "unitPrice") Long unitPrice,
-                                              @Param(value = "createDate") Date createDate);
-
     Product findByUnitPriceAndCreateDate(Long unitPrice, Date createDate);
 
     @Query("select p from Product p where p.id = :id")
@@ -25,8 +20,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("select p from Product p")
     List<Product> findAllAndSort(Pageable pageable);
 
-    @Query("select p from Product p where p.branch.id= :id")
+    @Query("select p from Product p where p.branch.id = :id")
     List<Product> findAllByBranchId(@Param(value = "id") Long id, Pageable pageable);
+
+    @Query("select p from Product p where p.branch.name like %:search% or p.name like %:search%")
+    List<Product> findByProductNameOrBranchName(@Param(value = "search") String value, Pageable pageable);
 
     Product findByName(String name);
 

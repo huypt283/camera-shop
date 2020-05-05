@@ -1,10 +1,10 @@
 <%@include file="/common/taglib.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="com.nhom8.camera.util.SecurityUtil" %>
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Shopin A Ecommerce Category Flat Bootstrap Responsive Website Template | Checkout :: w3layouts</title>
+    <title>Product</title>
     <link href="<c:url value="/template/web/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!-- Custom Theme files -->
     <!--theme-style-->
@@ -23,10 +23,7 @@
         window.scrollTo(0, 1);
     } </script>
     <script src="<c:url value="/template/web/js/jquery.min.js"/>"></script>
-<%--    <!--- start-rate---->--%>
-<%--    <script src="<c:url value="/template/web/js/jstarbox.js"/>"></script>--%>
-<%--    <link rel="stylesheet" href="<c:url value="/template/web/css/jstarbox.css"/>" type="text/css" media="screen"--%>
-<%--          charset="utf-8"/>--%>
+    <script src="<c:url value="/template/web/js/jquery.twbsPagination.js"/>" type="text/javascript"></script>
 </head>
 <body>
 <c:set var="userNameCheck" value="<%=SecurityUtil.getUserName()%>"/>
@@ -172,167 +169,172 @@
 </div>
 <!--header-->
 
-<!--banner-->
-<div class="container">
-    <div class="banner-top">
-        <div class="container">
-            <h1>Shop Camera</h1>
-            <em></em>
-            <h2><a href="<c:url value="/"/>">Home</a><label>/</label>Checkout</h2>
-        </div>
-    </div>
-</div>
-<!--banner-->
-
-<script>
-    $(document).ready(function () {
-        function removeCheckOutWithBtn() {
-            var btnRemoves = document.querySelectorAll('div[class="item_add hvr-skew-backward"]');
-            btnRemoves.forEach(function (btn, i) {
-                btn.onclick = function () {
-                    let index = i;
-                    let namecheck = document.querySelectorAll('td[class="ring-in"]')[index].querySelector('div[class="sed"] a').innerText;
-                    shoppingCart.remove({name: namecheck});
-                    location.reload();
-                }
-            });
-        }
-
-        removeCheckOutWithBtn();
-
-        (function () {
-            var quantityBundles = document.querySelectorAll('div[class="quantity"]');
-            quantityBundles.forEach(function (quality, i) {
-                quality.querySelector('div[class="entry value-plus active"]').onclick = function () {
-                    let index = i;
-                    let price = parseInt(document.querySelectorAll('td[name="priceProduct"]')[index].innerText);
-                    let namecheck = document.querySelectorAll('td[class="ring-in"]')[index].querySelector('div[class="sed"] a').innerText;
-                    let oldQuality = parseInt(quality.querySelector('span[name="quantity-value"]').innerText);
-                    let newQuality = oldQuality + 1;
-                    let newSubTotal = newQuality * price;
-                    quality.querySelector('span[name="quantity-value"]').innerText = newQuality;
-                    document.querySelectorAll('td[name="subTotal"]')[index].innerText = newSubTotal;
-                    shoppingCart.update({name: namecheck}, {quantity: newQuality});
-                }
-                quality.querySelector('div[class="entry value-minus"]').onclick = function () {
-                    let index = i;
-                    let price = parseInt(document.querySelectorAll('td[name="priceProduct"]')[index].innerText);
-                    let namecheck = document.querySelectorAll('td[class="ring-in"]')[index].querySelector('div[class="sed"] a').innerText;
-                    let oldQuality = parseInt(quality.querySelector('span[name="quantity-value"]').innerText);
-                    let newQuality = oldQuality - 1;
-                    let newSubTotal = newQuality * price;
-                    quality.querySelector('span[name="quantity-value"]').innerText = newQuality;
-                    document.querySelectorAll('td[name="subTotal"]')[index].innerText = newSubTotal;
-                    shoppingCart.update({name: namecheck}, {quantity: newQuality });
-                }
-            });
-        })()
-    });
-</script>
-<div class="check-out">
+<!--content-->
+<div class="product">
     <div class="container">
+        <h3 style="text-align: center; font-family: ''">Kết quả tìm kiếm</h3>
+<%--        <form action="<c:url value="/product"/>" id="submitForm1" method="GET">--%>
+            <div class="col-md-9">
+                <div class="mid-popular">
+                    <c:forEach items="${products}" var="product">
+                        <div class="col-md-3 item-grid simpleCart_shelfItem">
 
-        <div class="bs-example4" data-example-id="simple-responsive-table">
-            <div class="table-responsive">
-                <table class="table-heading simpleCart_shelfItem" id="myData">
-                    <tr>
-                        <th class="table-grid">Item</th>
-                        <th>Prices</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </table>
+                            <div class=" mid-pop">
+                                <div class="pro-img">
+                                    <img src="<c:url value="${product.productImage}"/>" class="img-responsive"
+                                         alt="">
+                                    <div class="zoom-icon ">
+<%--                                        <a class="picture" href="<c:url value="/template/web/images/pc.jpg"/>"--%>
+<%--                                           rel="title" class="b-link-stripe b-animate-go  thickbox"><i--%>
+<%--                                                class="glyphicon glyphicon-search icon "></i></a>--%>
+                                        <a href="<c:url value="/product/${product.id}"/>"><i
+                                                class="glyphicon glyphicon-menu-right icon"></i></a>
+                                    </div>
+                                </div>
+                                <div class="mid-1">
+                                    <div class="women">
+                                        <div class="women-top">
+                                            <span>${product.branch.name}</span>
+                                            <h6><a href="<c:url value="/product/${product.id}"/>">${product.name}</a>
+                                            </h6>
+                                        </div>
+                                        <div class="img item_add">
+                                            <a href="<c:url value="/checkout"/>"><img
+                                                    src="<c:url value="/template/web/images/ca.png"/>" alt=""></a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="mid-2">
+                                        <p><label></label><em class="item_price">${product.unitPrice}</em></p>
+                                        <div class="block">
+                                            <div class="starbox small ghosting"></div>
+                                        </div>
+
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </c:forEach>
+                    <div class="clearfix"></div>
+                    <ul class="pagination" id="pagination"></ul>
+                    <input type="hidden" value="" id="page_product" name="page_product"/>
+                </div>
             </div>
-        </div>
-        <div class="produced">
-            <a href="<c:url value="/order"/>" class="hvr-skew-backward">Check out</a>
-            <a href="${pageContext.request.contextPath}/home" class="hvr-skew-backward">Continue shopphing</a>
-        </div>
-    </div>
-</div>
+<%--        </form>--%>
+<%--        <div class="col-md-3 product-bottom">--%>
+<%--            <!--categories-->--%>
+<%--            <div class=" rsidebar span_1_of_left">--%>
+<%--                <h4 class="cate">Categories</h4>--%>
+<%--                <ul class="menu-drop">--%>
+<%--                    <c:forEach items="${lstProductBranch}" var="branch">--%>
+<%--                        <li class="item1">--%>
+<%--                            <h3><a href="<c:url value="/product?branchId=${branch.id}"/>">${branch.name} </a></h3>--%>
+<%--                        </li>--%>
 
-<!--//login-->
-<!--brand-->
-<div class="container">
-    <div class="brand">
-    </div>
+<%--                    </c:forEach>--%>
+<%--                </ul>--%>
+<%--            </div>--%>
+<%--            <!--initiate accordion-->--%>
+<%--            <script type="text/javascript">--%>
+<%--                $(function () {--%>
+<%--                    var menu_ul = $('.menu-drop > li > ul'),--%>
+<%--                        menu_a = $('.menu-drop > li > a');--%>
+<%--                    menu_ul.hide();--%>
+<%--                    menu_a.click(function (e) {--%>
+<%--                        e.preventDefault();--%>
+<%--                        if (!$(this).hasClass('active')) {--%>
+<%--                            menu_a.removeClass('active');--%>
+<%--                            menu_ul.filter(':visible').slideUp('normal');--%>
+<%--                            $(this).addClass('active').next().stop(true, true).slideDown('normal');--%>
+<%--                        } else {--%>
+<%--                            $(this).removeClass('active');--%>
+<%--                            $(this).next().stop(true, true).slideUp('normal');--%>
+<%--                        }--%>
+<%--                    });--%>
 
-</div>
-<div class="container">
-    <div class="brand">
-        <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/nikon.jpg"/>" class="img-responsive" alt="">
-        </div>
-        <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/canon.png"/>" class="img-responsive" alt="">
-        </div>
-        <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/sony.png"/>" class="img-responsive" alt="">
-        </div>
-        <div class="col-md-3 brand-grid">
-            <img src="<c:url value="/template/web/images/panasonic.jpg"/>" class="img-responsive" alt="">
-        </div>
+<%--                });--%>
+<%--            </script>--%>
+<%--            <!--//menu-->--%>
+<%--        </div>--%>
         <div class="clearfix"></div>
     </div>
-</div>
-<!--//brand-->
+    <!--products-->
 
+    <!--//products-->
+    <!--brand-->
+    <div class="container">
+        <div class="brand">
+        </div>
+    </div>
+    <div class="container">
+        <div class="brand">
+            <div class="col-md-3 brand-grid">
+                <img src="<c:url value="/template/web/images/nikon.jpg"/>" class="img-responsive" alt="">
+            </div>
+            <div class="col-md-3 brand-grid">
+                <img src="<c:url value="/template/web/images/canon.png"/>" class="img-responsive" alt="">
+            </div>
+            <div class="col-md-3 brand-grid">
+                <img src="<c:url value="/template/web/images/sony.png"/>" class="img-responsive" alt="">
+            </div>
+            <div class="col-md-3 brand-grid">
+                <img src="<c:url value="/template/web/images/panasonic.jpg"/>" class="img-responsive" alt="">
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!--//brand-->
+
+
+</div>
+<!--//content-->
 <!--//footer-->
 <%@ include file="/common/web/footer.jsp" %>
 <!--//footer-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="<c:url value="/template/web/js/simpleCart.min.js"/>"></script>
-
+<!-- slide -->
 <script src="<c:url value="/template/web/js/bootstrap.min.js"/>"></script>
+<!--light-box-files -->
+<script src="<c:url value="/template/web/js/jquery.chocolat.js"/>"></script>
+<link rel="stylesheet" href="<c:url value="/template/web/css/chocolat.css"/>" type="text/css" media="screen"
+      charset="utf-8">
+<!--light-box-files -->
+<script type="text/javascript" charset="utf-8">
+    $(function () {
+        $('a.picture').Chocolat();
+    });
+</script>
+
 <script src="https://unpkg.com/lodash@4/lodash.min.js"></script>
 <script src="https://unpkg.com/lowdb@0.17/dist/low.min.js"></script>
 <script src="https://unpkg.com/lowdb@0.17/dist/LocalStorage.min.js"></script>
 <script src="<c:url value="/template/web/js/custom.js"/>"></script>
+<script src="<c:url value="/template/web/js/addProduct.js"/>"></script>
 <script>
-    var data = shoppingCart.get();
-
-    function appendData(data) {
-        var mainContainer = document.getElementById("myData");
-
-        for (var i = 0; i < data.length; i++) {
-            var r = document.createElement("TR");
-            r.innerHTML = '<tr class="cart-header2">\n' +
-                `\t\t  <td class="ring-in"><a href="<c:url value="#"/>" class="at-in"><img src="` + location.origin + '/' + data[i].avatar + `" class="img-responsive" alt=""></a>\n` +
-                '\t\t\t<div class="sed">\n' +
-                '\t\t\t\t<h5><a href=<c:url value="#"/>>' + data[i].name + '</a></h5>\n' +
-                '\t\t\t</div>\n' +
-                '\t\t\t<div class="clearfix"> </div>\n' +
-                '\t\t\t<td name="priceProduct">' + data[i].price + '</td>\n' +
-                '\t\t\t<td>' + ' <div class="quantity"> \n' +
-                '\t\t\t\t\t\t\t\t<div class="quantity-select">                           \n' +
-                '\t\t\t\t\t\t\t\t\t<div class="entry value-minus">&nbsp;</div>\n' +
-                '\t\t\t\t\t\t\t\t\t<div class="entry value"><span name="quantity-value">'+data[i].quantity+'</span></div>\n' +
-                '\t\t\t\t\t\t\t\t\t<div class="entry value-plus active">&nbsp;</div>\n' +
-                '\t\t\t\t\t\t\t\t</div>\n' +
-                '\t\t\t\t\t\t\t</div>' + '</td>\n' +
-                '\t\t\t<td class="item_price" name="subTotal">' + data[i].price * data[i].quantity + '</td>\n' +
-                '\t\t\t<td class="add-check"><div class="item_add hvr-skew-backward" ><a href="javascript:void(0)">Remove</a></div></td>\n' +
-                '\t\t  </tr>';
-            mainContainer.tBodies[0].appendChild(r);
-        }
-        var r2 = document.createElement("TR");
-        r2.innerHTML = ' <tr>\n' +
-            '                    <td colspan="3" style="text-align: right" >Total Cash:</td>\n' +
-            '                    <td colspan="1">' + total() + '</td>\n' +
-            '                </tr>';
-        mainContainer.tBodies[0].appendChild(r2);
-
-        function total() {
-            var data = shoppingCart.get();
-            let sum = 0;
-            for (let i = 0; i < data.length; i++) {
-                sum += data[i].quantity * +data[i].price;
+    var totalPages = ${models1.totalPage};
+    var currentPage = ${models1.page};
+    $(function () {
+        var obj = $('#pagination').twbsPagination({
+            totalPages: totalPages,
+            visiblePages: 2,
+            startPage: currentPage,
+            onPageClick: function (event, page) {
+                if (currentPage != page) {
+                    // $('#limit').val(2);
+                    $('#branchId').val(${branchId});
+                    $('#page_product').val(page);
+                    $('#submitForm1').submit();
+                }
             }
-            return sum;
-        }
-
-    }
-    appendData(data);
+        });
+        /*console.info(obj.data());*/
+    });
 </script>
 <script>
     var baka = shoppingCart.get();

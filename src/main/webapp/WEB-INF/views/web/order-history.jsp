@@ -23,10 +23,6 @@
         window.scrollTo(0, 1);
     } </script>
     <script src="<c:url value="/template/web/js/jquery.min.js"/>"></script>
-<%--    <!--- start-rate---->--%>
-<%--    <script src="<c:url value="/template/web/js/jstarbox.js"/>"></script>--%>
-<%--    <link rel="stylesheet" href="<c:url value="/template/web/css/jstarbox.css"/>" type="text/css" media="screen"--%>
-<%--          charset="utf-8"/>--%>
 </head>
 <body>
 <c:set var="userNameCheck" value="<%=SecurityUtil.getUserName()%>"/>
@@ -178,80 +174,49 @@
         <div class="container">
             <h1>Shop Camera</h1>
             <em></em>
-            <h2><a href="<c:url value="/"/>">Home</a><label>/</label>Checkout</h2>
+            <h2><a href="<c:url value="/"/>">Home</a><label>/</label>Order History</h2>
         </div>
     </div>
 </div>
 <!--banner-->
+<br><br>
 
-<script>
-    $(document).ready(function () {
-        function removeCheckOutWithBtn() {
-            var btnRemoves = document.querySelectorAll('div[class="item_add hvr-skew-backward"]');
-            btnRemoves.forEach(function (btn, i) {
-                btn.onclick = function () {
-                    let index = i;
-                    let namecheck = document.querySelectorAll('td[class="ring-in"]')[index].querySelector('div[class="sed"] a').innerText;
-                    shoppingCart.remove({name: namecheck});
-                    location.reload();
-                }
-            });
-        }
-
-        removeCheckOutWithBtn();
-
-        (function () {
-            var quantityBundles = document.querySelectorAll('div[class="quantity"]');
-            quantityBundles.forEach(function (quality, i) {
-                quality.querySelector('div[class="entry value-plus active"]').onclick = function () {
-                    let index = i;
-                    let price = parseInt(document.querySelectorAll('td[name="priceProduct"]')[index].innerText);
-                    let namecheck = document.querySelectorAll('td[class="ring-in"]')[index].querySelector('div[class="sed"] a').innerText;
-                    let oldQuality = parseInt(quality.querySelector('span[name="quantity-value"]').innerText);
-                    let newQuality = oldQuality + 1;
-                    let newSubTotal = newQuality * price;
-                    quality.querySelector('span[name="quantity-value"]').innerText = newQuality;
-                    document.querySelectorAll('td[name="subTotal"]')[index].innerText = newSubTotal;
-                    shoppingCart.update({name: namecheck}, {quantity: newQuality});
-                }
-                quality.querySelector('div[class="entry value-minus"]').onclick = function () {
-                    let index = i;
-                    let price = parseInt(document.querySelectorAll('td[name="priceProduct"]')[index].innerText);
-                    let namecheck = document.querySelectorAll('td[class="ring-in"]')[index].querySelector('div[class="sed"] a').innerText;
-                    let oldQuality = parseInt(quality.querySelector('span[name="quantity-value"]').innerText);
-                    let newQuality = oldQuality - 1;
-                    let newSubTotal = newQuality * price;
-                    quality.querySelector('span[name="quantity-value"]').innerText = newQuality;
-                    document.querySelectorAll('td[name="subTotal"]')[index].innerText = newSubTotal;
-                    shoppingCart.update({name: namecheck}, {quantity: newQuality });
-                }
-            });
-        })()
-    });
-</script>
-<div class="check-out">
-    <div class="container">
-
-        <div class="bs-example4" data-example-id="simple-responsive-table">
-            <div class="table-responsive">
-                <table class="table-heading simpleCart_shelfItem" id="myData">
-                    <tr>
-                        <th class="table-grid">Item</th>
-                        <th>Prices</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="produced">
-            <a href="<c:url value="/order"/>" class="hvr-skew-backward">Check out</a>
-            <a href="${pageContext.request.contextPath}/home" class="hvr-skew-backward">Continue shopphing</a>
-        </div>
-    </div>
+<style type="text/css">
+    table.order-history > tbody > tr > td {
+        color: black !important;
+        font-size: 15px !important;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+</style>
+<div class="container">
+    <h3 style="font-family: ''; text-align: center; font-size: 30px; color: #F67777">20 đơn hàng gần nhất của bạn</h3>
+    <br>
+    <table class="table table-hover order-history">
+        <thead>
+        <tr>
+            <th>STT</th>
+            <th>Order date</th>
+            <th>Shipping address</th>
+            <th>Total price</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${orders}" var="order" varStatus="itr">
+            <tr>
+                <td>${itr.index +1}</td>
+                <td>${order.orderDate}</td>
+                <td>${order.shippingAddress}</td>
+                <td>${order.totalPrice}</td>
+                <td>${order.status}</td>
+                <td><a href="<c:url value="/order/${order.id}"/>">View Order</a></td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </div>
 
-<!--//login-->
 <!--brand-->
 <div class="container">
     <div class="brand">
@@ -306,7 +271,7 @@
                 '\t\t\t<td>' + ' <div class="quantity"> \n' +
                 '\t\t\t\t\t\t\t\t<div class="quantity-select">                           \n' +
                 '\t\t\t\t\t\t\t\t\t<div class="entry value-minus">&nbsp;</div>\n' +
-                '\t\t\t\t\t\t\t\t\t<div class="entry value"><span name="quantity-value">'+data[i].quantity+'</span></div>\n' +
+                '\t\t\t\t\t\t\t\t\t<div class="entry value"><span name="quantity-value">' + data[i].quantity + '</span></div>\n' +
                 '\t\t\t\t\t\t\t\t\t<div class="entry value-plus active">&nbsp;</div>\n' +
                 '\t\t\t\t\t\t\t\t</div>\n' +
                 '\t\t\t\t\t\t\t</div>' + '</td>\n' +
@@ -332,6 +297,7 @@
         }
 
     }
+
     appendData(data);
 </script>
 <script>

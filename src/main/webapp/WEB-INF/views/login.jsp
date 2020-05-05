@@ -174,7 +174,7 @@
                     <i class="glyphicon glyphicon-lock"></i>
                 </div>
                 <label class="hvr-skew-backward">
-                    <input type="submit" value="login" onclick="shoppingCart.remove()">
+                    <input type="submit" value="login" onclick="shoppingCart.removeAll()">
                 </label>
             </div>
             <div class="col-md-6 login-right">

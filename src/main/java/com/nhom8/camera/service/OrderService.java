@@ -11,4 +11,5 @@ public interface OrderService {
     void saveOrder(Long userId, OrderRequest orderRequest, List<LineItemRequest> lineItemRequests);
     List<Order> findOrderList(int limit, int offset);
     void updateOrderStatus(Long id, String status);
+    List<Order> findOrderHistory(Long userId, int limit, int offset);
 }

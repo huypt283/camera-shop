@@ -59,10 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(2);
         http.authorizeRequests()
-                .antMatchers( "/login", "/register", "/logout").permitAll()
+                .antMatchers( "/login", "/register", "/logout", "/search").permitAll()
 //                .antMatchers(HttpMethod.POST, "/login", "/register", "/logout").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/checkout", "/change-password", "/order").authenticated()
+                .antMatchers("/checkout", "/change-password", "/order**", "/order/**", "/order-history").authenticated()
                 .antMatchers(HttpMethod.GET, "/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/**").authenticated()
                 .anyRequest().authenticated()

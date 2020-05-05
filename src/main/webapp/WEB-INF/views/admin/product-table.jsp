@@ -71,14 +71,14 @@
                                                  style="height: 100px; width: 100px;" alt=""></td>
                                         <td>
                                             <a class="fa fa-pencil"
-                                               href="<c:url value="/admin/product/${product.id}" />"></a><span>   </span>
+                                               href="<c:url value="/admin/product/${product.id}" />">(update)</a>&nbsp;&nbsp;|&nbsp;
                                             <a class="fa fa-trash"
                                                href="<c:url value="/admin/product-delete/${product.id}" />"
-                                               onclick="return confirm('Are you sure you want to delete?')"></a>
+                                               onclick="return confirm('Are you sure you want to delete?')">(delete)</a>
                                         </td>
                                     </tr>
                                     <script type="text/javascript">
-                                        document.getElementById('${itr.index +1}').innerHTML = FormatNumber('${product.unitPrice}' )
+                                        document.getElementById('${itr.index +1}').innerHTML = FormatNumber('${product.unitPrice}')
                                     </script>
                                 </c:forEach>
                                 </tbody>
@@ -100,11 +100,11 @@
     var ul = document.createElement('ul');
     ul.setAttribute("class", "pagination")
     document.getElementById('myList').appendChild(ul);
-    for(var i=1;i<=total;i++) {
+    for (var i = 1; i <= total; i++) {
         var li = document.createElement('li');
         li.setAttribute("class", "page-item");
-        var h= '/admin/list-product?page=' + i;
-        li.innerHTML += '<a class="page-link" href="' + h + '">'+i+'</a>';
+        var h = '/admin/list-product?page=' + i;
+        li.innerHTML += '<a class="page-link" href="' + h + '">' + i + '</a>';
         ul.appendChild(li);
     }
 </script>

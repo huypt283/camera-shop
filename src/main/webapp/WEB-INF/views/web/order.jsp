@@ -83,13 +83,11 @@
                                     <div class="menu-top">
                                         <div class="col1">
                                             <div class="h_nav">
-                                                <c:forEach items="${lstProductBranch}" var="branchs">
+                                                <c:forEach items="${lstProductBranch}" var="branch">
                                                     <ul>
                                                         <li>
-                                                            <a href="<c:url value="/product?branchId=${branchs.id}"/>">${branchs.name}</a>
-
+                                                            <a href="<c:url value="/product?branchId=${branch.id}"/>">${branch.name}</a>
                                                         </li>
-
                                                     </ul>
                                                 </c:forEach>
                                             </div>
@@ -109,7 +107,7 @@
             <div class="col-sm-2 search-right">
                 <ul class="heart">
                     <li><span class="glyphicon " aria-hidden="true"></span></li>
-                    <li><a class="play-icon popup-with-zoom-anim" href="<c:url value="/search"/>"><i
+                    <li><a class="play-icon popup-with-zoom-anim" href="<c:url value="#small-dialog"/>"><i
                             class="glyphicon glyphicon-search"> </i></a></li>
                 </ul>
                 <c:if test="${userNameCheck != 'anonymousUser'}">
@@ -132,7 +130,34 @@
                       media="all"/>
                 <script src="<c:url value="/template/web/js/jquery.magnific-popup.js"/>"
                         type="text/javascript"></script>
+                <div id="small-dialog" class="mfp-hide">
+                    <div class="search-top">
+                        <div class="login-search">
+                            <form:form action="/search" method="POST">
+                                <input type="text" name="searchValue" placeholder="Search.." onfocus="this.value = '';"
+                                       onblur="if (this.value == '') {this.value = 'Search..';}">
+                                <input type="submit" value="">
+                            </form:form>
+                        </div>
+                        <p>Enter the product name or product brand name</p>
+                    </div>
+                </div>
+                <script>
+                    $(document).ready(function () {
+                        $('.popup-with-zoom-anim').magnificPopup({
+                            type: 'inline',
+                            fixedContentPos: false,
+                            fixedBgPos: true,
+                            overflowY: 'auto',
+                            closeBtnInside: true,
+                            preloader: false,
+                            midClick: true,
+                            removalDelay: 300,
+                            mainClass: 'my-mfp-zoom-in'
+                        });
 
+                    });
+                </script>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -269,23 +294,23 @@
             $("#orderForm").submit(function(event) {
                 // Prevent the form from submitting via the browser.
                 event.preventDefault();
-                var infor={
+                var info={
                     shippingAddress: $("#address").val(),
-                    note: 'Người nhận: ' + $("#fullName").val() + ', số điện thoại: ' + $("#phone_number").val(),
+                    note: 'Người nhận: ' + ($("#fullName").val()===''?'NaN':$("#fullName").val()) + ', số điện thoại: ' + ($("#phone_number").val()===''?'NaN':$("#phone_number").val()),
                     totalPrice: total()
                 };
-                var listInfor=[];
-                var zz= shoppingCart.get();
-                for(let i=0; i<zz.length; i++){
-                    var infor2={};
-                    infor2["unitPrice"] = zz[i].price;
-                    infor2["quantity"] = zz[i].quantity;
-                    infor2["productId"] = zz[i].productId;
-                    listInfor.push(infor2);
+                var listInfo=[];
+                var lineItem= shoppingCart.get();
+                for(let i=0; i<lineItem.length; i++){
+                    var inf={};
+                    inf["unitPrice"] = lineItem[i].price;
+                    inf["quantity"] = lineItem[i].quantity;
+                    inf["productId"] = lineItem[i].productId;
+                    listInfo.push(inf);
                 }
                 var data={
-                    orderRequest: infor,
-                    lineItemRequests: listInfor
+                    orderRequest: info,
+                    lineItemRequests: listInfo
                 };
                 ajaxPost(data);
             });
@@ -299,10 +324,11 @@
                     data: JSON.stringify(data),
                     success: function (result) {
                         window.location.href= "/index";
+                        shoppingCart.removeAll();
                     },
                     error: function (error) {
                         window.location.href= "/info";
-                        shoppingCart.remove();
+                        shoppingCart.removeAll();
                     }
                 });
             }
@@ -311,7 +337,7 @@
                 var data = shoppingCart.get();
                 let sum = 0;
                 for (let i=0;i< data.length; i++){
-                    sum+=data[i].quantity* + data[i].price;
+                    sum+=data[i].quantity * data[i].price;
                 }
                 return sum;
             }
@@ -349,8 +375,8 @@
             '<div class="pull-right"><span>$</span><span>' + total() + '</span></div>\n' +
             '</div>\n' +
             '                            <div class="col-xs-12">\n' +
-            '                                <small>Shipping</small>\n' +
-            '                                <div class="pull-right"><span>-</span></div>\n' +
+            '                                <small>(COD)</small>\n' +
+            '                                <div class="pull-right"></div>\n' +
             '                            </div>';
         mainContainer.appendChild(r2);
 

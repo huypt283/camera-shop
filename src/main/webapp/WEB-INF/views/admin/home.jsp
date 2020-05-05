@@ -39,6 +39,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="form-validation">
+                                <form action="">
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label">Admin ID
                                     </label>
@@ -71,6 +72,7 @@
                                                disabled="disabled">
                                     </div>
                                 </div>
+                                </form>
                             </div>
                             <h3><a href="<c:url value="/change-password"/>">Change Password</a></h3>
                         </div>
@@ -89,9 +91,5 @@
 <script src="<c:url value="/template/admin/assets/plugins/common/common.min.js" />"></script>
 <!-- Custom script -->
 <script src="<c:url value="/template/admin/js/custom.min.js" />"></script>
-<!-- Chartjs chart -->
-<%--<script src="<c:url value="/template/admin/assets/plugins/chartjs/Chart.bundle.js" />"></script>--%>
-<!-- Custom dashboard script -->
-<script src="<c:url value="/template/admin/js/dashboard-1.js" /> "></script>
 </body>
 </html>

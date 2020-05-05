@@ -16,6 +16,9 @@ public interface OrderRepository extends JpaRepository<Order,Long> {
     @Query("select o from Order o")
     List<Order> findOrderList(Pageable pageable);
 
+    @Query("select o from Order o where o.user.id = :userid")
+    List<Order> findOrderListByUserId(@Param(value = "userid") Long userId, Pageable pageable);
+
     Order findOrderById(Long id);
 
     void deleteById(Long id);

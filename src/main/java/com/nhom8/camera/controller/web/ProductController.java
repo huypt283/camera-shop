@@ -54,7 +54,6 @@ public class ProductController {
         pageResponse1.setProductList(products);
         pageResponse1.setTotalItem(productService.getCount());
         pageResponse1.setTotalPage((int) Math.ceil((double) pageResponse1.getTotalItem() / pageResponse1.getLimit()));
-//        pageResponse1.setUrl("/product/branchId={id}");
         List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
         ModelAndView mav = new ModelAndView("/web/product");
         mav.addObject("models1", pageResponse1);

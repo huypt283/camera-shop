@@ -32,7 +32,11 @@ public class OrderServiceImpl implements OrderService {
     private LineItemRepository lineItemRepository;
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository, LineItemService lineItemService, UserRepository userRepository, ProductService productService, LineItemRepository lineItemRepository){
+    public OrderServiceImpl(OrderRepository orderRepository,
+                            LineItemService lineItemService,
+                            UserRepository userRepository,
+                            ProductService productService,
+                            LineItemRepository lineItemRepository){
         this.orderRepository = orderRepository;
         this.lineItemService = lineItemService;
         this.userRepository = userRepository;
@@ -82,5 +86,11 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderRepository.findOrderById(id);
         order.setStatus(status);
         orderRepository.save(order);
+    }
+
+    @Override
+    public List<Order> findOrderHistory(Long userId, int limit, int offset) {
+        OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(offset, limit, Sort.by("id").descending());
+        return orderRepository.findOrderListByUserId(userId, pageable);
     }
 }

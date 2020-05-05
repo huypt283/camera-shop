@@ -162,29 +162,26 @@
 <!--content-->
 <div class="product">
     <div class="container">
-        <form action="<c:url value="/product"/>" id="submitForm1" method="get">
+<%--        <form action="<c:url value="/product"/>" id="submitForm1" method="get">--%>
             <div class="col-md-9">
                 <div class="mid-popular">
-                    <c:forEach items="${models1.productList}" var="products">
+                    <c:forEach items="${models1.productList}" var="product">
                         <div class="col-md-3 item-grid simpleCart_shelfItem">
 
                             <div class=" mid-pop">
                                 <div class="pro-img">
-                                    <img src="<c:url value="${products.productImage}"/>" class="img-responsive"
+                                    <img src="<c:url value="${product.productImage}"/>" class="img-responsive"
                                          alt="">
                                     <div class="zoom-icon ">
-                                        <a class="picture" href="<c:url value="/template/web/images/pc.jpg"/>"
-                                           rel="title" class="b-link-stripe b-animate-go  thickbox"><i
-                                                class="glyphicon glyphicon-search icon "></i></a>
-                                        <a href="<c:url value="/product"/>"><i
+                                        <a href="<c:url value="/product/${product.id}"/>"><i
                                                 class="glyphicon glyphicon-menu-right icon"></i></a>
                                     </div>
                                 </div>
                                 <div class="mid-1">
                                     <div class="women">
                                         <div class="women-top">
-                                            <span>${products.branch.name}</span>
-                                            <h6><a href="<c:url value="/product/${products.id}"/>">${products.name}</a>
+                                            <span>${product.branch.name}</span>
+                                            <h6><a href="<c:url value="/product/${product.id}"/>">${product.name}</a>
                                             </h6>
                                         </div>
                                         <div class="img item_add">
@@ -194,7 +191,7 @@
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="mid-2">
-                                        <p><label></label><em class="item_price">${products.unitPrice}</em></p>
+                                        <p><label></label><em class="item_price">${product.unitPrice}</em></p>
                                         <div class="block">
                                             <div class="starbox small ghosting"></div>
                                         </div>
@@ -213,7 +210,7 @@
                     <input type="hidden" value="${branchId}" id="branchId" name="branchId">
                 </div>
             </div>
-        </form>
+<%--        </form>--%>
         <div class="col-md-3 product-bottom">
             <!--categories-->
             <div class=" rsidebar span_1_of_left">

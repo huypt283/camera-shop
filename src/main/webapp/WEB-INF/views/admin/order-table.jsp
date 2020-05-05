@@ -56,7 +56,7 @@
                                         </td>
                                         <td>${order.status}</td>
                                         <td>
-                                            <a class="fa fa-pencil" href="<c:url value="/admin/order/${order.id}" />">Update</a>
+                                            <a class="fa fa-pencil" href="<c:url value="/admin/order/${order.id}" />">(update)</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

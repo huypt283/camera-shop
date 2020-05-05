@@ -27,7 +27,6 @@ public class ProductServiceImpl implements ProductService {
         this.branchRepository = branchRepository;
     }
 
-
     @Override
     public Product getSingleProductById(Long id) {
         Product product = productRepository.findOneById(id);
@@ -42,15 +41,21 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getListProductByBranhId(Long id,int limit,int offset) {
-        OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(offset,limit, Sort.by("id").descending());
-        List<Product> products=productRepository.findAllByBranchId(id,pageable);
-        return products;
+    public List<Product> getListProductByBranhId(Long id, int limit, int offset) {
+        OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(offset, limit, Sort.by("id").descending());
+        return productRepository.findAllByBranchId(id, pageable);
     }
 
     @Override
     public int getCount() {
         return (int) productRepository.count();
+    }
+
+    @Override
+    public List<Product> search(String searchValue, int limit, int offset) {
+        OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(offset, limit, Sort.by("id").descending());
+        List<Product> products = productRepository.findByProductNameOrBranchName(searchValue, pageable);
+        return products;
     }
 
     @Override

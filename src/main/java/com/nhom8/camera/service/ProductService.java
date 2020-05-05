@@ -10,11 +10,20 @@ import java.util.List;
 
 public interface ProductService {
     Product getSingleProductById(Long id);
+
     List<Product> getListProduct(int limit, int offset);
+
     List<Product> getListProductByBranhId(Long id, int limit, int offset);
+
     int getCount();
+
+    List<Product> search(String searchValue, int limit, int offset);
+
     void createProduct(CreateProductRequest createProductRequest, String productImage, String createBy);
+
     void updateProduct(Product product, UpdateProductRequest updateProductRequest, String productImage, String updateBy, Long id);
+
     void deleteProduct(Product product);
+
     boolean productNameValid(String productName);
 }

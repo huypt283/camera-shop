@@ -91,13 +91,11 @@
                                     <div class="menu-top">
                                         <div class="col1">
                                             <div class="h_nav">
-                                                <c:forEach items="${lstProductBranch}" var="branchs">
+                                                <c:forEach items="${lstProductBranch}" var="branch">
                                                     <ul>
                                                         <li>
-                                                            <a href="<c:url value="/product?branchId=${branchs.id}"/>">${branchs.name}</a>
-
+                                                            <a href="<c:url value="/product?branchId=${branch.id}"/>">${branch.name}</a>
                                                         </li>
-
                                                     </ul>
                                                 </c:forEach>
                                             </div>
@@ -117,7 +115,7 @@
             <div class="col-sm-2 search-right">
                 <ul class="heart">
                     <li><span class="glyphicon " aria-hidden="true"></span></li>
-                    <li><a class="play-icon popup-with-zoom-anim" href="<c:url value="/search"/>"><i
+                    <li><a class="play-icon popup-with-zoom-anim" href="<c:url value="#small-dialog"/>"><i
                             class="glyphicon glyphicon-search"> </i></a></li>
                 </ul>
                 <c:if test="${userNameCheck != 'anonymousUser'}">
@@ -140,7 +138,34 @@
                       media="all"/>
                 <script src="<c:url value="/template/web/js/jquery.magnific-popup.js"/>"
                         type="text/javascript"></script>
+                <div id="small-dialog" class="mfp-hide">
+                    <div class="search-top">
+                        <div class="login-search">
+                            <form:form action="/search" method="POST">
+                                <input type="text" name="searchValue" placeholder="Search.." onfocus="this.value = '';"
+                                       onblur="if (this.value == '') {this.value = 'Search..';}">
+                                <input type="submit" value="">
+                            </form:form>
+                        </div>
+                        <p>Enter the product name or product brand name</p>
+                    </div>
+                </div>
+                <script>
+                    $(document).ready(function () {
+                        $('.popup-with-zoom-anim').magnificPopup({
+                            type: 'inline',
+                            fixedContentPos: false,
+                            fixedBgPos: true,
+                            overflowY: 'auto',
+                            closeBtnInside: true,
+                            preloader: false,
+                            midClick: true,
+                            removalDelay: 300,
+                            mainClass: 'my-mfp-zoom-in'
+                        });
 
+                    });
+                </script>
             </div>
             <div class="clearfix"></div>
         </div>
