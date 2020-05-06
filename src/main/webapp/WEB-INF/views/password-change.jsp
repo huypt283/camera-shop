@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Shopin A Ecommerce Category Flat Bootstrap Responsive Website Template | 404 :: w3layouts</title>
+    <title>Change password</title>
     <link href="<c:url value="/template/web/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!-- Custom Theme files -->
     <!--theme-style-->
@@ -205,14 +205,12 @@
                 <form:errors path="password" cssStyle="color: red"></form:errors>
                 <div class="row">
                     <div class="col-sm-6">
-                        <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> 8 Characters
-                        Long<br>
-                        <span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Uppercase
-                        Letter
+                        <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Min 8 Characters
+                        <br>
+                        <span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Uppercase Letter
                     </div>
                     <div class="col-sm-6">
-                        <span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Lowercase
-                        Letter<br>
+                        <span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Lowercase Letter<br>
                         <span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Number
                     </div>
                 </div>
@@ -221,8 +219,7 @@
                        placeholder="Enter new password again.." autocomplete="off">
                 <div class="row">
                     <div class="col-sm-12">
-                        <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Passwords
-                        Match
+                        <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Password match
                     </div>
                 </div>
                 <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg"

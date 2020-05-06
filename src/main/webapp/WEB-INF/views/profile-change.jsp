@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Shopin A Ecommerce Category Flat Bootstrap Responsive Website Template | 404 :: w3layouts</title>
+    <title>Edit profile</title>
     <link href="<c:url value="/template/web/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!-- Custom Theme files -->
     <!--theme-style-->
@@ -175,7 +175,7 @@
         <div class="container">
             <h1>Contact</h1>
             <em></em>
-            <h2><a href="<c:url value="/"/>">Home</a><label>/</label>Change password</h2>
+            <h2><a href="<c:url value="/"/>">Home</a><label>/</label>Edit profile</h2>
         </div>
     </div>
 </div>
@@ -222,8 +222,7 @@
                        placeholder="Enter password again.." autocomplete="off">
                 <div class="row">
                     <div class="col-sm-12">
-                        <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span>Password
-                        match
+                        <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span>Password match
                     </div>
                 </div>
                 <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg"

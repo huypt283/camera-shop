@@ -220,7 +220,7 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <h4>Shipping Address</h4>
+                                <h4>Confirm order</h4>
                             </div>
                         </div>
                         <div class="form-group">
@@ -229,16 +229,32 @@
                                 <input type="text" class="form-control" id="fullName" name="fullName" value=""/>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span id="validFullName" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span>Min 8 Characters<br>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-12"><strong>Address:</strong></div>
                             <div class="col-md-12">
                                 <input type="text" name="address" id="address" class="form-control" value=""/>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span id="validAddress" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span>15-100 Characters<br>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-12"><strong>Phone:</strong></div>
                             <div class="col-md-12">
-                                <input type="text" name="phone_number" id="phone_number" class="form-control" value=""/>
+                                <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" value=""/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span id="validPhoneNumber" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span>Is phone number
+                                Long<br>
                             </div>
                         </div>
                         <div class="form-group">
@@ -310,7 +326,7 @@
                 event.preventDefault();
                 var info = {
                     shippingAddress: $("#address").val(),
-                    note: 'Người nhận: ' + ($("#fullName").val() === '' ? 'NaN' : $("#fullName").val()) + ', số điện thoại: ' + ($("#phone_number").val() === '' ? 'NaN' : $("#phone_number").val()),
+                    note: 'Người nhận: ' + ($("#fullName").val() === '' ? 'NaN' : $("#fullName").val()) + ', số điện thoại: ' + ($("#phoneNumber").val() === '' ? 'NaN' : $("#phoneNumber").val()),
                     totalPrice: total()
                 };
                 var listInfo = [];
@@ -360,7 +376,6 @@
 </script>
 <script>
     var data = shoppingCart.get();
-
     function appendData(data) {
         var mainContainer = document.getElementById("myData");
         for (var i = 0; i < data.length; i++) {
@@ -420,5 +435,47 @@
         maintain.appendChild(r);
     }
 </script>
+
+<%--validate--%>
+<script>
+    $("input[type=text]").keyup(function () {
+        if ($("#fullName").val().length >= 8) {
+            $("#validFullName").removeClass("glyphicon-remove");
+            $("#validFullName").addClass("glyphicon-ok");
+            $("#validFullName").css("color", "#00A41E");
+        } else {
+            $("#validFullName").removeClass("glyphicon-ok");
+            $("#validFullName").addClass("glyphicon-remove");
+            $("#validFullName").css("color", "#FF0004");
+        }
+
+        if ($("#address").val().length >= 15 && $("#address").val().length <= 100) {
+            $("#validAddress").removeClass("glyphicon-remove");
+            $("#validAddress").addClass("glyphicon-ok");
+            $("#validAddress").css("color", "#00A41E");
+        } else {
+            $("#validAddress").removeClass("glyphicon-ok");
+            $("#validAddress").addClass("glyphicon-remove");
+            $("#validAddress").css("color", "#FF0004");
+        }
+
+        var isphone1 = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/.test($("#phoneNumber").val());
+        var isphone2 = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{5})$/.test($("#phoneNumber").val());
+        var isphone3 = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{6})$/.test($("#phoneNumber").val());
+        // var isphone1 = /((09|03|07|08|05)+([0-9]{8})\b)/g.test($("#phoneNumber").val());
+        // var isphone2 = /((09|03|07|08|05)+([0-9]{9})\b)/g.test($("#phoneNumber").val());
+        // var isphone3 = /((09|03|07|08|05)+([0-9]{10})\b)/g.test($("#phoneNumber").val());
+        if ($("#phoneNumber").val().length >= 10 && $("#phoneNumber").val().length <= 12 && (isphone1 || isphone2 || isphone3)) {
+            $("#validPhoneNumber").removeClass("glyphicon-remove");
+            $("#validPhoneNumber").addClass("glyphicon-ok");
+            $("#validPhoneNumber").css("color", "#00A41E");
+        } else {
+            $("#validPhoneNumber").removeClass("glyphicon-ok");
+            $("#validPhoneNumber").addClass("glyphicon-remove");
+            $("#validPhoneNumber").css("color", "#FF0004");
+        }
+    });
+</script>
+<%--validate--%>
 </body>
 </html>
