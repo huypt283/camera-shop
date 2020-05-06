@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Shopin A Ecommerce Category Flat Bootstrap Responsive Website Template | Checkout :: w3layouts</title>
+    <title>Order detail</title>
     <link href="<c:url value="/template/web/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!-- Custom Theme files -->
     <!--theme-style-->
@@ -142,7 +142,7 @@
                                 <input type="submit" value="">
                             </form:form>
                         </div>
-                        <p>Enter the product name or product brand name</p>
+                        <p style="font-size: 10px">Enter the product name or brand name</p>
                     </div>
                 </div>
                 <script>

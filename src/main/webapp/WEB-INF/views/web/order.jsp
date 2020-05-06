@@ -4,21 +4,27 @@
 <html>
 <head>
     <title>Confirm order</title>
-    <link href="<c:url value="/template/web/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all" />
+    <link href="<c:url value="/template/web/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!-- Custom Theme files -->
     <!--theme-style-->
-    <link href="<c:url value="/template/web/css/style.css"/>" rel="stylesheet" type="text/css" media="all" />
-    <link href="<c:url value="/template/web/css/style4.css"/>" rel="stylesheet" type="text/css" media="all" />
+    <link href="<c:url value="/template/web/css/style.css"/>" rel="stylesheet" type="text/css" media="all"/>
+    <link href="<c:url value="/template/web/css/style4.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Camera" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Camera"/>
 
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
     <script src="<c:url value="/template/web/js/jquery.min.js"/>"></script>
     <!--- start-rate---->
-<%--    <script src="<c:url value="/template/web/js/jstarbox.js"/>"></script>--%>
-<%--    <link rel="stylesheet" href="<c:url value="/template/web/css/jstarbox.css"/>" type="text/css" media="screen" charset="utf-8" />--%>
+    <%--    <script src="<c:url value="/template/web/js/jstarbox.js"/>"></script>--%>
+    <%--    <link rel="stylesheet" href="<c:url value="/template/web/css/jstarbox.css"/>" type="text/css" media="screen" charset="utf-8" />--%>
 
 </head>
 <body>
@@ -139,7 +145,7 @@
                                 <input type="submit" value="">
                             </form:form>
                         </div>
-                        <p>Enter the product name or product brand name</p>
+                        <p style="font-size: 10px">Enter the product name or brand name</p>
                     </div>
                 </div>
                 <script>
@@ -187,12 +193,14 @@
         </div>
     </div>
     <div class="row cart-body">
-        <form class="form-horizontal" id="orderForm" >
+        <form class="form-horizontal" id="orderForm">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
                 <!--REVIEW ORDER-->
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        Review Order <div class="pull-right"><small><a class="afix-1" href="<c:url value="/checkout"/>">Edit Cart</a></small></div>
+                        Review Order
+                        <div class="pull-right"><small><a class="afix-1" href="<c:url value="/checkout"/>">Edit Cart</a></small>
+                        </div>
                     </div>
                     <div class="panel-body" id="myData">
 
@@ -213,24 +221,24 @@
                         <div class="form-group">
                             <div class="col-md-12"><strong>Full Name:</strong></div>
                             <div class="col-md-12">
-                                <input type="text" class="form-control" id="fullName" name="fullName" value="" />
+                                <input type="text" class="form-control" id="fullName" name="fullName" value=""/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-12"><strong>Address:</strong></div>
                             <div class="col-md-12">
-                                <input type="text" name="address" id="address" class="form-control" value="" />
+                                <input type="text" name="address" id="address" class="form-control" value=""/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-12"><strong>Phone:</strong></div>
                             <div class="col-md-12">
-                                <input type="text" name="phone_number" id="phone_number" class="form-control" value="" />
+                                <input type="text" name="phone_number" id="phone_number" class="form-control" value=""/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <button type="submit" class="btn btn-primary btn-submit-fix">Place Order</button>
+                                <button type="button" class="btn btn-primary btn-submit-fix">Place Order</button>
                             </div>
                         </div>
                     </div>
@@ -270,15 +278,16 @@
 <%@ include file="/common/web/footer.jsp" %>
 <!--//footer-->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="<c:url value="/template/web/js/simpleCart.min.js"/>"> </script>
+<script src="<c:url value="/template/web/js/simpleCart.min.js"/>"></script>
 <!-- slide -->
 <script src="<c:url value="/template/web/js/bootstrap.min.js"/>"></script>
 <!--light-box-files -->
 <script src="<c:url value="/template/web/js/jquery.chocolat.js"/>"></script>
-<link rel="stylesheet" href="<c:url value="/template/web/css/chocolat.css"/>" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="<c:url value="/template/web/css/chocolat.css"/>" type="text/css" media="screen"
+      charset="utf-8">
 <!--light-box-files -->
 <script type="text/javascript" charset="utf-8">
-    $(function() {
+    $(function () {
         $('a.picture').Chocolat();
     });
 </script>
@@ -289,55 +298,56 @@
 <script src="<c:url value="/template/web/js/custom.js"/>"></script>
 <script>
     $(document).ready(
-        function() {
+        function () {
             // SUBMIT FORM
-            $("#orderForm").submit(function(event) {
+            $("#orderForm button").click(function (event) {
                 // Prevent the form from submitting via the browser.
                 event.preventDefault();
-                var info={
+                var info = {
                     shippingAddress: $("#address").val(),
-                    note: 'Người nhận: ' + ($("#fullName").val()===''?'NaN':$("#fullName").val()) + ', số điện thoại: ' + ($("#phone_number").val()===''?'NaN':$("#phone_number").val()),
+                    note: 'Người nhận: ' + ($("#fullName").val() === '' ? 'NaN' : $("#fullName").val()) + ', số điện thoại: ' + ($("#phone_number").val() === '' ? 'NaN' : $("#phone_number").val()),
                     totalPrice: total()
                 };
-                var listInfo=[];
-                var lineItem= shoppingCart.get();
-                for(let i=0; i<lineItem.length; i++){
-                    var inf={};
+                var listInfo = [];
+                var lineItem = shoppingCart.get();
+                for (let i = 0; i < lineItem.length; i++) {
+                    var inf = {};
                     inf["unitPrice"] = lineItem[i].price;
                     inf["quantity"] = lineItem[i].quantity;
                     inf["productId"] = lineItem[i].productId;
                     listInfo.push(inf);
                 }
-                var data={
+                var data = {
                     orderRequest: info,
                     lineItemRequests: listInfo
                 };
-                ajaxPost(data);
+                if(data.lineItemRequests.length > 0)
+                    ajaxPost(data);
+                else
+                    window.location.href = "/order-result?error=true";
             });
 
-            function ajaxPost(data){
+            function ajaxPost(data) {
                 $.ajax({
                     url: '/order',
                     type: 'POST',
                     dataType: 'json',
                     contentType: 'application/json',
                     data: JSON.stringify(data),
-                    success: function (result) {
-                        window.location.href= "/index";
-                        shoppingCart.removeAll();
-                    },
-                    error: function (error) {
-                        window.location.href= "/info";
-                        shoppingCart.removeAll();
-                    }
+                    success: success()
                 });
+            }
+
+            function success() {
+                shoppingCart.removeAll();
+                window.location.href = "/order-result?error=false";
             }
 
             function total() {
                 var data = shoppingCart.get();
                 let sum = 0;
-                for (let i=0;i< data.length; i++){
-                    sum+=data[i].quantity * data[i].price;
+                for (let i = 0; i < data.length; i++) {
+                    sum += data[i].quantity * data[i].price;
                 }
                 return sum;
             }
@@ -374,10 +384,10 @@
             ' <strong>Subtotal</strong>\n' +
             '<div class="pull-right"><span>$</span><span>' + total() + '</span></div>\n' +
             '</div>\n' +
-            '                            <div class="col-xs-12">\n' +
-            '                                <small>(COD)</small>\n' +
-            '                                <div class="pull-right"></div>\n' +
-            '                            </div>';
+            '<div class="col-xs-12">\n' +
+            '<small>(COD)</small>\n' +
+            '<div class="pull-right"></div>\n' +
+            '</div>';
         mainContainer.appendChild(r2);
 
         function total() {
@@ -394,14 +404,14 @@
     appendData(data);
 </script>
 <script>
-    var baka= shoppingCart.get();
+    var baka = shoppingCart.get();
     var maintain = document.getElementById("total");
-    var r=document.createElement("span");
-    if(baka.length >0){
-        r.innerHTML=baka.length;
-        maintain.appendChild(r);}
-    else {
-        r.innerHTML= 0;
+    var r = document.createElement("span");
+    if (baka.length > 0) {
+        r.innerHTML = baka.length;
+        maintain.appendChild(r);
+    } else {
+        r.innerHTML = 0;
         maintain.appendChild(r);
     }
 </script>

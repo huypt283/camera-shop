@@ -143,7 +143,7 @@
                                 <input type="submit" value="">
                             </form:form>
                         </div>
-                        <p>Enter the product name or product brand name</p>
+                        <p style="font-size: 10px">Enter the product name or brand name</p>
                     </div>
                 </div>
                 <script>

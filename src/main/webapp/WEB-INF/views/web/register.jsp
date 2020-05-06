@@ -24,9 +24,9 @@
     } </script>
     <script src="<c:url value="/template/web/js/jquery.min.js"/>"></script>
     <!--- start-rate---->
-<%--    <script src="<c:url value="/template/web/js/jstarbox.js"/>"></script>--%>
-<%--    <link rel="stylesheet" href="<c:url value="/template/web/css/jstarbox.css"/>" type="text/css" media="screen"--%>
-<%--          charset="utf-8"/>--%>
+    <%--    <script src="<c:url value="/template/web/js/jstarbox.js"/>"></script>--%>
+    <%--    <link rel="stylesheet" href="<c:url value="/template/web/css/jstarbox.css"/>" type="text/css" media="screen"--%>
+    <%--          charset="utf-8"/>--%>
 </head>
 <body>
 <c:set var="userNameCheck" value="<%=SecurityUtil.getUserName()%>"/>
@@ -146,7 +146,7 @@
                                 <input type="submit" value="">
                             </form:form>
                         </div>
-                        <p>Enter the product name or product brand name</p>
+                        <p style="font-size: 10px">Enter the product name or brand name</p>
                     </div>
                 </div>
                 <script>
@@ -184,6 +184,12 @@
 </div>
 <!--banner-->
 <!--login-->
+<style>
+    .login>form>input {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+</style>
+
 <div class="container">
     <div class="login">
         <form:form action="/register" modelAttribute="userRegister" method="POST">
@@ -192,33 +198,38 @@
                     Full name
                     <input type="text" name="fullName" required="true" placeholder="Full name">
                     <i class="glyphicon "></i>
+                    <form:errors path="fullName" cssStyle="color: red"></form:errors>
                 </div>
                 <div class="login-mail">
                     User name
                     <input type="text" name="userName" required="true" placeholder="User name">
                     <i class="glyphicon "></i>
+                    <form:errors path="userName" cssStyle="color: red"></form:errors>
                 </div>
                 <div class="login-mail">
                     Email
                     <input type="text" name="email" required="true" placeholder="Email">
                     <i class="glyphicon "></i>
+                    <form:errors path="email" cssStyle="color: red"></form:errors>
                 </div>
                 <div class="login-mail">
                     Phone
                     <input type="text" name="phone" required="true" placeholder="Phone">
                     <i class="glyphicon "></i>
+                    <form:errors path="phone" cssStyle="color: red"></form:errors>
                 </div>
                 <div class="login-mail">
                     Password
                     <input type="password" name="password" required="true" placeholder="Password">
                     <i class="glyphicon "></i>
+                    <form:errors path="password" cssStyle="color: red"></form:errors>
                 </div>
                 <label class="hvr-skew-backward">
                     <input type="submit" value="Submit">
                 </label>
             </div>
             <div class="col-md-6 login-right">
-                <h3>Completely Free Account</h3>
+<%--                <h3>Completely Free Account</h3>--%>
 
                 <p></p>
                 <a href="<c:url value="/login"/>" class="hvr-skew-backward">Login</a>

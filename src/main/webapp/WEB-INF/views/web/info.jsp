@@ -141,7 +141,7 @@
                                 <input type="submit" value="">
                             </form:form>
                         </div>
-                        <p>Enter the product name or product brand name</p>
+                        <p style="font-size: 10px">Enter the product name or brand name</p>
                     </div>
                 </div>
                 <script>
@@ -181,7 +181,7 @@
 
 <div class="container">
     <div class="four">
-        <h3>Nhóm 8 - KTPM3 - K12 Đại học Công nghiệp Hà Nội</h3>
+        <h3 style="font-size: 30px">Nhóm 8 - KTPM3 - K12 Đại học Công nghiệp Hà Nội</h3>
         <p>Thank You For The Trust!</p>
         <a href="<c:url value="/"/>" class="hvr-skew-backward">Back To Home</a>
     </div>

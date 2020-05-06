@@ -7,12 +7,14 @@ import com.nhom8.camera.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -28,17 +30,20 @@ public class RegisterController {
     }
 
     @GetMapping
-    public ModelAndView register() {
+    public ModelAndView register(@ModelAttribute("userRegister") UserRegisterRequest userRegisterRequest) {
         ModelAndView mav = new ModelAndView("web/register");
-        UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
-        mav.addObject("userRegister", userRegisterRequest);
         List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
         mav.addObject("lstProductBranch", lstProductBranch);
         return mav;
     }
 
     @PostMapping
-    public String register(@ModelAttribute("userRegister") UserRegisterRequest userRegisterRequest, ModelMap modelMap) {
+    public String register(@Valid @ModelAttribute("userRegister") UserRegisterRequest userRegisterRequest, BindingResult result, ModelMap modelMap) {
+        if (result.hasErrors()) {
+            List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
+            modelMap.addAttribute("lstProductBranch", lstProductBranch);
+            return "web/register";
+        }
         userService.saveUser(userRegisterRequest);
         modelMap.addAttribute("messenger", "Register success!");
         return "redirect:/login";

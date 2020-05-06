@@ -11,6 +11,7 @@ import com.nhom8.camera.service.OrderService;
 import com.nhom8.camera.service.ProductBranchService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -52,16 +53,26 @@ public class OrderController {
         return "/web/order";
     }
 
+    @GetMapping("/order-result")
+    public String orderResultGet(@RequestParam(value = "error", defaultValue = "true") String error, ModelMap modelMap) {
+        List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
+        modelMap.addAttribute("lstProductBranch", lstProductBranch);
+        if (error.equalsIgnoreCase("false"))
+            modelMap.addAttribute("message", "Đặt hàng thành công");
+        else
+            modelMap.addAttribute("message", "Đặt hàng thất bại. Bạn chưa có sản phẩm nào trong giỏ");
+        return "/web/order-result";
+    }
+
     @PostMapping("/order")
-    public String submitOrderPost(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody CheckoutRequest checkoutRequest, ModelMap modelMap) {
+    @ResponseBody
+    public ResponseEntity<?> submitOrderPost(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody CheckoutRequest checkoutRequest) {
         if (checkoutRequest.getLineItemRequests() != null)
             if (checkoutRequest.getLineItemRequests().size() > 0) {
                 orderService.saveOrder(userDetails.getId(), checkoutRequest.getOrderRequest(), checkoutRequest.getLineItemRequests());
-                modelMap.addAttribute("message", "Cám ơn bạn đã đặt hàng, chúng tôi sẽ liên hệ với bạn sớm nhất");
-                return "/web/direct-message";
+                return ResponseEntity.status(200).build();
             }
-        modelMap.addAttribute("message", "Bạn chưa có hàng trong giỏ");
-        return "/web/direct-message";
+        return ResponseEntity.status(400).build();
     }
 
     @GetMapping("/order-history")
