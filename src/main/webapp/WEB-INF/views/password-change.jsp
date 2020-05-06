@@ -180,14 +180,19 @@
     </div>
 </div>
 <!--banner-->
-<!--login-->
+
 <div class="container">
     <div class="brand">
     </div>
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
-            <form:form class="form-valide" action="/change-password" method="POST"
-                       modelAttribute="changepassword">
+            <style>
+                .form-validation > input {
+                    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                }
+            </style>
+            <form:form class="form-validation" action="/change-password" method="POST"
+                       modelAttribute="changePassword">
                 <p><label>Email</label></p>
                 <input type="email" class="input-lg form-control" name="email" id="email" placeholder="Enter email.." value="${user.email}" disabled="disabled">
                 <p><label>Old password</label></p>

@@ -62,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers( "/login", "/register", "/logout", "/search").permitAll()
 //                .antMatchers(HttpMethod.POST, "/login", "/register", "/logout").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/checkout", "/change-password", "/order**", "/order/**", "/order-history").authenticated()
+                .antMatchers("/checkout", "/change-password", "/order**", "/order/**", "/order-history", "/edit-profile").authenticated()
                 .antMatchers(HttpMethod.GET, "/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/**").authenticated()
                 .anyRequest().authenticated()

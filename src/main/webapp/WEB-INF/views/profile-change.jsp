@@ -1,9 +1,10 @@
 <%@include file="/common/taglib.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="com.nhom8.camera.util.SecurityUtil" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Confirm order</title>
+    <title>Shopin A Ecommerce Category Flat Bootstrap Responsive Website Template | 404 :: w3layouts</title>
     <link href="<c:url value="/template/web/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!-- Custom Theme files -->
     <!--theme-style-->
@@ -22,9 +23,6 @@
         window.scrollTo(0, 1);
     } </script>
     <script src="<c:url value="/template/web/js/jquery.min.js"/>"></script>
-    <!--- start-rate---->
-    <%--    <script src="<c:url value="/template/web/js/jstarbox.js"/>"></script>--%>
-    <%--    <link rel="stylesheet" href="<c:url value="/template/web/css/jstarbox.css"/>" type="text/css" media="screen" charset="utf-8" />--%>
 
 </head>
 <body>
@@ -175,87 +173,67 @@
 <div class="container">
     <div class="banner-top">
         <div class="container">
-            <h1>Shop Camera</h1>
+            <h1>Contact</h1>
             <em></em>
-            <h2><a href="<c:url value="/"/>">Home</a><label>/</label>Order</h2>
+            <h2><a href="<c:url value="/"/>">Home</a><label>/</label>Change password</h2>
         </div>
     </div>
 </div>
 <!--banner-->
-<div class="container wrapper">
-    <div class="row cart-head">
-        <div class="container">
-            <div class="row">
-            </div>
-            <div class="row">
-                <p></p>
-            </div>
+
+<div class="container">
+    <div class="brand">
+    </div>
+    <style>
+    </style>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <style>
+                .form-validation > input {
+                    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                }
+            </style>
+            <form:form class="form-validation" action="/edit-profile" method="POST"
+                       modelAttribute="changeProfile">
+                <p><label>User name</label></p>
+                <input type="text" class="input-lg form-control" value="${user.userName}" disabled="disabled">
+                <p><label>Email</label></p>
+                <input type="email" class="input-lg form-control" name="email" id="email" placeholder="Enter email.."
+                       value="${user.email}">
+                <form:errors path="email" cssStyle="color: red"></form:errors>
+                <p><label>Full name</label></p>
+                <input type="text" class="input-lg form-control" name="fullName"
+                       placeholder="Enter full name.." value="${user.fullName}">
+                <form:errors path="fullName" cssStyle="color: red"></form:errors>
+                <p><label>Phone</label></p>
+                <input type="text" class="input-lg form-control" name="phone"
+                       placeholder="Enter phone.." value="${user.phone}">
+                <form:errors path="phone" cssStyle="color: red"></form:errors>
+                <p><label>Address</label></p>
+                <input type="text" class="input-lg form-control" name="address"
+                       placeholder="Enter address.." value="${user.address}">
+                <form:errors path="address" cssStyle="color: red"></form:errors>
+                <p><label>Current password</label></p>
+                <input type="password" class="input-lg form-control" name="currentPassword" id="password1"
+                       placeholder="Enter password.." autocomplete="off">
+                <form:errors path="currentPassword" cssStyle="color: red"></form:errors>
+                <p><label>Confirm password</label></p>
+                <input type="password" class="input-lg form-control" id="password2"
+                       placeholder="Enter password again.." autocomplete="off">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span>Password
+                        match
+                    </div>
+                </div>
+                <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg"
+                       data-loading-text="Edit profile..." value="Edit profile">
+            </form:form>
         </div>
     </div>
-    <div class="row cart-body">
-        <form class="form-horizontal" id="orderForm">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
-                <!--REVIEW ORDER-->
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        Review Order
-                        <div class="pull-right"><small><a class="afix-1" href="<c:url value="/checkout"/>">Edit Cart</a></small>
-                        </div>
-                    </div>
-                    <div class="panel-body" id="myData">
-
-                    </div>
-                </div>
-                <!--REVIEW ORDER END-->
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-pull-6 col-sm-pull-6">
-                <!--SHIPPING METHOD-->
-                <div class="panel panel-info">
-                    <style>
-                        .col-md-12 > input {
-                            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                        }
-                    </style>
-                    <div class="panel-heading">Address</div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <h4>Shipping Address</h4>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12"><strong>Full Name:</strong></div>
-                            <div class="col-md-12">
-                                <input type="text" class="form-control" id="fullName" name="fullName" value=""/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12"><strong>Address:</strong></div>
-                            <div class="col-md-12">
-                                <input type="text" name="address" id="address" class="form-control" value=""/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12"><strong>Phone:</strong></div>
-                            <div class="col-md-12">
-                                <input type="text" name="phone_number" id="phone_number" class="form-control" value=""/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <button type="button" class="btn btn-primary btn-submit-fix">Place Order</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </form>
-    </div>
-    <div class="row cart-footer">
-
-    </div>
 </div>
+<!--//login-->
+
 <!--brand-->
 <div class="container">
     <div class="brand">
@@ -279,135 +257,16 @@
     </div>
 </div>
 <!--//brand-->
-<%--footer--%>
+
+<!--//content-->
+<!--//footer-->
 <%@ include file="/common/web/footer.jsp" %>
 <!--//footer-->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
 <script src="<c:url value="/template/web/js/simpleCart.min.js"/>"></script>
 <!-- slide -->
 <script src="<c:url value="/template/web/js/bootstrap.min.js"/>"></script>
-<!--light-box-files -->
-<script src="<c:url value="/template/web/js/jquery.chocolat.js"/>"></script>
-<link rel="stylesheet" href="<c:url value="/template/web/css/chocolat.css"/>" type="text/css" media="screen"
-      charset="utf-8">
-<!--light-box-files -->
-<script type="text/javascript" charset="utf-8">
-    $(function () {
-        $('a.picture').Chocolat();
-    });
-</script>
-<script src="<c:url value="/template/web/js/bootstrap.min.js"/>"></script>
-<script src="https://unpkg.com/lodash@4/lodash.min.js"></script>
-<script src="https://unpkg.com/lowdb@0.17/dist/low.min.js"></script>
-<script src="https://unpkg.com/lowdb@0.17/dist/LocalStorage.min.js"></script>
-<script src="<c:url value="/template/web/js/custom.js"/>"></script>
-<script>
-    $(document).ready(
-        function () {
-            // SUBMIT FORM
-            $("#orderForm button").click(function (event) {
-                // Prevent the form from submitting via the browser.
-                event.preventDefault();
-                var info = {
-                    shippingAddress: $("#address").val(),
-                    note: 'Người nhận: ' + ($("#fullName").val() === '' ? 'NaN' : $("#fullName").val()) + ', số điện thoại: ' + ($("#phone_number").val() === '' ? 'NaN' : $("#phone_number").val()),
-                    totalPrice: total()
-                };
-                var listInfo = [];
-                var lineItem = shoppingCart.get();
-                for (let i = 0; i < lineItem.length; i++) {
-                    var inf = {};
-                    inf["unitPrice"] = lineItem[i].price;
-                    inf["quantity"] = lineItem[i].quantity;
-                    inf["productId"] = lineItem[i].productId;
-                    listInfo.push(inf);
-                }
-                var data = {
-                    orderRequest: info,
-                    lineItemRequests: listInfo
-                };
-                if(data.lineItemRequests.length > 0)
-                    ajaxPost(data);
-                else
-                    window.location.href = "/order-result?error=true";
-            });
-
-            function ajaxPost(data) {
-                $.ajax({
-                    url: '/order',
-                    type: 'POST',
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    data: JSON.stringify(data),
-                    success: success()
-                });
-            }
-
-            function success() {
-                shoppingCart.removeAll();
-                window.location.href = "/order-result?error=false";
-            }
-
-            function total() {
-                var data = shoppingCart.get();
-                let sum = 0;
-                for (let i = 0; i < data.length; i++) {
-                    sum += data[i].quantity * data[i].price;
-                }
-                return sum;
-            }
-        });
-</script>
-<script>
-    var data = shoppingCart.get();
-
-    function appendData(data) {
-        var mainContainer = document.getElementById("myData");
-        for (var i = 0; i < data.length; i++) {
-            var r = document.createElement("div");
-            r.setAttribute("class", "form-group");
-            r.innerHTML = '  <div class="col-sm-3 col-xs-3">\n' +
-                '<img class="img-responsive" src="' + location.origin + '/' + data[i].avatar + '" />\n' +
-                '</div>\n' +
-                '<div class="col-sm-6 col-xs-6">\n' +
-                '<div class="col-xs-12">' + data[i].name +
-                '</div>\n' +
-                '<div class="col-xs-12"><small>Quantity:<span>' + data[i].quantity + '</span></small></div>\n' +
-                '</div>\n' +
-                '<div class="col-sm-3 col-xs-3 text-right">\n' +
-                '<h6><span>' + data[i].price + '</span></h6><span>vnd</span>' +
-                '</div>';
-            mainContainer.appendChild(r);
-        }
-        var br = document.createElement("div");
-        br.setAttribute("class", "form-group");
-        br.innerHTML = '<hr />';
-        mainContainer.appendChild(br);
-        var r2 = document.createElement("div");
-        r2.setAttribute("class", "form-group");
-        r2.innerHTML = '<div class="col-xs-12">\n' +
-            ' <strong>Subtotal</strong>\n' +
-            '<div class="pull-right"><span>$</span><span>' + total() + '</span></div>\n' +
-            '</div>\n' +
-            '<div class="col-xs-12">\n' +
-            '<small>(COD)</small>\n' +
-            '<div class="pull-right"></div>\n' +
-            '</div>';
-        mainContainer.appendChild(r2);
-
-        function total() {
-            var data = shoppingCart.get();
-            let sum = 0;
-            for (let i = 0; i < data.length; i++) {
-                sum += data[i].quantity * +data[i].price;
-            }
-            return sum;
-        }
-
-    }
-
-    appendData(data);
-</script>
 <script>
     var baka = shoppingCart.get();
     var maintain = document.getElementById("total");
@@ -419,6 +278,19 @@
         r.innerHTML = 0;
         maintain.appendChild(r);
     }
+</script>
+<script>
+    $("input[type=password]").keyup(function () {
+        if ($("#password1").val() == $("#password2").val()) {
+            $("#pwmatch").removeClass("glyphicon-remove");
+            $("#pwmatch").addClass("glyphicon-ok");
+            $("#pwmatch").css("color", "#00A41E");
+        } else {
+            $("#pwmatch").removeClass("glyphicon-ok");
+            $("#pwmatch").addClass("glyphicon-remove");
+            $("#pwmatch").css("color", "#FF0004");
+        }
+    });
 </script>
 </body>
 </html>

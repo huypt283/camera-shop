@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Shopin A Ecommerce Category Flat Bootstrap Responsive Website Template | Checkout :: w3layouts</title>
+    <title>Checkout</title>
     <link href="<c:url value="/template/web/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all"/>
     <!-- Custom Theme files -->
     <!--theme-style-->
@@ -23,10 +23,6 @@
         window.scrollTo(0, 1);
     } </script>
     <script src="<c:url value="/template/web/js/jquery.min.js"/>"></script>
-<%--    <!--- start-rate---->--%>
-<%--    <script src="<c:url value="/template/web/js/jstarbox.js"/>"></script>--%>
-<%--    <link rel="stylesheet" href="<c:url value="/template/web/css/jstarbox.css"/>" type="text/css" media="screen"--%>
-<%--          charset="utf-8"/>--%>
 </head>
 <body>
 <c:set var="userNameCheck" value="<%=SecurityUtil.getUserName()%>"/>
