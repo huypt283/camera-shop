@@ -1,7 +1,7 @@
 package com.nhom8.camera.controller.web;
 
 import com.nhom8.camera.entity.Product;
-import com.nhom8.camera.entity.ProductBranch;
+import com.nhom8.camera.entity.ProductBrand;
 import com.nhom8.camera.model.response.PageResponse;
 import com.nhom8.camera.service.ProductBranchService;
 import com.nhom8.camera.service.ProductService;
@@ -19,7 +19,7 @@ import java.util.List;
 public class HomeController {
     private ProductService productService;
     private ProductBranchService productBranchService;
-    private final int limit = 2;
+    private final int limit = 10;
 
     @Autowired
     public HomeController(ProductService productService, ProductBranchService productBranchService) {
@@ -37,10 +37,10 @@ public class HomeController {
         pageResponse.setProductList(products);
         pageResponse.setTotalItem(productService.getCount());
         pageResponse.setTotalPage((int) Math.ceil((double) pageResponse.getTotalItem()/pageResponse.getLimit() ));
-        List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
+        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
         ModelAndView mav = new ModelAndView("/web/index");
         mav.addObject("models", pageResponse);
-        mav.addObject("lstProductBranch", lstProductBranch);
+        mav.addObject("lstProductBranch", lstProductBrands);
         return mav;
     }
 }

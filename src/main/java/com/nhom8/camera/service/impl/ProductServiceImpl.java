@@ -1,11 +1,11 @@
 package com.nhom8.camera.service.impl;
 
 import com.nhom8.camera.entity.Product;
-import com.nhom8.camera.entity.ProductBranch;
+import com.nhom8.camera.entity.ProductBrand;
 import com.nhom8.camera.model.request.CreateProductRequest;
 import com.nhom8.camera.model.request.OffsetBasedPageRequest;
 import com.nhom8.camera.model.request.UpdateProductRequest;
-import com.nhom8.camera.repository.BranchRepository;
+import com.nhom8.camera.repository.BrandRepository;
 import com.nhom8.camera.repository.ProductRepository;
 import com.nhom8.camera.service.ProductService;
 import org.springframework.beans.BeanUtils;
@@ -19,25 +19,23 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
-    private BranchRepository branchRepository;
+    private BrandRepository brandRepository;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, BranchRepository branchRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, BrandRepository brandRepository) {
         this.productRepository = productRepository;
-        this.branchRepository = branchRepository;
+        this.brandRepository = brandRepository;
     }
 
     @Override
     public Product getSingleProductById(Long id) {
-        Product product = productRepository.findOneById(id);
-        return product;
+        return productRepository.findOneById(id);
     }
 
     @Override
     public List<Product> getListProduct(int limit, int offset) {
-        OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(offset, limit, Sort.by("id").ascending());
-        List<Product> products = productRepository.findAllAndSort(pageable);
-        return products;
+        OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(offset, limit, Sort.by("id").descending());
+        return productRepository.findAllAndSort(pageable);
     }
 
     @Override
@@ -54,8 +52,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> search(String searchValue, int limit, int offset) {
         OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(offset, limit, Sort.by("id").descending());
-        List<Product> products = productRepository.findByProductNameOrBranchName(searchValue, pageable);
-        return products;
+        return productRepository.findByProductNameOrBranchName(searchValue, pageable);
     }
 
     @Override
@@ -69,8 +66,8 @@ public class ProductServiceImpl implements ProductService {
         product.setCreateDate(new Date());
         Long branchId = createProductRequest.getBranchId();
         if (branchId != null) {
-            ProductBranch branch = branchRepository.findProductBranchById(branchId);
-            product.setBranch(branch);
+            ProductBrand brand = brandRepository.findProductBranchById(branchId);
+            product.setBrand(brand);
         }
         productRepository.save(product);
     }
@@ -85,8 +82,8 @@ public class ProductServiceImpl implements ProductService {
         product.setUpdateDate(new Date());
         Long branchId = updateProductRequest.getBranchId();
         if (branchId != null) {
-            ProductBranch branch = branchRepository.findProductBranchById(branchId);
-            product.setBranch(branch);
+            ProductBrand brand = brandRepository.findProductBranchById(branchId);
+            product.setBrand(brand);
         }
         productRepository.save(product);
     }

@@ -1,12 +1,11 @@
 package com.nhom8.camera.controller.web;
 
 import com.nhom8.camera.entity.Product;
-import com.nhom8.camera.entity.ProductBranch;
+import com.nhom8.camera.entity.ProductBrand;
 import com.nhom8.camera.model.response.PageResponse;
 import com.nhom8.camera.service.ProductBranchService;
 import com.nhom8.camera.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,15 +35,15 @@ public class ProductController {
     @GetMapping("/{id}")
     public ModelAndView getSingleProduct(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("/web/single");
-        List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
+        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
         Product product = productService.getSingleProductById(id);
         mav.addObject("product", product);
-        mav.addObject("lstProductBranch", lstProductBranch);
+        mav.addObject("lstProductBranch", lstProductBrands);
         return mav;
     }
 
     @GetMapping
-    public ModelAndView getListProductByBranchId(@RequestParam(value = "branchId" ,defaultValue = "1",required = false) int branchId,
+    public ModelAndView getListProductByBranchId(@RequestParam(value = "brandId" ,defaultValue = "1",required = false) int branchId,
                                                  @RequestParam(value = "page_product", defaultValue = "1", required = false) int page_product) {
         PageResponse pageResponse1 = new PageResponse();
         final int offset = (page_product - 1) * limit;
@@ -54,10 +53,10 @@ public class ProductController {
         pageResponse1.setProductList(products);
         pageResponse1.setTotalItem(productService.getCount());
         pageResponse1.setTotalPage((int) Math.ceil((double) pageResponse1.getTotalItem() / pageResponse1.getLimit()));
-        List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
+        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
         ModelAndView mav = new ModelAndView("/web/product");
         mav.addObject("models1", pageResponse1);
-        mav.addObject("lstProductBranch", lstProductBranch);
+        mav.addObject("lstProductBranch", lstProductBrands);
         mav.addObject("branchId",branchId);
         return mav;
     }

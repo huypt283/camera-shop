@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Branches</title>
+    <title>Brands</title>
     <link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/template/admin/assets/images/favicon.png" />" >
     <link href="<c:url value="/template/admin/css/style.css" />" rel="stylesheet">
     <script src="<c:url value="/template/admin/js/modernizr-3.6.0.min.js" />"></script>
@@ -31,7 +31,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Danh sách nhãn sản phẩm</h4>
-                        <a href="<c:url value="/admin/branch"/>">
+                        <a href="<c:url value="/admin/brand"/>">
                             <button type="button" class="btn btn-rounded btn-info">
                                 <span class="btn-icon-left"><i class="fa fa-plus color-info"></i></span>Add
                             </button>
@@ -47,14 +47,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${branches}" var="branch" varStatus="itr">
+                                <c:forEach items="${branches}" var="brand" varStatus="itr">
                                     <tr>
                                         <td>${itr.index +1 }</td>
-                                        <td>${branch.id}</td>
-                                        <td>${branch.name}</td>
+                                        <td>${brand.id}</td>
+                                        <td>${brand.name}</td>
                                         <td>
-                                            <a class="fa fa-pencil" href="<c:url value="/admin/branch/${branch.id}" />">(update)</a>&nbsp;&nbsp;|&nbsp;
-                                            <a class="fa fa-trash" href="<c:url value="/admin/branch-delete/${branch.id}" />" onclick="return confirm('Are you sure you want to delete?')">(delete)</a>
+                                            <a class="fa fa-pencil" href="<c:url value="/admin/brand/${brand.id}" />">(update)</a>&nbsp;&nbsp;|&nbsp;
+                                            <a class="fa fa-trash" href="<c:url value="/admin/brand-delete/${brand.id}" />" onclick="return confirm('Are you sure you want to delete?')">(delete)</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

@@ -87,10 +87,10 @@
                                     <div class="menu-top">
                                         <div class="col1">
                                             <div class="h_nav">
-                                                <c:forEach items="${lstProductBranch}" var="branch">
+                                                <c:forEach items="${lstProductBranch}" var="brand">
                                                     <ul>
                                                         <li>
-                                                            <a href="<c:url value="/product?branchId=${branch.id}"/>">${branch.name}</a>
+                                                            <a href="<c:url value="/product?brandId=${brand.id}"/>">${brand.name}</a>
                                                         </li>
                                                     </ul>
                                                 </c:forEach>
@@ -193,6 +193,8 @@
                     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
                 }
             </style>
+            <h3 style="font-family: ''; text-align: center">${message}</h3>
+            <br><br>
             <form:form class="form-validation" action="/edit-profile" method="POST"
                        modelAttribute="changeProfile">
                 <p><label>User name</label></p>
@@ -226,7 +228,7 @@
                     </div>
                 </div>
                 <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg"
-                       data-loading-text="Edit profile..." value="Edit profile">
+                       data-loading-text="Edit profile..." value="Submit">
             </form:form>
         </div>
     </div>

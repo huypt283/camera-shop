@@ -87,10 +87,10 @@
                                     <div class="menu-top">
                                         <div class="col1">
                                             <div class="h_nav">
-                                                <c:forEach items="${lstProductBranch}" var="branch">
+                                                <c:forEach items="${lstProductBranch}" var="brand">
                                                     <ul>
                                                         <li>
-                                                            <a href="<c:url value="/product?branchId=${branch.id}"/>">${branch.name}</a>
+                                                            <a href="<c:url value="/product?brandId=${brand.id}"/>">${brand.name}</a>
                                                         </li>
                                                     </ul>
                                                 </c:forEach>
@@ -191,6 +191,8 @@
                     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
                 }
             </style>
+            <h3 style="font-family: ''; text-align: center">${message}</h3>
+            <br><br>
             <form:form class="form-validation" action="/change-password" method="POST"
                        modelAttribute="changePassword">
                 <p><label>Email</label></p>
@@ -206,24 +208,25 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Min 8 Characters
-                        <br>
-                        <span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Uppercase Letter
+<%--                        <br>--%>
+<%--                        <span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Uppercase Letter--%>
                     </div>
-                    <div class="col-sm-6">
-                        <span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Lowercase Letter<br>
-                        <span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Number
-                    </div>
+<%--                    <div class="col-sm-6">--%>
+<%--                        <span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Lowercase Letter<br>--%>
+<%--                        <span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Number--%>
+<%--                    </div>--%>
                 </div>
                 <p><label>Repeat new password</label></p>
-                <input type="password" class="input-lg form-control" name="password2" id="password2"
+                <input type="password" class="input-lg form-control" name="confirmPassword" id="password2"
                        placeholder="Enter new password again.." autocomplete="off">
+                <form:errors path="confirmPassword" cssStyle="color: red"></form:errors>
                 <div class="row">
                     <div class="col-sm-12">
                         <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Password match
                     </div>
                 </div>
                 <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg"
-                       data-loading-text="Changing Password..." value="Change Password">
+                       data-loading-text="Changing Password..." value="Submit">
             </form:form>
         </div>
     </div>
@@ -291,25 +294,25 @@
             $("#8char").css("color", "#FF0004");
         }
 
-        if (ucase.test($("#password1").val())) {
-            $("#ucase").removeClass("glyphicon-remove");
-            $("#ucase").addClass("glyphicon-ok");
-            $("#ucase").css("color", "#00A41E");
-        } else {
-            $("#ucase").removeClass("glyphicon-ok");
-            $("#ucase").addClass("glyphicon-remove");
-            $("#ucase").css("color", "#FF0004");
-        }
-
-        if (lcase.test($("#password1").val())) {
-            $("#lcase").removeClass("glyphicon-remove");
-            $("#lcase").addClass("glyphicon-ok");
-            $("#lcase").css("color", "#00A41E");
-        } else {
-            $("#lcase").removeClass("glyphicon-ok");
-            $("#lcase").addClass("glyphicon-remove");
-            $("#lcase").css("color", "#FF0004");
-        }
+        // if (ucase.test($("#password1").val())) {
+        //     $("#ucase").removeClass("glyphicon-remove");
+        //     $("#ucase").addClass("glyphicon-ok");
+        //     $("#ucase").css("color", "#00A41E");
+        // } else {
+        //     $("#ucase").removeClass("glyphicon-ok");
+        //     $("#ucase").addClass("glyphicon-remove");
+        //     $("#ucase").css("color", "#FF0004");
+        // }
+        //
+        // if (lcase.test($("#password1").val())) {
+        //     $("#lcase").removeClass("glyphicon-remove");
+        //     $("#lcase").addClass("glyphicon-ok");
+        //     $("#lcase").css("color", "#00A41E");
+        // } else {
+        //     $("#lcase").removeClass("glyphicon-ok");
+        //     $("#lcase").addClass("glyphicon-remove");
+        //     $("#lcase").css("color", "#FF0004");
+        // }
 
         if (num.test($("#password1").val())) {
             $("#num").removeClass("glyphicon-remove");

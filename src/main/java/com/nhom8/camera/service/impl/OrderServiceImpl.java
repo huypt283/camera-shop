@@ -9,6 +9,7 @@ import com.nhom8.camera.model.request.OffsetBasedPageRequest;
 import com.nhom8.camera.model.request.OrderRequest;
 import com.nhom8.camera.repository.LineItemRepository;
 import com.nhom8.camera.repository.OrderRepository;
+import com.nhom8.camera.repository.ProductRepository;
 import com.nhom8.camera.repository.UserRepository;
 import com.nhom8.camera.service.LineItemService;
 import com.nhom8.camera.service.OrderService;
@@ -29,18 +30,18 @@ public class OrderServiceImpl implements OrderService {
     private LineItemService lineItemService;
     private UserRepository userRepository;
     private ProductService productService;
+    private ProductRepository productRepository;
     private LineItemRepository lineItemRepository;
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository,
-                            LineItemService lineItemService,
-                            UserRepository userRepository,
-                            ProductService productService,
-                            LineItemRepository lineItemRepository){
+    public OrderServiceImpl(OrderRepository orderRepository, LineItemService lineItemService,
+                            UserRepository userRepository, ProductService productService,
+                            ProductRepository productRepository, LineItemRepository lineItemRepository) {
         this.orderRepository = orderRepository;
         this.lineItemService = lineItemService;
         this.userRepository = userRepository;
         this.productService = productService;
+        this.productRepository = productRepository;
         this.lineItemRepository = lineItemRepository;
     }
 
@@ -82,10 +83,22 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void updateOrderStatus(Long id, String status) {
+    public boolean updateOrderStatus(Long id, String status) {
         Order order = orderRepository.findOrderById(id);
         order.setStatus(status);
+        List<LineItem> lineItems = lineItemRepository.findByOrder_Id(order.getId());
+        for (LineItem item : lineItems) {
+            if (status.equalsIgnoreCase("Received")) {
+                Product product = productRepository.findOneById(item.getProduct().getId());
+                int quantity = product.getQuantity();
+                if (quantity-1 >= 0)
+                    product.setQuantity(quantity-1);
+                else
+                    return false;
+            }
+        }
         orderRepository.save(order);
+        return true;
     }
 
     @Override

@@ -23,11 +23,8 @@
         window.scrollTo(0, 1);
     } </script>
     <script src="<c:url value="/template/web/js/jquery.min.js"/>"></script>
-    <!--- start-rate---->
-<%--    <script src="<c:url value="/template/web/js/jstarbox.js"/>"></script>--%>
-<%--    <link rel="stylesheet" href="<c:url value="/template/web/css/jstarbox.css"/>" type="text/css" media="screen"--%>
-<%--          charset="utf-8"/>--%>
     <script src="<c:url value="/template/web/js/jquery.twbsPagination.js"/>" type="text/javascript"></script>
+    <script src="<c:url value="/template/custom/customFormatNumber.js" />"></script>
 </head>
 <body>
 <c:set var="userNameCheck" value="<%=SecurityUtil.getUserName()%>"/>
@@ -91,10 +88,10 @@
                                     <div class="menu-top">
                                         <div class="col1">
                                             <div class="h_nav">
-                                                <c:forEach items="${lstProductBranch}" var="branch">
+                                                <c:forEach items="${lstProductBranch}" var="brand">
                                                     <ul>
                                                         <li>
-                                                            <a href="<c:url value="/product?branchId=${branch.id}"/>">${branch.name}</a>
+                                                            <a href="<c:url value="/product?brandId=${brand.id}"/>">${brand.name}</a>
                                                         </li>
                                                     </ul>
                                                 </c:forEach>
@@ -188,61 +185,63 @@
 <!--content-->
 <div class="product">
     <div class="container">
-<%--        <form action="<c:url value="/product"/>" id="submitForm1" method="get">--%>
-            <div class="col-md-9">
-                <div class="mid-popular">
-                    <c:forEach items="${models1.productList}" var="product">
-                        <div class="col-md-3 item-grid simpleCart_shelfItem">
+        <%--        <form action="<c:url value="/product"/>" id="submitForm1" method="get">--%>
+        <div class="col-md-9">
+            <div class="mid-popular">
+                <c:forEach items="${models1.productList}" var="product" varStatus="itr">
+                    <div class="col-md-3 item-grid simpleCart_shelfItem">
 
-                            <div class=" mid-pop">
-                                <div class="pro-img">
-                                    <img src="<c:url value="${product.productImage}"/>" class="img-responsive"
-                                         alt="">
-                                    <div class="zoom-icon ">
-                                        <a href="<c:url value="/product/${product.id}"/>"><i
-                                                class="glyphicon glyphicon-menu-right icon"></i></a>
-                                    </div>
-                                </div>
-                                <div class="mid-1">
-                                    <div class="women">
-                                        <div class="women-top">
-                                            <span>${product.branch.name}</span>
-                                            <h6><a href="<c:url value="/product/${product.id}"/>">${product.name}</a>
-                                            </h6>
-                                        </div>
-                                        <div class="img item_add">
-                                            <a href="<c:url value="/checkout"/>"><img
-                                                    src="<c:url value="/template/web/images/ca.png"/>" alt=""></a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="mid-2">
-                                        <p><label></label><em class="item_price">${product.unitPrice}</em></p>
-                                        <div class="block">
-                                            <div class="starbox small ghosting"></div>
-                                        </div>
-
-                                        <div class="clearfix"></div>
-                                    </div>
-
+                        <div class=" mid-pop">
+                            <div class="pro-img">
+                                <img src="<c:url value="${product.productImage}"/>" class="img-responsive"
+                                     alt="">
+                                <div class="zoom-icon ">
+                                    <a href="<c:url value="/product/${product.id}"/>"><i
+                                            class="glyphicon glyphicon-menu-right icon"></i></a>
                                 </div>
                             </div>
+                            <div class="mid-1">
+                                <div class="women">
+                                    <div class="women-top">
+                                        <span>${product.brand.name}</span>
+                                        <h6><a href="<c:url value="/product/${product.id}"/>">${product.name}</a>
+                                        </h6>
+                                    </div>
+                                    <div class="img item_add">
+                                        <a href="<c:url value="/checkout"/>"><img
+                                                src="<c:url value="/template/web/images/ca.png"/>" alt=""></a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="mid-2">
+                                    <p><label></label><em id="${itr.index +1}"></em><em class="item_price" hidden>${product.unitPrice}</em></p>
+                                    <div class="block">
+                                        <div class="starbox small ghosting"></div>
+                                    </div>
 
+                                    <div class="clearfix"></div>
+                                </div>
+
+                            </div>
                         </div>
-                    </c:forEach>
-                    <div class="clearfix"></div>
-                    <ul class="pagination" id="pagination"></ul>
-                    <input type="hidden" value="" id="page_product" name="page_product"/>
-                    <input type="hidden" value="${branchId}" id="branchId" name="branchId">
-                </div>
+                        <script>
+                            document.getElementById('${itr.index +1}').innerHTML = FormatNumber('${product.unitPrice}') + 'VNĐ'
+                        </script>
+                    </div>
+                </c:forEach>
+                <div class="clearfix"></div>
+                <ul class="pagination" id="pagination"></ul>
+                <input type="hidden" value="" id="page_product" name="page_product"/>
+                <input type="hidden" value="${branchId}" id="branchId" name="branchId">
             </div>
-<%--        </form>--%>
+        </div>
+        <%--        </form>--%>
         <div class="col-md-3 product-bottom">
             <!--categories-->
             <div class=" rsidebar span_1_of_left">
                 <h4 class="cate">Categories</h4>
                 <ul class="menu-drop">
-                    <c:forEach items="${lstProductBranch}" var="branch">
+                    <c:forEach items="${lstProductBrands}" var="branch">
                         <li class="item1">
                             <h3><a href="<c:url value="/product?branchId=${branch.id}"/>">${branch.name} </a></h3>
                         </li>

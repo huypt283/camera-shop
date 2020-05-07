@@ -63,7 +63,7 @@
                                     <tr style="height: 100px;">
                                         <td>${itr.index +1}</td>
                                         <td>${product.id}</td>
-                                        <td>${product.branch.name}</td>
+                                        <td>${product.brand.name}</td>
                                         <td>${product.name}</td>
                                         <td>${product.quantity}</td>
                                         <td class="currency-custom" id="${itr.index +1}"></td>

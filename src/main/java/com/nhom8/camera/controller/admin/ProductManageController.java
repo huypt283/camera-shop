@@ -1,10 +1,10 @@
 package com.nhom8.camera.controller.admin;
 
 import com.nhom8.camera.entity.Product;
-import com.nhom8.camera.entity.ProductBranch;
+import com.nhom8.camera.entity.ProductBrand;
 import com.nhom8.camera.model.request.CreateProductRequest;
 import com.nhom8.camera.model.request.UpdateProductRequest;
-import com.nhom8.camera.repository.BranchRepository;
+import com.nhom8.camera.repository.BrandRepository;
 import com.nhom8.camera.repository.ProductRepository;
 import com.nhom8.camera.security.CustomUserDetails;
 import com.nhom8.camera.service.ProductService;
@@ -35,13 +35,13 @@ public class ProductManageController {
     private final int limit = 10;
 
     private ProductRepository productRepository;
-    private BranchRepository branchRepository;
+    private BrandRepository brandRepository;
     private ProductService productService;
 
     @Autowired
-    public ProductManageController(ProductRepository productRepository, BranchRepository branchRepository, ProductService productService) {
+    public ProductManageController(ProductRepository productRepository, BrandRepository brandRepository, ProductService productService) {
         this.productRepository = productRepository;
-        this.branchRepository = branchRepository;
+        this.brandRepository = brandRepository;
         this.productService = productService;
     }
 
@@ -59,7 +59,7 @@ public class ProductManageController {
     @GetMapping("/product")
     public ModelAndView createProductGet(@ModelAttribute(value = "productRequest") CreateProductRequest createProductRequest) {
         ModelAndView mav = new ModelAndView("/admin/product-create");
-        List<ProductBranch> branches = branchRepository.findAll();
+        List<ProductBrand> branches = brandRepository.findAll();
         mav.addObject("branches", branches);
         return mav;
     }
@@ -67,7 +67,7 @@ public class ProductManageController {
     @PostMapping("/product")
     public String createProductPost(@Valid @ModelAttribute(value = "productRequest") CreateProductRequest createProductRequest, BindingResult result, HttpServletRequest request, @AuthenticationPrincipal CustomUserDetails userDetails, ModelMap modelMap) {
         if(result.hasErrors()) {
-            List<ProductBranch> branches = branchRepository.findAll();
+            List<ProductBrand> branches = brandRepository.findAll();
             modelMap.addAttribute("branches", branches);
             return "/admin/product-create";
         }
@@ -93,7 +93,7 @@ public class ProductManageController {
     @GetMapping("/product/{id}")
     public ModelAndView productUpdateGet(@PathVariable(value = "id") final Long id, @ModelAttribute(value = "productRequest") UpdateProductRequest updateProductRequest, @RequestParam(value = "page", defaultValue = "1") int page) {
         ModelAndView mav = new ModelAndView("/admin/product-update");
-        List<ProductBranch> branches = branchRepository.findAll();
+        List<ProductBrand> branches = brandRepository.findAll();
         mav.addObject("branches", branches);
         Product product = productService.getSingleProductById(id);
         if (product != null) {
@@ -111,24 +111,25 @@ public class ProductManageController {
             result.addError(new FieldError("updateProductRequest", "name", "Product name already exist or not same old product name"));
         }
         if(result.hasErrors()) {
-            List<ProductBranch> branches = branchRepository.findAll();
+            List<ProductBrand> branches = brandRepository.findAll();
             modelMap.addAttribute("branches", branches);
             modelMap.addAttribute("product", product);
             return "/admin/product-update";
         }
-        String oldProductImage = product.getProductImage();
-        if(oldProductImage != null) {
-            try {
-                final String deleteRootPath = request.getServletContext().getRealPath(oldProductImage);
-                Files.deleteIfExists(Paths.get(deleteRootPath));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+
         final String uploadRootPath = request.getServletContext().getRealPath("template/upload");
         MultipartFile fileData = updateProductRequest.getProductImage();
         String productImage = null;
+        String oldProductImage = product.getProductImage();
         if(!fileData.isEmpty()) {
+            if(oldProductImage != null) {
+                try {
+                    final String deleteRootPath = request.getServletContext().getRealPath(oldProductImage);
+                    Files.deleteIfExists(Paths.get(deleteRootPath));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             String fileName = GenerateSlug.makeSlug(updateProductRequest.getName()) + ".jpg";
             productImage = "/template/upload/" + fileName;
             try {
@@ -139,7 +140,8 @@ public class ProductManageController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        } else
+            productImage = oldProductImage;
         productService.updateProduct(product, updateProductRequest, productImage, userDetails.getUsername(), id);
         return "redirect:/admin/list-product";
     }

@@ -2,7 +2,7 @@ package com.nhom8.camera.controller.web;
 
 import com.nhom8.camera.entity.LineItem;
 import com.nhom8.camera.entity.Order;
-import com.nhom8.camera.entity.ProductBranch;
+import com.nhom8.camera.entity.ProductBrand;
 import com.nhom8.camera.model.request.CheckoutRequest;
 import com.nhom8.camera.model.response.OrderResponse;
 import com.nhom8.camera.repository.LineItemRepository;
@@ -41,22 +41,23 @@ public class OrderController {
     @GetMapping("checkout")
     public ModelAndView checkout() {
         ModelAndView mav = new ModelAndView("web/checkout");
-        List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
-        mav.addObject("lstProductBranch", lstProductBranch);
+        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
+        mav.addObject("lstProductBranch", lstProductBrands);
         return mav;
     }
 
     @GetMapping("/order")
     public String submitOrderGet(ModelMap modelMap) {
-        List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
-        modelMap.addAttribute("lstProductBranch", lstProductBranch);
+        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
+        modelMap.addAttribute("lstProductBranch", lstProductBrands);
+        modelMap.addAttribute("message", "Vui lòng nhập đầy đủ thông tin của bạn để đặt hàng");
         return "/web/order";
     }
 
     @GetMapping("/order-result")
     public String orderResultGet(@RequestParam(value = "error", defaultValue = "true") String error, ModelMap modelMap) {
-        List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
-        modelMap.addAttribute("lstProductBranch", lstProductBranch);
+        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
+        modelMap.addAttribute("lstProductBranch", lstProductBrands);
         if (error.equalsIgnoreCase("false"))
             modelMap.addAttribute("message", "Đặt hàng thành công");
         else
@@ -77,12 +78,12 @@ public class OrderController {
 
     @GetMapping("/order-history")
     public ModelAndView orderHistoryGet(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestParam(value = "limit", defaultValue = "20") int limit) {
-        List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
+        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
         List<Order> orders = orderService.findOrderHistory(userDetails.getId(), limit, 0);
         ModelAndView mav;
         if (!orders.isEmpty()) {
             mav = new ModelAndView("/web/order-history");
-            mav.addObject("lstProductBranch", lstProductBranch);
+            mav.addObject("lstProductBranch", lstProductBrands);
             List<OrderResponse> orderResponses = new ArrayList<>();
             for (Order order : orders) {
                 OrderResponse orderResponse = new OrderResponse();
@@ -95,7 +96,7 @@ public class OrderController {
             mav.addObject("orders", orderResponses);
         } else {
             mav = new ModelAndView("/web/direct-message");
-            mav.addObject("lstProductBranch", lstProductBranch);
+            mav.addObject("lstProductBranch", lstProductBrands);
             mav.addObject("message", "Bạn chưa có đơn hàng nào");
         }
         return mav;
@@ -103,14 +104,14 @@ public class OrderController {
 
     @GetMapping("/order/{id}")
     public ModelAndView orderDetailGet(@AuthenticationPrincipal CustomUserDetails userDetails, @PathVariable(value = "id") Long orderId) {
-        List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
+        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
         Order order = orderService.findById(orderId);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>(userDetails
                 .getAuthorities());
         ModelAndView mav;
         if (order != null && (userDetails.getId() == order.getUser().getId() || isAdmin(grantedAuthorities))) {
             mav = new ModelAndView("/web/order-detail");
-            mav.addObject("lstProductBranch", lstProductBranch);
+            mav.addObject("lstProductBranch", lstProductBrands);
             OrderResponse orderResponse = new OrderResponse();
             BeanUtils.copyProperties(order, orderResponse);
             orderResponse.setUserName(order.getUser().getUserName());
@@ -119,7 +120,7 @@ public class OrderController {
             mav.addObject("order", orderResponse);
         } else {
             mav = new ModelAndView("/web/direct-message");
-            mav.addObject("lstProductBranch", lstProductBranch);
+            mav.addObject("lstProductBranch", lstProductBrands);
             mav.addObject("message", "Không tồn tại đơn hàng này hoặc bạn không có quyền xem");
         }
         return mav;

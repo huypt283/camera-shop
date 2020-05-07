@@ -1,11 +1,12 @@
 <%@ include file="/common/taglib.jsp" %>
+<%@page import="com.nhom8.camera.util.SecurityUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Update branch</title>
+    <title>Create brand</title>
     <link rel="icon" type="image/png" sizes="16x16" href="<c:url value="/template/admin/assets/images/favicon.png" />">
     <link href="<c:url value="/template/admin/css/style.css" />" rel="stylesheet">
     <script src="<c:url value="/template/admin/js/modernizr-3.6.0.min.js" />"></script>
@@ -39,21 +40,21 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="form-validation">
-                                <form:form class="form-valide" action="/admin/branch/${id}" method="POST"
-                                           modelAttribute="branchRequest">
+                                <form:form class="form-valide" action="/admin/brand" method="POST"
+                                           modelAttribute="brandRequest">
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label">Branch name <span
                                                 class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
                                             <input type="text" class="form-control" name="name"
-                                                   placeholder="Enter branch name.." value="${branch.name}">
+                                                   placeholder="Enter branch name.." value="">
                                             <form:errors path="name" cssStyle="color: red"></form:errors>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-8 ml-auto">
-                                            <button type="submit" class="btn btn-primary">Update branch</button>
+                                            <button type="submit" class="btn btn-primary">Create brand</button>
                                         </div>
                                     </div>
                                 </form:form>

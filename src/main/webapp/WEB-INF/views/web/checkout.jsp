@@ -86,10 +86,10 @@
                                     <div class="menu-top">
                                         <div class="col1">
                                             <div class="h_nav">
-                                                <c:forEach items="${lstProductBranch}" var="branch">
+                                                <c:forEach items="${lstProductBranch}" var="brand">
                                                     <ul>
                                                         <li>
-                                                            <a href="<c:url value="/product?branchId=${branch.id}"/>">${branch.name}</a>
+                                                            <a href="<c:url value="/product?brandId=${brand.id}"/>">${brand.name}</a>
                                                         </li>
                                                     </ul>
                                                 </c:forEach>
@@ -242,7 +242,7 @@
         </div>
         <div class="produced">
             <a href="<c:url value="/order"/>" class="hvr-skew-backward">Check out</a>
-            <a href="${pageContext.request.contextPath}/home" class="hvr-skew-backward">Continue shopphing</a>
+            <a href="${pageContext.request.contextPath}/home" class="hvr-skew-backward">Continue shopping</a>
         </div>
     </div>
 </div>

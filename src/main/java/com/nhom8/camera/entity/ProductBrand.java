@@ -10,8 +10,8 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "branchs")
-public class ProductBranch extends Base {
+@Table(name = "brands")
+public class ProductBrand extends Base {
     @Column(unique = true, nullable = false, length = 50)
     private String name;
 }

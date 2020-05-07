@@ -20,6 +20,8 @@ public interface OrderRepository extends JpaRepository<Order,Long> {
     List<Order> findOrderListByUserId(@Param(value = "userid") Long userId, Pageable pageable);
 
     Order findOrderById(Long id);
+    
+    List<Order> findAllByUser_Id(Long userId);
 
     void deleteById(Long id);
 }

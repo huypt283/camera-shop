@@ -25,6 +25,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("select u from User u where u.userName = :param or u.email = :param")
     User findByUserNameOrEmail(@Param(value = "param") String param);
 
-    @Query("select u from User u where u.userName <> :username")
+    @Query("select u from User u where u.userName <> :username and u.active = true")
     List<User> findUserList(@Param(value = "username") String username, Pageable pageable);
+
+    int countAllByActiveTrue();
 }

@@ -42,7 +42,7 @@ public class UserManageController {
         ModelAndView mav = new ModelAndView("/admin/user-table");
         int offset = (page-1)*limit;
         List<User> users = userService.getUserAndSort(userDetails.getUsername(), limit, offset);
-        long totalPage = userRepository.count()/limit + 1;
+        long totalPage = userRepository.countAllByActiveTrue()/limit + 1;
         mav.addObject("totalPage", totalPage);
         mav.addObject("users", users);
         return mav;
@@ -57,8 +57,10 @@ public class UserManageController {
     }
 
     @PostMapping("/user")
-    public String createUserPost(@Valid @ModelAttribute(value = "userRequest") CreateUserAdminRequest createUserAdminRequest, BindingResult result) {
+    public String createUserPost(@Valid @ModelAttribute(value = "userRequest") CreateUserAdminRequest createUserAdminRequest, BindingResult result, ModelMap modelMap) {
         if(result.hasErrors()) {
+            List<Role> roles = roleRepository.findAll();
+            modelMap.addAttribute("roles", roles);
             return "/admin/user-create";
         }
         userService.createUserAdmin(createUserAdminRequest);

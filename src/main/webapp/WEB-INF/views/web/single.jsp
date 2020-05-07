@@ -23,11 +23,8 @@
         window.scrollTo(0, 1);
     } </script>
     <script src="<c:url value="/template/web/js/jquery.min.js"/>"></script>
-    <!--- start-rate---->
-<%--    <script src="<c:url value="/template/web/js/jstarbox.js"/>"></script>--%>
-<%--    <link rel="stylesheet" href="<c:url value="/template/web/css/jstarbox.css"/>" type="text/css" media="screen"--%>
-<%--          charset="utf-8"/>--%>
     <link href="<c:url value="/template/web/css/form.css"/>" rel="stylesheet" type="text/css" media="all"/>
+    <script src="<c:url value="/template/custom/customFormatNumber.js" />"></script>
 </head>
 <body>
 <c:set var="userNameCheck" value="<%=SecurityUtil.getUserName()%>"/>
@@ -91,10 +88,10 @@
                                     <div class="menu-top">
                                         <div class="col1">
                                             <div class="h_nav">
-                                                <c:forEach items="${lstProductBranch}" var="branch">
+                                                <c:forEach items="${lstProductBranch}" var="brand">
                                                     <ul>
                                                         <li>
-                                                            <a href="<c:url value="/product?branchId=${branch.id}"/>">${branch.name}</a>
+                                                            <a href="<c:url value="/product?brandId=${brand.id}"/>">${brand.name}</a>
                                                         </li>
                                                     </ul>
                                                 </c:forEach>
@@ -192,14 +189,16 @@
                 <div class="span_2_of_a1 simpleCart_shelfItem">
                     <h3>${product.name}</h3>
                     <input type="hidden" value="${product.id}" id="productid" name="productid">
-                    <p class="in-para"> ${product.branch.name}</p>
+                    <p class="in-para"> ${product.brand.name}</p>
                     <div class="price_single">
-                        <span class="reducedfrom item_price">${product.unitPrice}</span>
+                        <span class="reducedfrom" id="camera-price"></span>
+                        <span class="reducedfrom item_price" hidden>${product.unitPrice}</span>
 
                         <div class="clearfix"></div>
+                        <script>
+                            document.getElementById('camera-price').innerHTML = FormatNumber('${product.unitPrice}') + 'VNĐ'
+                        </script>
                     </div>
-                    <h4 class="quick">Quick Overview:</h4>
-                    <p class="quick_desc">None</p>
 
                     <div class="quantity">
                         <div class="quantity-select">

@@ -18,7 +18,7 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @GetMapping("/home")
+    @GetMapping(value = {"/home" , "/"})
     public String home(@AuthenticationPrincipal CustomUserDetails customUserDetails, ModelMap modelMap) {
         UserResponse user = userService.findUserById(customUserDetails.getId());
         modelMap.addAttribute("user", user);

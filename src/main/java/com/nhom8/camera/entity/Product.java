@@ -15,7 +15,7 @@ import java.util.Date;
 @Table(name = "products")
 public class Product extends Base {
     @ManyToOne
-    private ProductBranch branch;
+    private ProductBrand brand;
 
     @Column(length = 100, nullable = false, unique = true)
     private String name;

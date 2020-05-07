@@ -22,10 +22,10 @@ public class ChangeProfileRequest {
     @Size(min = 10, max = 50, message = "Must be between 6 and 50 characters")
     private String fullName;
 
-    @Size(max = 15, message = "Must be less than 15 characters")
+    @Size(min = 10, max = 12, message = "Must be between 10 and 12 characters")
     private String phone;
 
-    @Size(max = 100, message = "Must be less than 100 characters")
+    @Size(min = 15, max = 100, message = "Must be between 15 and 100 characters")
     private String address;
 
     @Size(min = 6, max = 30, message = "Must be between 8 and 30 characters")

@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Validated
@@ -28,5 +29,6 @@ public class CreateProductRequest {
 
     private MultipartFile productImage;
 
+    @NotNull(message = "Please choose one brand")
     private Long branchId;
 }

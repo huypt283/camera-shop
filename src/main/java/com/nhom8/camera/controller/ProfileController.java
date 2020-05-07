@@ -45,6 +45,7 @@ public class ProfileController {
         ModelAndView mav = new ModelAndView("profile-change");
         UserResponse user = userService.findUserById(userDetails.getId());
         mav.addObject("user", user);
+        mav.addObject("message", "Nhập vào thông tin để thay đổi thông tin cá nhân");
         return mav;
     }
 
@@ -54,17 +55,17 @@ public class ProfileController {
         UserResponse userResponse = new UserResponse();
         BeanUtils.copyProperties(user, userResponse);
         if (!passwordEncoder.matches(changeProfileRequest.getCurrentPassword(), user.getPassword())) {
-            result.addError(new FieldError("changeProfileRequest", "password", "Password wrong"));
-        }
-        if (result.hasErrors()) {
-            modelMap.addAttribute("user", userResponse);
-            return "profile-change";
+            result.addError(new FieldError("changeProfileRequest", "currentPassword", "Password wrong"));
         }
 
         String email = changeProfileRequest.getEmail();
         if (!email.equals(user.getEmail()) && !userService.emailValid(email)) {
             result.addError(new FieldError("changeProfileRequest", "email", "Email already exist or not same old email"));
+        }
+
+        if (result.hasErrors()) {
             modelMap.addAttribute("user", userResponse);
+            modelMap.addAttribute("message", "Dữ liệu nhập vào chưa đúng, mời bạn nhập lại");
             return "profile-change";
         } else {
             BeanUtils.copyProperties(changeProfileRequest, user);
@@ -88,6 +89,7 @@ public class ProfileController {
         ModelAndView mav = new ModelAndView("password-change");
         UserResponse user = userService.findUserById(userDetails.getId());
         mav.addObject("user", user);
+        mav.addObject("message", "Nhập vào thông tin để đổi mật khẩu");
         return mav;
     }
 
@@ -96,18 +98,21 @@ public class ProfileController {
         User user = userRepository.findUserById(userDetails.getId());
         UserResponse userResponse = new UserResponse();
         BeanUtils.copyProperties(user, userResponse);
+        if(!changePasswordRequest.getPassword().equals(changePasswordRequest.getConfirmPassword()))
+            result.addError(new FieldError("changePasswordRequest", "confirmPassword", "Confirm password not match"));
+
+        if (!passwordEncoder.matches(changePasswordRequest.getOldPassword(), user.getPassword()))
+            result.addError(new FieldError("changePasswordRequest", "oldPassword", "Old password wrong"));
+
         if (result.hasErrors()) {
             modelMap.addAttribute("user", userResponse);
+            modelMap.addAttribute("message", "Dữ liệu nhập vào chưa đúng, mời bạn nhập lại");
             return "password-change";
-        }
-        if (passwordEncoder.matches(changePasswordRequest.getOldPassword(), user.getPassword())) {
+        } else {
             user.setPassword(passwordEncoder.encode(changePasswordRequest.getPassword()));
             userRepository.save(user);
-        } else {
-            result.addError(new FieldError("changePasswordRequest", "oldPassword", "Old password wrong"));
-            modelMap.addAttribute("user", userResponse);
-            return "password-change";
         }
+
         modelMap.addAttribute("message", "Đổi mật khẩu thành công");
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>(userDetails

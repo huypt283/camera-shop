@@ -91,7 +91,11 @@ public class OrderManageController {
             modelMap.addAttribute("listStatus", listStatus);
             return "/admin/order-update";
         }
-        orderService.updateOrderStatus(id, updateOrder.getStatus());
-        return "redirect:/admin/list-order";
+        if(orderService.updateOrderStatus(id, updateOrder.getStatus())) {
+            return "redirect:/admin/list-order";
+        } else {
+            modelMap.addAttribute("message", "Có sản phẩm đã hết hàng, cần nhập thêm trước khi xác nhận đơn hàng này đã nhận.");
+            return "/admin/direct-message";
+        }
     }
 }

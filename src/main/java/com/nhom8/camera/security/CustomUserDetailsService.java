@@ -3,6 +3,7 @@ package com.nhom8.camera.security;
 import com.nhom8.camera.entity.Role;
 import com.nhom8.camera.entity.User;
 import com.nhom8.camera.repository.UserRepository;
+import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,7 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         User user = iUserRepository.findByUserNameOrEmail(userName);
 
-        if (user == null) {
+        if (user == null || BooleanUtils.isFalse(user.getActive())) {
             throw new UsernameNotFoundException("User not found");
         }
 
@@ -48,7 +49,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserById(Long userId) {
         User user = iUserRepository.findUserById(userId);
 
-        if (user == null) {
+        if (user == null || BooleanUtils.isFalse(user.getActive())) {
             throw new UsernameNotFoundException("User not found");
         }
 

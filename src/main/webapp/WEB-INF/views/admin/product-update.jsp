@@ -80,17 +80,17 @@
                                         </div>
                                     </div>
                                     <label>Branch</label>
-                                    <c:forEach items="${branches}" var="branch">
-                                        <c:if test="${product.branch == branch}">
+                                    <c:forEach items="${branches}" var="brand">
+                                        <c:if test="${product.brand == brand}">
                                         <p>
                                             <input type="radio" class="check-box" name="branchId" checked="checked"
-                                                   value="${branch.id}"> ${branch.name}
+                                                   value="${brand.id}"> ${brand.name}
                                         </p>
                                         </c:if>
-                                        <c:if test="${product.branch != branch}">
+                                        <c:if test="${product.brand != brand}">
                                             <p>
                                                 <input type="radio" class="check-box" name="branchId"
-                                                       value="${branch.id}"> ${branch.name}
+                                                       value="${brand.id}"> ${brand.name}
                                             </p>
                                         </c:if>
                                     </c:forEach>

@@ -31,10 +31,10 @@ public class CreateUserAdminRequest {
     @Size(min = 6, max = 30, message = "Must be between 6 and 30 characters")
     private String password;
 
-    @Size(max = 15, message = "Must be less than 15 characters")
+    @Size(min = 10, max = 12, message = "Must be less than 15 characters")
     private String phone;
 
-    @Size(max = 100, message = "Must be less than 100 characters")
+    @Size(min = 15, max = 100, message = "Must be less than 100 characters")
     private String address;
 
     private Set<Long> ids;

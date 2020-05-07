@@ -1,6 +1,6 @@
 package com.nhom8.camera.controller.web;
 
-import com.nhom8.camera.entity.ProductBranch;
+import com.nhom8.camera.entity.ProductBrand;
 import com.nhom8.camera.model.request.UserRegisterRequest;
 import com.nhom8.camera.service.ProductBranchService;
 import com.nhom8.camera.service.UserService;
@@ -32,16 +32,16 @@ public class RegisterController {
     @GetMapping
     public ModelAndView register(@ModelAttribute("userRegister") UserRegisterRequest userRegisterRequest) {
         ModelAndView mav = new ModelAndView("web/register");
-        List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
-        mav.addObject("lstProductBranch", lstProductBranch);
+        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
+        mav.addObject("lstProductBranch", lstProductBrands);
         return mav;
     }
 
     @PostMapping
     public String register(@Valid @ModelAttribute("userRegister") UserRegisterRequest userRegisterRequest, BindingResult result, ModelMap modelMap) {
         if (result.hasErrors()) {
-            List<ProductBranch> lstProductBranch = productBranchService.getListProductBranch();
-            modelMap.addAttribute("lstProductBranch", lstProductBranch);
+            List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
+            modelMap.addAttribute("lstProductBranch", lstProductBrands);
             return "web/register";
         }
         userService.saveUser(userRegisterRequest);

@@ -7,7 +7,7 @@
             </li>
             <li><a href="<c:url value="/admin/list-user" />"><i class="mdi mdi-table-edit"></i> <span class="nav-text">Users</span></a>
             </li>
-            <li><a href="<c:url value="/admin/list-branch" />"><i class="mdi mdi-table-edit"></i> <span class="nav-text">Branches</span></a>
+            <li><a href="<c:url value="/admin/list-brand" />"><i class="mdi mdi-table-edit"></i> <span class="nav-text">Brands</span></a>
             </li>
             <li><a href="<c:url value="/admin/list-product" />"><i class="mdi mdi-table-edit"></i> <span class="nav-text">Products</span></a>
             </li>

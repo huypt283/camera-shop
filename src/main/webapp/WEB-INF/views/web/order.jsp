@@ -89,10 +89,10 @@
                                     <div class="menu-top">
                                         <div class="col1">
                                             <div class="h_nav">
-                                                <c:forEach items="${lstProductBranch}" var="branch">
+                                                <c:forEach items="${lstProductBranch}" var="brand">
                                                     <ul>
                                                         <li>
-                                                            <a href="<c:url value="/product?branchId=${branch.id}"/>">${branch.name}</a>
+                                                            <a href="<c:url value="/product?brandId=${brand.id}"/>">${brand.name}</a>
                                                         </li>
                                                     </ul>
                                                 </c:forEach>
@@ -192,6 +192,9 @@
             </div>
         </div>
     </div>
+    <br>
+    <h3 id="message-dr" style="font-family: ''; text-align: center">${message}</h3>
+    <br><br>
     <div class="row cart-body">
         <form class="form-horizontal" id="orderForm">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
@@ -216,11 +219,11 @@
                             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
                         }
                     </style>
-                    <div class="panel-heading">Address</div>
+                    <div class="panel-heading">Your information</div>
                     <div class="panel-body">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <h4>Confirm order</h4>
+                                <h4>Type here</h4>
                             </div>
                         </div>
                         <div class="form-group">
@@ -231,7 +234,8 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <span id="validFullName" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span>Min 8 Characters<br>
+                                <span id="validFullName" class="glyphicon glyphicon-remove"
+                                      style="color:#FF0004;"></span>Min 8 Characters<br>
                             </div>
                         </div>
                         <div class="form-group">
@@ -242,7 +246,8 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <span id="validAddress" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span>15-100 Characters<br>
+                                <span id="validAddress" class="glyphicon glyphicon-remove"
+                                      style="color:#FF0004;"></span>15-100 Characters<br>
                             </div>
                         </div>
                         <div class="form-group">
@@ -253,13 +258,14 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <span id="validPhoneNumber" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span>Is phone number
-                                Long<br>
+                                <span id="validPhoneNumber" class="glyphicon glyphicon-remove"
+                                      style="color:#FF0004;"></span>Is phone number
+                                <br>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <button type="button" class="btn btn-primary btn-submit-fix">Place Order</button>
+                                <button type="button" class="btn btn-primary btn-submit-fix">Order</button>
                             </div>
                         </div>
                     </div>
@@ -326,7 +332,7 @@
                 event.preventDefault();
                 var info = {
                     shippingAddress: $("#address").val(),
-                    note: 'Người nhận: ' + ($("#fullName").val() === '' ? 'NaN' : $("#fullName").val()) + ', số điện thoại: ' + ($("#phoneNumber").val() === '' ? 'NaN' : $("#phoneNumber").val()),
+                    note: 'Người nhận: ' + ($("#fullName").val() === '' ? 'NaN' : $("#fullName").val()) + '. Số điện thoại: ' + ($("#phoneNumber").val() === '' ? 'NaN' : $("#phoneNumber").val()),
                     totalPrice: total()
                 };
                 var listInfo = [];
@@ -342,8 +348,18 @@
                     orderRequest: info,
                     lineItemRequests: listInfo
                 };
-                if(data.lineItemRequests.length > 0)
+                var isphone1 = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/.test($("#phoneNumber").val());
+                var isphone2 = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{5})$/.test($("#phoneNumber").val());
+                var isphone3 = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{6})$/.test($("#phoneNumber").val());
+                if (data.lineItemRequests.length > 0
+                    && ($("#fullName").val().length >= 8)
+                    && (($("#address").val().length >= 15 && $("#address").val().length <= 100))
+                    && ($("#phoneNumber").val().length >= 10 && $("#phoneNumber").val().length <= 12 && (isphone1 || isphone2 || isphone3)))
                     ajaxPost(data);
+                else if (!($("#fullName").val().length >= 8)
+                    || !(($("#address").val().length >= 15 && $("#address").val().length <= 100))
+                    || !($("#phoneNumber").val().length >= 10 && $("#phoneNumber").val().length <= 12 && (isphone1 || isphone2 || isphone3)))
+                    window.location.href = '/order';
                 else
                     window.location.href = "/order-result?error=true";
             });
@@ -376,6 +392,7 @@
 </script>
 <script>
     var data = shoppingCart.get();
+
     function appendData(data) {
         var mainContainer = document.getElementById("myData");
         for (var i = 0; i < data.length; i++) {

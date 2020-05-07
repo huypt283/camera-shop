@@ -87,10 +87,10 @@
                                     <div class="menu-top">
                                         <div class="col1">
                                             <div class="h_nav">
-                                                <c:forEach items="${lstProductBranch}" var="branch">
+                                                <c:forEach items="${lstProductBranch}" var="brand">
                                                     <ul>
                                                         <li>
-                                                            <a href="<c:url value="/product?branchId=${branch.id}"/>">${branch.name}</a>
+                                                            <a href="<c:url value="/product?brandId=${brand.id}"/>">${brand.name}</a>
                                                         </li>
                                                     </ul>
                                                 </c:forEach>
@@ -229,7 +229,7 @@
 <%--            <div class=" rsidebar span_1_of_left">--%>
 <%--                <h4 class="cate">Categories</h4>--%>
 <%--                <ul class="menu-drop">--%>
-<%--                    <c:forEach items="${lstProductBranch}" var="branch">--%>
+<%--                    <c:forEach items="${lstProductBrands}" var="branch">--%>
 <%--                        <li class="item1">--%>
 <%--                            <h3><a href="<c:url value="/product?branchId=${branch.id}"/>">${branch.name} </a></h3>--%>
 <%--                        </li>--%>

@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @Validated
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
-public class BranchRequest {
+public class BrandRequest {
     @Size(min = 2, max = 50, message = "Must be between 2 and 50 characters")
     private String name;
 }
