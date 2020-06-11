@@ -1,6 +1,7 @@
 package com.nhom8.camera.service.impl;
 
 import com.nhom8.camera.entity.LineItem;
+import com.nhom8.camera.entity.Product;
 import com.nhom8.camera.repository.LineItemRepository;
 import com.nhom8.camera.service.LineItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,12 @@ public class LineItemServiceImpl implements LineItemService {
         try {
             lineItemRepository.saveAll(lineItems);
         } catch (Exception e) {
-            throw e;
+            e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<LineItem> findByProduct(Product product) {
+        return lineItemRepository.findByProduct(product);
     }
 }

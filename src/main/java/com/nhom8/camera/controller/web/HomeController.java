@@ -3,7 +3,7 @@ package com.nhom8.camera.controller.web;
 import com.nhom8.camera.entity.Product;
 import com.nhom8.camera.entity.ProductBrand;
 import com.nhom8.camera.model.response.PageResponse;
-import com.nhom8.camera.service.ProductBranchService;
+import com.nhom8.camera.service.ProductBrandService;
 import com.nhom8.camera.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,13 +18,13 @@ import java.util.List;
 @RequestMapping("/home")
 public class HomeController {
     private ProductService productService;
-    private ProductBranchService productBranchService;
+    private ProductBrandService productBrandService;
     private final int limit = 10;
 
     @Autowired
-    public HomeController(ProductService productService, ProductBranchService productBranchService) {
+    public HomeController(ProductService productService, ProductBrandService productBrandService) {
         this.productService = productService;
-        this.productBranchService = productBranchService;
+        this.productBrandService = productBrandService;
     }
 
     @GetMapping
@@ -37,10 +37,10 @@ public class HomeController {
         pageResponse.setProductList(products);
         pageResponse.setTotalItem(productService.getCount());
         pageResponse.setTotalPage((int) Math.ceil((double) pageResponse.getTotalItem()/pageResponse.getLimit() ));
-        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
+        List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
         ModelAndView mav = new ModelAndView("/web/index");
         mav.addObject("models", pageResponse);
-        mav.addObject("lstProductBranch", lstProductBrands);
+        mav.addObject("lstProductBrand", lstProductBrands);
         return mav;
     }
 }

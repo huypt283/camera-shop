@@ -4,7 +4,7 @@ import com.nhom8.camera.entity.Product;
 import com.nhom8.camera.entity.ProductBrand;
 import com.nhom8.camera.model.request.SearchRequest;
 import com.nhom8.camera.security.CustomUserDetails;
-import com.nhom8.camera.service.ProductBranchService;
+import com.nhom8.camera.service.ProductBrandService;
 import com.nhom8.camera.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,12 +22,12 @@ import java.util.List;
 @Controller
 public class AppController {
     private ProductService productService;
-    private ProductBranchService productBranchService;
+    private ProductBrandService productBrandService;
 
     @Autowired
-    public AppController(ProductService productService, ProductBranchService productBranchService) {
+    public AppController(ProductService productService, ProductBrandService productBrandService) {
         this.productService = productService;
-        this.productBranchService = productBranchService;
+        this.productBrandService = productBrandService;
     }
 
     @GetMapping(value = {"/", "/index"})
@@ -37,14 +37,14 @@ public class AppController {
 
     @GetMapping("/login")
     public ModelAndView login(@AuthenticationPrincipal CustomUserDetails userDetails) {
-        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
+        List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
         ModelAndView mav;
         if (userDetails == null) {
             mav = new ModelAndView("/login");
-            mav.addObject("lstProductBranch", lstProductBrands);
+            mav.addObject("lstProductBrand", lstProductBrands);
         } else {
             mav = new ModelAndView("web/direct-message");
-            mav.addObject("lstProductBranch", lstProductBrands);
+            mav.addObject("lstProductBrand", lstProductBrands);
             mav.addObject("message", "Bạn đang đăng nhập");
         }
         return mav;
@@ -52,15 +52,15 @@ public class AppController {
 
     @GetMapping("/info")
     public String webInfo(ModelMap modelMap) {
-        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
-        modelMap.addAttribute("lstProductBranch", lstProductBrands);
+        List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
+        modelMap.addAttribute("lstProductBrand", lstProductBrands);
         return "/web/info";
     }
 
     @GetMapping("/contact")
     public String contact(ModelMap modelMap) {
-        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
-        modelMap.addAttribute("lstProductBranch", lstProductBrands);
+        List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
+        modelMap.addAttribute("lstProductBrand", lstProductBrands);
         return "web/contact";
     }
 
@@ -76,8 +76,8 @@ public class AppController {
 
     @GetMapping("/search")
     public String search(@RequestParam(value = "query", defaultValue = "") String value, @RequestParam(value = "limit", defaultValue = "10") int limit, ModelMap modelMap) {
-        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
-        modelMap.addAttribute("lstProductBranch", lstProductBrands);
+        List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
+        modelMap.addAttribute("lstProductBrand", lstProductBrands);
         List<Product> products = productService.search(value, limit, 0);
         if (!products.isEmpty()) {
             modelMap.addAttribute("products", products);

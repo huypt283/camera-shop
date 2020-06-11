@@ -2,22 +2,22 @@ package com.nhom8.camera.service.impl;
 
 import com.nhom8.camera.entity.ProductBrand;
 import com.nhom8.camera.repository.ProductBrandRepository;
-import com.nhom8.camera.service.ProductBranchService;
+import com.nhom8.camera.service.ProductBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ProductBranchServiceImpl implements ProductBranchService {
+public class ProductBrandServiceImpl implements ProductBrandService {
    private ProductBrandRepository productBrandRepository;
 
    @Autowired
-   public ProductBranchServiceImpl(ProductBrandRepository productBrandRepository){this.productBrandRepository = productBrandRepository;}
+   public ProductBrandServiceImpl(ProductBrandRepository productBrandRepository){this.productBrandRepository = productBrandRepository;}
 
 
     @Override
-    public List<ProductBrand> getListProductBranch() {
+    public List<ProductBrand> getListProductBrand() {
         return productBrandRepository.findAllByArrangeName();
     }
 }

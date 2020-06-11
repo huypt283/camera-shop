@@ -194,7 +194,7 @@
                                 <div class="mid-1">
                                     <div class="women">
                                         <div class="women-top">
-                                            <span>${product.branch.name}</span>
+                                            <span>${product.brand.name}</span>
                                             <h6><a href="<c:url value="/product/${product.id}"/>">${product.name}</a>
                                             </h6>
                                         </div>

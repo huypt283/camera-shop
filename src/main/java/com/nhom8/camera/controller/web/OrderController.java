@@ -8,7 +8,7 @@ import com.nhom8.camera.model.response.OrderResponse;
 import com.nhom8.camera.repository.LineItemRepository;
 import com.nhom8.camera.security.CustomUserDetails;
 import com.nhom8.camera.service.OrderService;
-import com.nhom8.camera.service.ProductBranchService;
+import com.nhom8.camera.service.ProductBrandService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,36 +28,36 @@ import java.util.function.Predicate;
 @Controller
 public class OrderController {
     private OrderService orderService;
-    private ProductBranchService productBranchService;
+    private ProductBrandService productBrandService;
     private LineItemRepository lineItemRepository;
 
     @Autowired
-    public OrderController(OrderService orderService, ProductBranchService productBranchService, LineItemRepository lineItemRepository) {
+    public OrderController(OrderService orderService, ProductBrandService productBrandService, LineItemRepository lineItemRepository) {
         this.orderService = orderService;
-        this.productBranchService = productBranchService;
+        this.productBrandService = productBrandService;
         this.lineItemRepository = lineItemRepository;
     }
 
     @GetMapping("checkout")
     public ModelAndView checkout() {
         ModelAndView mav = new ModelAndView("web/checkout");
-        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
-        mav.addObject("lstProductBranch", lstProductBrands);
+        List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
+        mav.addObject("lstProductBrand", lstProductBrands);
         return mav;
     }
 
     @GetMapping("/order")
     public String submitOrderGet(ModelMap modelMap) {
-        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
-        modelMap.addAttribute("lstProductBranch", lstProductBrands);
+        List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
+        modelMap.addAttribute("lstProductBrand", lstProductBrands);
         modelMap.addAttribute("message", "Vui lòng nhập đầy đủ thông tin của bạn để đặt hàng");
         return "/web/order";
     }
 
     @GetMapping("/order-result")
     public String orderResultGet(@RequestParam(value = "error", defaultValue = "true") String error, ModelMap modelMap) {
-        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
-        modelMap.addAttribute("lstProductBranch", lstProductBrands);
+        List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
+        modelMap.addAttribute("lstProductBrand", lstProductBrands);
         if (error.equalsIgnoreCase("false"))
             modelMap.addAttribute("message", "Đặt hàng thành công");
         else
@@ -78,12 +78,12 @@ public class OrderController {
 
     @GetMapping("/order-history")
     public ModelAndView orderHistoryGet(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestParam(value = "limit", defaultValue = "20") int limit) {
-        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
+        List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
         List<Order> orders = orderService.findOrderHistory(userDetails.getId(), limit, 0);
         ModelAndView mav;
         if (!orders.isEmpty()) {
             mav = new ModelAndView("/web/order-history");
-            mav.addObject("lstProductBranch", lstProductBrands);
+            mav.addObject("lstProductBrand", lstProductBrands);
             List<OrderResponse> orderResponses = new ArrayList<>();
             for (Order order : orders) {
                 OrderResponse orderResponse = new OrderResponse();
@@ -96,7 +96,7 @@ public class OrderController {
             mav.addObject("orders", orderResponses);
         } else {
             mav = new ModelAndView("/web/direct-message");
-            mav.addObject("lstProductBranch", lstProductBrands);
+            mav.addObject("lstProductBrand", lstProductBrands);
             mav.addObject("message", "Bạn chưa có đơn hàng nào");
         }
         return mav;
@@ -104,14 +104,14 @@ public class OrderController {
 
     @GetMapping("/order/{id}")
     public ModelAndView orderDetailGet(@AuthenticationPrincipal CustomUserDetails userDetails, @PathVariable(value = "id") Long orderId) {
-        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
+        List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
         Order order = orderService.findById(orderId);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>(userDetails
                 .getAuthorities());
         ModelAndView mav;
         if (order != null && (userDetails.getId() == order.getUser().getId() || isAdmin(grantedAuthorities))) {
             mav = new ModelAndView("/web/order-detail");
-            mav.addObject("lstProductBranch", lstProductBrands);
+            mav.addObject("lstProductBrand", lstProductBrands);
             OrderResponse orderResponse = new OrderResponse();
             BeanUtils.copyProperties(order, orderResponse);
             orderResponse.setUserName(order.getUser().getUserName());
@@ -120,7 +120,7 @@ public class OrderController {
             mav.addObject("order", orderResponse);
         } else {
             mav = new ModelAndView("/web/direct-message");
-            mav.addObject("lstProductBranch", lstProductBrands);
+            mav.addObject("lstProductBrand", lstProductBrands);
             mav.addObject("message", "Không tồn tại đơn hàng này hoặc bạn không có quyền xem");
         }
         return mav;

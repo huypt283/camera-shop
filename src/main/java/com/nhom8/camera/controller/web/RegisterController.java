@@ -2,7 +2,7 @@ package com.nhom8.camera.controller.web;
 
 import com.nhom8.camera.entity.ProductBrand;
 import com.nhom8.camera.model.request.UserRegisterRequest;
-import com.nhom8.camera.service.ProductBranchService;
+import com.nhom8.camera.service.ProductBrandService;
 import com.nhom8.camera.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,27 +21,27 @@ import java.util.List;
 @RequestMapping("/register")
 public class RegisterController {
     private UserService userService;
-    private ProductBranchService productBranchService;
+    private ProductBrandService productBrandService;
 
     @Autowired
-    public RegisterController(UserService userService, ProductBranchService productBranchService) {
+    public RegisterController(UserService userService, ProductBrandService productBrandService) {
         this.userService = userService;
-        this.productBranchService = productBranchService;
+        this.productBrandService = productBrandService;
     }
 
     @GetMapping
     public ModelAndView register(@ModelAttribute("userRegister") UserRegisterRequest userRegisterRequest) {
         ModelAndView mav = new ModelAndView("web/register");
-        List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
-        mav.addObject("lstProductBranch", lstProductBrands);
+        List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
+        mav.addObject("lstProductBrand", lstProductBrands);
         return mav;
     }
 
     @PostMapping
     public String register(@Valid @ModelAttribute("userRegister") UserRegisterRequest userRegisterRequest, BindingResult result, ModelMap modelMap) {
         if (result.hasErrors()) {
-            List<ProductBrand> lstProductBrands = productBranchService.getListProductBranch();
-            modelMap.addAttribute("lstProductBranch", lstProductBrands);
+            List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
+            modelMap.addAttribute("lstProductBrand", lstProductBrands);
             return "web/register";
         }
         userService.saveUser(userRegisterRequest);

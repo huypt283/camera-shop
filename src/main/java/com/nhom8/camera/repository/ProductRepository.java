@@ -24,7 +24,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findAllByBranchId(@Param(value = "id") Long id, Pageable pageable);
 
     @Query("select p from Product p where p.brand.name like %:search% or p.name like %:search%")
-    List<Product> findByProductNameOrBranchName(@Param(value = "search") String value, Pageable pageable);
+    List<Product> findByProductNameOrBrandName(@Param(value = "search") String value, Pageable pageable);
 
     Product findByName(String name);
 

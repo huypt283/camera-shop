@@ -147,18 +147,22 @@ public class ProductManageController {
     }
 
     @GetMapping("product-delete/{id}")
-    public String deleteProduct(@PathVariable Long id, HttpServletRequest request) {
+    public String deleteProduct(@PathVariable Long id, HttpServletRequest request, ModelMap modelMap) {
         Product product = productService.getSingleProductById(id);
         String oldProductImage = product.getProductImage();
-        if(oldProductImage != null) {
-            try {
-                final String deleteRootPath = request.getServletContext().getRealPath(oldProductImage);
-                Files.deleteIfExists(Paths.get(deleteRootPath));
-            } catch (IOException e) {
-                e.printStackTrace();
+        if (productService.deleteProduct(product)) {
+            if(oldProductImage != null) {
+                try {
+                    final String deleteRootPath = request.getServletContext().getRealPath(oldProductImage);
+                    Files.deleteIfExists(Paths.get(deleteRootPath));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+            return "redirect:/admin/list-product";
+        } else {
+            modelMap.addAttribute("message", "Sản phẩm đã tồn tại trong hóa đơn, không thể xóa");
+            return "admin/direct-message";
         }
-        productService.deleteProduct(product);
-        return "redirect:/admin/list-product";
     }
 }

@@ -13,7 +13,7 @@ public interface ProductService {
 
     List<Product> getListProduct(int limit, int offset);
 
-    List<Product> getListProductByBranhId(Long id, int limit, int offset);
+    List<Product> getListProductByBrandId(Long id, int limit, int offset);
 
     int getCount();
 
@@ -23,7 +23,7 @@ public interface ProductService {
 
     void updateProduct(Product product, UpdateProductRequest updateProductRequest, String productImage, String updateBy, Long id);
 
-    void deleteProduct(Product product);
+    boolean deleteProduct(Product product);
 
     boolean productNameValid(String productName);
 }

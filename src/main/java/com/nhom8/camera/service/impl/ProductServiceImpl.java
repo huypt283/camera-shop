@@ -7,6 +7,7 @@ import com.nhom8.camera.model.request.OffsetBasedPageRequest;
 import com.nhom8.camera.model.request.UpdateProductRequest;
 import com.nhom8.camera.repository.BrandRepository;
 import com.nhom8.camera.repository.ProductRepository;
+import com.nhom8.camera.service.LineItemService;
 import com.nhom8.camera.service.ProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,13 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
     private BrandRepository brandRepository;
+    private LineItemService lineItemService;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, BrandRepository brandRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, BrandRepository brandRepository, LineItemService lineItemService) {
         this.productRepository = productRepository;
         this.brandRepository = brandRepository;
+        this.lineItemService = lineItemService;
     }
 
     @Override
@@ -39,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getListProductByBranhId(Long id, int limit, int offset) {
+    public List<Product> getListProductByBrandId(Long id, int limit, int offset) {
         OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(offset, limit, Sort.by("id").descending());
         return productRepository.findAllByBranchId(id, pageable);
     }
@@ -52,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> search(String searchValue, int limit, int offset) {
         OffsetBasedPageRequest pageable = new OffsetBasedPageRequest(offset, limit, Sort.by("id").descending());
-        return productRepository.findByProductNameOrBranchName(searchValue, pageable);
+        return productRepository.findByProductNameOrBrandName(searchValue, pageable);
     }
 
     @Override
@@ -89,8 +92,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProduct(Product product) {
-        productRepository.delete(product);
+    public boolean deleteProduct(Product product) {
+        if (lineItemService.findByProduct(product).isEmpty()) {
+            productRepository.delete(product);
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -4,6 +4,6 @@ import com.nhom8.camera.entity.ProductBrand;
 
 import java.util.List;
 
-public interface ProductBranchService {
-    List<ProductBrand> getListProductBranch();
+public interface ProductBrandService {
+    List<ProductBrand> getListProductBrand();
 }

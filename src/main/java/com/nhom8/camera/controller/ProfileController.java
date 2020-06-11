@@ -1,11 +1,13 @@
 package com.nhom8.camera.controller;
 
+import com.nhom8.camera.entity.ProductBrand;
 import com.nhom8.camera.entity.User;
 import com.nhom8.camera.model.request.ChangePasswordRequest;
 import com.nhom8.camera.model.request.ChangeProfileRequest;
 import com.nhom8.camera.model.response.UserResponse;
 import com.nhom8.camera.repository.UserRepository;
 import com.nhom8.camera.security.CustomUserDetails;
+import com.nhom8.camera.service.ProductBrandService;
 import com.nhom8.camera.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +26,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
 @Controller
 public class ProfileController {
     private UserService userService;
+    private ProductBrandService productBrandService;
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
@@ -42,9 +46,11 @@ public class ProfileController {
 
     @GetMapping("edit-profile")
     public ModelAndView editProfileGet(@ModelAttribute(value = "changeProfile") ChangeProfileRequest changeProfileRequest, @AuthenticationPrincipal CustomUserDetails userDetails) {
+        List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
         ModelAndView mav = new ModelAndView("profile-change");
         UserResponse user = userService.findUserById(userDetails.getId());
         mav.addObject("user", user);
+        mav.addObject("lstProductBrand", lstProductBrands);
         mav.addObject("message", "Nhập vào thông tin để thay đổi thông tin cá nhân");
         return mav;
     }
@@ -54,6 +60,8 @@ public class ProfileController {
         User user = userRepository.findUserById(userDetails.getId());
         UserResponse userResponse = new UserResponse();
         BeanUtils.copyProperties(user, userResponse);
+        List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
+        modelMap.addAttribute("lstProductBrand", lstProductBrands);
         if (!passwordEncoder.matches(changeProfileRequest.getCurrentPassword(), user.getPassword())) {
             result.addError(new FieldError("changeProfileRequest", "currentPassword", "Password wrong"));
         }
@@ -86,9 +94,11 @@ public class ProfileController {
 
     @GetMapping("/change-password")
     public ModelAndView changePasswordGet(@ModelAttribute(value = "changePassword") ChangePasswordRequest changePasswordRequest, @AuthenticationPrincipal CustomUserDetails userDetails) {
+        List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
         ModelAndView mav = new ModelAndView("password-change");
         UserResponse user = userService.findUserById(userDetails.getId());
         mav.addObject("user", user);
+        mav.addObject("lstProductBrand", lstProductBrands);
         mav.addObject("message", "Nhập vào thông tin để đổi mật khẩu");
         return mav;
     }
@@ -98,6 +108,8 @@ public class ProfileController {
         User user = userRepository.findUserById(userDetails.getId());
         UserResponse userResponse = new UserResponse();
         BeanUtils.copyProperties(user, userResponse);
+        List<ProductBrand> lstProductBrands = productBrandService.getListProductBrand();
+        modelMap.addAttribute("lstProductBrand", lstProductBrands);
         if(!changePasswordRequest.getPassword().equals(changePasswordRequest.getConfirmPassword()))
             result.addError(new FieldError("changePasswordRequest", "confirmPassword", "Confirm password not match"));
 
