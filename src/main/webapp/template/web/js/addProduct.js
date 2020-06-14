@@ -1,4 +1,7 @@
 function addEventAddProductToBtn(){
+    if(!shoppingCart){
+        shoppingCart = new lsDB('shoppingCart');
+    }
     let addToShoppingCartBtns = document.querySelectorAll('div[class="img item_add"]');
     for(let i=0;i<addToShoppingCartBtns.length;i++){
 

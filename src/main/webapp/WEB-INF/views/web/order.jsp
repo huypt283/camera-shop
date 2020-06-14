@@ -89,7 +89,7 @@
                                     <div class="menu-top">
                                         <div class="col1">
                                             <div class="h_nav">
-                                                <c:forEach items="${lstProductBranch}" var="brand">
+                                                <c:forEach items="${lstProductBrand}" var="brand">
                                                     <ul>
                                                         <li>
                                                             <a href="<c:url value="/product?brandId=${brand.id}"/>">${brand.name}</a>
@@ -319,9 +319,9 @@
     });
 </script>
 <script src="<c:url value="/template/web/js/bootstrap.min.js"/>"></script>
-<script src="https://unpkg.com/lodash@4/lodash.min.js"></script>
-<script src="https://unpkg.com/lowdb@0.17/dist/low.min.js"></script>
-<script src="https://unpkg.com/lowdb@0.17/dist/LocalStorage.min.js"></script>
+<script src="<c:url value="/template/web/js/lodash.min.js"/>"></script>
+<script src="<c:url value="/template/web/js/low.min.js"/>"></script>
+<script src="<c:url value="/template/web/js/LocalStorage.min.js"/>"></script>
 <script src="<c:url value="/template/web/js/custom.js"/>"></script>
 <script>
     $(document).ready(

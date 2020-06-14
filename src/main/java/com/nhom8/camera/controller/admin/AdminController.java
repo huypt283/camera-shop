@@ -3,6 +3,7 @@ package com.nhom8.camera.controller.admin;
 import com.nhom8.camera.model.response.UserResponse;
 import com.nhom8.camera.security.CustomUserDetails;
 import com.nhom8.camera.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
     private UserService userService;
 
+    @Autowired
     public AdminController(UserService userService) {
         this.userService = userService;
     }
